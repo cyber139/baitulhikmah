@@ -6,6 +6,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
     <title>Baitul Hikmah</title>
+    
+      <!-- CSRF Token -->
+    <meta name="csrf-token" content="{{ csrf_token() }}">
 
     <!-- Fonts -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.5.0/css/font-awesome.min.css" integrity="sha384-XdYbMnZ/QjLh6iI4ogqCTaIjrFk87ip+ekIjefZch0Y+PvJ8CDYtEs1ipDmPorQ+" crossorigin="anonymous">
@@ -87,17 +90,26 @@
                         <li><a class="hover-btn-new log orange" href="{{url('/register')}}"><span>Register</span></a></li>
                         {{-- <li><a href="{{ url('/login') }}"><i class="fas fa-sign-in-alt nav-icon"> Login</i></a></li> --}}
                         {{-- <li><a href="{{ url('/register') }}">Register</a></li> --}}
-                    ```@else
-                        <li class="dropdown">
+                        @else
+                        <li><a href="{{ url('/home') }}" class="nav-link" ><i class="nav-icon fa fa-tachometer"></i> Dashboard</a></li>
+                        <li><a class="nav-link" href="{{ route('logout') }}"
+                            onclick="event.preventDefault();
+                                          document.getElementById('logout-form').submit();">
+                            <i class="fa fa-btn fa-sign-out"></i> Logout</a>
+                            <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+                                @csrf
+                            </form>
+                        </li>
+                        {{-- <li class="dropdown">
                             <a href="#" class="dropdown-toggle text-light" data-toggle="dropdown" role="button" aria-expanded="false">
                                 <b>{{ Auth::user()->username }} </b></h3><span class="caret"></span>
                             </a>
 
                             <ul class="dropdown-menu" role="menu">
-                                <li><a href="{{ url('/') }}"><i class="nav-icon fa fa-tachometer"></i> Dashboard</a></li>
+                                <li><a href="{{ url('/home') }}"><i class="nav-icon fa fa-tachometer"></i> Dashboard</a></li>
                                 <li><a href="{{ url('/logout') }}"><i class="fa fa-btn fa-sign-out"></i> Logout</a></li>
                             </ul>
-                        </li>
+                        </li> --}}
                     @endif
                     </ul>
 				</div>
