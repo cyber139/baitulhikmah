@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Notice;
 use Illuminate\Http\Request;
 
 class NoticeController extends Controller
@@ -15,7 +16,10 @@ class NoticeController extends Controller
     {
         //
         return view('admin.notice');
-    }
+    //     $notice = Notice::all();
+
+    //     return view('admin.notice',['notices'=>$notice]);
+    // }
 
     /**
      * Show the form for creating a new resource.
@@ -44,9 +48,12 @@ class NoticeController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(Notice $notice)
     {
         //
+        // Notice::findOrFail($id);
+        // return view('admin.notice',['notice'=>$notice]);
+        return view('admin.notice-detail', ['notice'=> $notice]);
         
     }
 

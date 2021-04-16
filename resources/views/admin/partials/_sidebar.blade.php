@@ -90,11 +90,11 @@
           </li>
 
           <li class="nav-item">
-              <a href="calendar.php" class="nav-link">
+              <a href="{{url('/admin/notice')}}" class="nav-link">
               <i class="nav-icon fas fa-chalkboard"></i>
               <p>
                   Notice Board
-                  <span class="badge badge-info right">2</span>
+                  {{-- <span class="badge badge-info right">2</span> --}}
               </p>
               </a>
           </li>

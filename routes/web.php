@@ -25,4 +25,5 @@ Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
 Route::get('/admin', 'AdminController@index')->name('admin.home');
-Route::get('/notice', 'NoticeController@index')->name('admin.notice');
+Route::get('/admin/notice', 'AdminController@show')->name('admin.notice');
+// Route::get('/admin/notice/{$notice}', 'NoticeController@show')->name('admin.notice-detail');
