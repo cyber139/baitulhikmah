@@ -1,7 +1,3 @@
-@extends('layouts.admin')
-
-@section('content')
-
   <!-- Content Wrapper. Contains page content -->
   <div class="content-wrapper">
     <!-- Content Header (Page header) -->
@@ -28,7 +24,7 @@
       <div class="card">
         <div class="card-header">
           <h3 class="card-title">Title</h3>
-          
+          @yield('content')
 
           <div class="card-tools">
             <button type="button" class="btn btn-tool" data-card-widget="collapse" data-toggle="tooltip" title="Collapse">
@@ -52,4 +48,3 @@
     <!-- /.content -->
   </div>
   <!-- /.content-wrapper -->
-@endsection
