@@ -1,5 +1,3 @@
-@extends('layouts.admin')
-
 {{-- @if (Route::has('login'))
 <div class="top-right links">
     @auth
@@ -9,6 +7,10 @@
     @endauth
 </div>
 @endif --}}
+
+@extends('layouts.admin')
+
+
 
 @section('content')
 {{-- <div class="container">
@@ -51,12 +53,24 @@
       <div class="container-fluid">
         <div class="row mb-2">
           <div class="col-sm-6">
-            <h1>Notice (Home)</h1>
+            <h1>Notice (Notice)</h1>
           </div>
           <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
               <li class="breadcrumb-item"><a href="{{route('home')}}">Home</a></li>
-              <li class="breadcrumb-item active">Notice(Home)</li>
+              <li class="breadcrumb-item active">Notice (Home)</li>
+            </ol>
+          </div>
+          <div class="col-sm-12">
+            <ol class="breadcrumb float-sm-right">
+              <li class="breadcrumb-item"><a class="btn btn-primary btn-sm" href="#">
+                <i class="fas fa-plus-circle"></i>
+                Add
+            </a></li>
+              <li class="breadcrumb-item"><a class="btn btn-info btn-sm" href="#">
+                <i class="fas fa-pencil-alt"></i> 
+                Add
+            </a></li>
             </ol>
           </div>
         </div>
@@ -70,7 +84,7 @@
       <!-- Default box -->
       <div class="card">
         <div class="card-header">
-          <h3 class="card-title">{{$notice->title}}</h3>
+          <h3 class="card-title">Title : {{$notice->title}}</h3>
           <div class="card-tools">
             <button type="button" class="btn btn-tool" data-card-widget="collapse" data-toggle="tooltip" title="Collapse">
               <i class="fas fa-minus"></i></button>
@@ -83,7 +97,7 @@
             <img class="card-img-top" src="{{$notice->post_image}}" alt="Card image cap">
                 {{-- <p class="card-text">{{($notice->body)}}</p> --}}
                 <p class="card-text">{{Str::limit($notice->body, '50', '.....')}}</p>
-                <a href="{{route('home', $notice->id)}}" class="btn btn-primary">Read More &rarr;</a>
+                <a href="{{route('notice-detail', $notice->id)}}" class="btn btn-primary">Read More &rarr;</a>
             
         </div>
         <!-- /.card-body -->
@@ -101,5 +115,4 @@
   </div>
   <!-- /.content-wrapper -->
 @endsection
-
 

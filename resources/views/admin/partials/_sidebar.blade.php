@@ -89,15 +89,46 @@
               </ul>
           </li>
 
-          <li class="nav-item">
-              <a href="{{url('/admin/notice')}}" class="nav-link">
+          {{-- <li class="nav-item">
+              <a href="{{url('/notice')}}" class="nav-link">
               <i class="nav-icon fas fa-chalkboard"></i>
               <p>
                   Notice Board
-                  {{-- <span class="badge badge-info right">2</span> --}}
+                  <span class="badge badge-info right">2</span>
               </p>
               </a>
-          </li>
+          </li> --}}
+          <li class="nav-item">
+            <a href="#" class="nav-link">
+            <i class="nav-icon fas fa-chalkboard"></i>
+            <p>Notice Board<i class="fas fa-angle-left right"></i></p>
+            
+            </a>
+            <ul class="nav nav-treeview">
+            <li class="nav-item">
+                <a href="{{url('/notice')}}" class="nav-link">
+                    <i class="far fa-circle nav-icon"></i>
+                    <p>
+                        Display Notice Board
+                        {{-- <span class="badge badge-info right">2</span> --}}
+                    </p>
+                    </a>
+            </li>
+            <li class="nav-item">
+                <a href="subject.php" class="nav-link">
+                <i class="far fa-circle nav-icon"></i>
+                <p>All Notice</p>
+                </a>
+            </li>
+            <li class="nav-item">
+                <a href="{{url('/admin/notice/create')}}" class="nav-link">
+                <i class="fas fa-plus-circle"></i>
+                <p>Add Notice</p>
+                </a>
+            </li>
+            
+            </ul>
+        </li>
 
           <li class="nav-header">Others</li>
           <li class="nav-item">

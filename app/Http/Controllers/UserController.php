@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Notice;
+use App\User;
 use Illuminate\Http\Request;
 
-class NoticeController extends Controller
+class UserController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -15,14 +15,8 @@ class NoticeController extends Controller
     public function index()
     {
         //
-        // return view('admin.notice');
-    //     $notice = Notice::all();
-
-    //     return view('admin.notice',['notices'=>$notice]);
-
-    $notice = Notice::all();
-
-    return view('notice',['notices'=>$notice]);
+        $users = User::all();
+        return view('admin.uac',['users'=>$users]);
     }
 
     /**
@@ -33,7 +27,6 @@ class NoticeController extends Controller
     public function create()
     {
         //
-        return view('admin.notice.create');
     }
 
     /**
@@ -44,31 +37,7 @@ class NoticeController extends Controller
      */
     public function store(Request $request)
     {
-        //Check data request send
-        // dd(request()->all());
-        // auth()->user();
-
-        $inputs = request()->validate([
-            // 'title'=>'required,min:8'
-            'title'=>'required|max:255',
-            'body'=>'required',
-            'post_image'=>'file',
-            // 'post_image'=>'mimems:jpeg,bmp,png',
-            'publish'=>'required'
-        ]);
-        
-        // If post image request exist
-        if(request('post_image')){
-            $inputs['post_image'] = request('post_image')->store('images');
-        }
-
-        // dd($request->post_image->originalName);
-        // dd($request->input('post_image');
-
-        auth()->user()->notices()->create($inputs);
-
-        return back();
-
+        //
     }
 
     /**
@@ -77,13 +46,9 @@ class NoticeController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show(Notice $notice)
+    public function show($id)
     {
         //
-        // Notice::findOrFail($id);
-        // return view('admin.notice',['notice'=>$notice]);
-        return view('notice-detail', ['notice'=> $notice]);
-        
     }
 
     /**

@@ -54,7 +54,7 @@ class AdminController extends Controller
         //
         $notice = Notice::all();
 
-        return view('admin.notice',['notices'=>$notice]);
+        return view('admin.notice.notice',['notices'=>$notice]);
     }
 
     /**
