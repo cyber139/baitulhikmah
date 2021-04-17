@@ -67,7 +67,11 @@ class NoticeController extends Controller
 
         auth()->user()->notices()->create($inputs);
 
-        return back();
+        session()->flash('post-created-message', 'Post with title was created '. $inputs['title']);
+
+        // return back();
+        return redirect()->route('notice.index');
+
 
     }
 
