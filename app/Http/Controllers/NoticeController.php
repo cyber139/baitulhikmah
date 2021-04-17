@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Notice;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\File;
 
 class NoticeController extends Controller
 {
@@ -62,6 +64,8 @@ class NoticeController extends Controller
             $inputs['post_image'] = request('post_image')->store('images');
         }
 
+        
+
         // dd($request->post_image->originalName);
         // dd($request->input('post_image');
 
@@ -87,6 +91,18 @@ class NoticeController extends Controller
         // Notice::findOrFail($id);
         // return view('admin.notice',['notice'=>$notice]);
         return view('notice-detail', ['notice'=> $notice]);
+        
+    }
+
+    public function show1()
+    {
+        //
+        // Notice::findOrFail($id);
+        // return view('admin.notice',['notice'=>$notice]);
+
+        $notice = Notice::all();
+
+        return view('admin.notice.index', ['notice'=> $notice]);
         
     }
 

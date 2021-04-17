@@ -69,7 +69,7 @@
             </a></li>
               <li class="breadcrumb-item"><a class="btn btn-info btn-sm" href="#">
                 <i class="fas fa-pencil-alt"></i> 
-                Add
+                Edit
             </a></li>
             </ol>
           </div>
@@ -94,8 +94,22 @@
             </div>
         <div class="card-body">
           Start creating your amazing application!
-            <img class="card-img-top" src="{{asset($notice->post_image)}}" alt="Card image cap">
-                {{-- <p class="card-text">{{($notice->body)}}</p> --}}
+            <img class="card-img-top" src="{{$notice->post_image}}" alt="Card image cap">
+            {{-- {{ URL::asset('storage/images'.$notice->post_image) }} --}}
+
+            {{-- IMAGE 
+              First of all in the .env file create a variable named FILESYSTEM_DRIVER and set it to public like this
+              FILESYSTEM_DRIVER=public
+              and then create symbolic link by run
+              php artisan storage:link
+              after that just use asset()
+              <img src="{{ asset('storage/'.$cv->photo) }}" alt="..."> --}}
+              {{-- {{asset($notice->post_image)}} --}}
+              {{-- {{asset('storage/'.$notice->post_image)}} --}}
+              
+              {{-- <p class="card-text">{{($notice->body)}}</p> --}}
+
+              
                 <p class="card-text">{{Str::limit($notice->body, '50', '.....')}}</p>
                 <a href="{{route('notice-detail', $notice->id)}}" class="btn btn-primary">Read More &rarr;</a>
             

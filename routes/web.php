@@ -34,11 +34,14 @@ Route::middleware('auth')->group(function(){
     Route::get('/notice-detail/{notice}', 'NoticeController@show')->name('notice-detail');
     // Route::get('/notice-detail', 'NoticeController@show')->name('notice-detail');
     
+
+    // ADMIN
     Route::get('/admin', 'AdminController@index')->name('admin.home');
     // Route::get('/admin/notice', 'AdminController@show')->name('admin.notice');
     Route::get('/admin/users', 'UserController@index')->name('admin.uac');
     Route::get('/admin/notice/create', 'NoticeController@create')->name('notice.create');
     Route::post('/admin/notice', 'NoticeController@store')->name('notice.store');
+    Route::get('/admin/notice/all', 'NoticeController@show1')->name('notice.index');
     
 });
 

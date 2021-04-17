@@ -109,20 +109,20 @@
                 <a href="{{url('/notice')}}" class="nav-link">
                     <i class="far fa-circle nav-icon"></i>
                     <p>
-                        Display Notice Board
+                        Preview Notice Board
                         {{-- <span class="badge badge-info right">2</span> --}}
                     </p>
                     </a>
             </li>
             <li class="nav-item">
-                <a href="subject.php" class="nav-link">
+                <a href="{{url('/admin/notice/all')}}" class="nav-link">
                 <i class="far fa-circle nav-icon"></i>
                 <p>All Notice</p>
                 </a>
             </li>
             <li class="nav-item">
                 <a href="{{url('/admin/notice/create')}}" class="nav-link">
-                <i class="fas fa-plus-circle"></i>
+                <i class="fas fa-plus-circle  nav-icon"></i>
                 <p>Add Notice</p>
                 </a>
             </li>
