@@ -8,17 +8,19 @@
     <div class="container-fluid">
       <div class="row mb-2">
         <div class="col-sm-6">
-          <h1>All Notices</h1>
+          <h1>Notice Post</h1>
         </div>
         <div class="col-sm-6">
           <ol class="breadcrumb float-sm-right">
             <li class="breadcrumb-item"><a href="{{route('admin.home')}}">Home</a></li>
-            <li class="breadcrumb-item active">DataTables</li>
+            <li class="breadcrumb-item active">Notice Post</li>
           </ol>
         </div>
       </div>
     </div><!-- /.container-fluid -->
   </section>
+
+
 
   <!-- Main content -->
   <section class="content">
@@ -26,9 +28,49 @@
       <div class="row">
         <div class="col-12">
           <div class="card">
-            {{-- <div class="card-header">
-              <h3 class="card-title">DataTable with minimal features & hover style</h3>
-            </div> --}}
+            <div class="card-header">
+              <h3 class="card-title">Notice Post</h3>
+              <button href="{{url('/admin/notice/create')}}" class="nav-link btn btn-sm btn-primary float-right"> <i class="fas fa-plus-circle"></i> Add Post</Button>
+            </div>
+            @if(session('message'))
+            {{-- <div class="col-lg-10 m-auto alert alert-danger">{{session('message')}}</div> --}}
+
+            <div class="card alert alert-danger col-lg-10 mx-auto my-2">
+            <div class="card-header">
+              <h3 class="card-title ">{{session('message')}}</h3>
+              <div class="card-tools">
+                  <button type="button" class="btn btn-tool" data-card-widget="remove" data-toggle="tooltip" title="Remove">
+                    <i class="fas fa-times"></i></button>
+                </div>
+            </div>
+          </div>
+            
+            @elseif(session('notice-created-message'))
+            {{-- <div class="col-lg-10 m-auto alert alert-success">{{session('notice-created-message')}}</div> --}}
+
+            <div class="card alert alert-success col-lg-10 mx-auto my-2">
+            <div class="card-header">
+              <h3 class="card-title ">{{session('notice-created-message')}}</h3>
+              <div class="card-tools">
+                  <button type="button" class="btn btn-tool" data-card-widget="remove" data-toggle="tooltip" title="Remove">
+                    <i class="fas fa-times"></i></button>
+                </div>
+            </div>
+          </div>
+
+            @elseif(session('notice-updated-message'))
+            {{-- <div class="col-lg-10 m-auto alert alert-success">{{session('notice-updated-message')}}</div> --}}
+
+            <div class="card alert alert-success col-lg-10 mx-auto my-2">
+            <div class="card-header">
+              <h3 class="card-title ">{{session('notice-updated-message')}}</h3>
+              <div class="card-tools">
+                  <button type="button" class="btn btn-tool" data-card-widget="remove" data-toggle="tooltip" title="Remove">
+                    <i class="fas fa-times"></i></button>
+                </div>
+            </div>
+          </div>
+        @endif
 
            
             <!-- /.card-header -->
@@ -53,8 +95,15 @@
                   <td> {{$notice->created_at->diffForHumans()}}</td>
                   <td> {{$notice->updated_at->diffForHumans()}}</td>
                   <td>
-                    <a class="btn btn-info btn-sm" href="#"> <i class="fas fa-pencil-alt"></i>  Edit  </a>
-                    <a class="btn btn-danger btn-sm" href="#"> <i class="fas fa-trash-alt"></i>  Delete  </a>
+                    <a class="btn btn-info btn-sm" href="{{route('notice.edit', $notice->id)}}"> <i class="fas fa-pencil-alt"></i>  Edit  </a>
+                    <div class="pt-1">
+                      <form method="post" action="{{route('notice.destroy', $notice->id)}}" enctype="multipart/form-data">
+                        @csrf
+                        @method('DELETE')
+                        {{-- <button type="submit" class="btn btn-danger">Delete</button> --}}
+                        <button class="btn btn-danger btn-sm" type="submit"> <i class="fas fa-trash-alt"></i>  Delete  </button>
+                      </form>
+                    </div>
                   </td>
                 </tr>
                 @endforeach

@@ -120,12 +120,12 @@
                 <p>All Notice</p>
                 </a>
             </li>
-            <li class="nav-item">
+            {{-- <li class="nav-item">
                 <a href="{{url('/admin/notice/create')}}" class="nav-link">
                 <i class="fas fa-plus-circle  nav-icon"></i>
                 <p>Add Notice</p>
                 </a>
-            </li>
+            </li> --}}
             
             </ul>
         </li>

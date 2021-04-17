@@ -61,7 +61,7 @@
               <li class="breadcrumb-item active">Notice (Home)</li>
             </ol>
           </div>
-          <div class="col-sm-12">
+          {{-- <div class="col-sm-12">
             <ol class="breadcrumb float-sm-right">
               <li class="breadcrumb-item"><a class="btn btn-primary btn-sm" href="#">
                 <i class="fas fa-plus-circle"></i>
@@ -72,7 +72,7 @@
                 Edit
             </a></li>
             </ol>
-          </div>
+          </div> --}}
         </div>
       </div><!-- /.container-fluid -->
     </section>
@@ -81,6 +81,7 @@
     <section class="content col-lg-10 m-auto">
 
       @foreach ($notices as $notice)
+      @if ($notice->publish === 'Yes')
       <!-- Default box -->
       <div class="card">
         <div class="card-header">
@@ -122,6 +123,7 @@
       <!-- /.card-footer-->
     </div>
     <!-- /.card -->
+    @endif
     @endforeach
 
     </section>

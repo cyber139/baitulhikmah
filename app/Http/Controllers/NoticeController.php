@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Notice;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\File;
 
 class NoticeController extends Controller
@@ -71,7 +72,7 @@ class NoticeController extends Controller
 
         auth()->user()->notices()->create($inputs);
 
-        session()->flash('post-created-message', 'Post with title was created '. $inputs['title']);
+        session()->flash('notice-created-message', 'New post was created : '. $inputs['title']);
 
         // return back();
         return redirect()->route('notice.index');
@@ -112,10 +113,19 @@ class NoticeController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
-    {
-        //
+    public function edit(Notice $notice){
+
+        // $this->authorize('view', $notice);
+
+//        if(auth()->user()->can('view', $post)){
+//
+//
+//        }
+        // $notice = Notice::all();
+
+        return view('admin.notice.edit', ['notice'=> $notice]);
     }
+
 
     /**
      * Update the specified resource in storage.
@@ -124,9 +134,36 @@ class NoticeController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
-    {
-        //
+
+    public function update(Notice $notice){
+
+        $inputs = request()->validate([
+            'title'=>'required|max:255',
+            'body'=>'required',
+            'post_image'=>'file',
+            // 'post_image'=>'mimems:jpeg,bmp,png',
+            'publish'=>'required'
+        ]);
+
+
+        if(request('post_image')){
+            $inputs['post_image'] = request('post_image')->store('images');
+            $notice->post_image = $inputs['post_image'];
+        }
+
+        $notice->title = $inputs['title'];
+        $notice->body = $inputs['body'];
+        $notice->publish = $inputs['publish'];
+
+
+        // $this->authorize('update', $notice);
+
+
+        $notice->save();
+
+        session()->flash('notice-updated-message', 'Post was updated : '. $inputs['title']);
+
+        return redirect()->route('notice.index');
     }
 
     /**
@@ -135,8 +172,16 @@ class NoticeController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
-    {
-        //
+
+    public function destroy(Notice $notice ,Request $request){
+
+        // $this->authorize('delete', $notice);
+
+
+        $notice->delete();
+
+        $request->session()->flash('message', 'Post was deleted');
+
+        return back();
     }
 }

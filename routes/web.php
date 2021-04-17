@@ -39,9 +39,14 @@ Route::middleware('auth')->group(function(){
     Route::get('/admin', 'AdminController@index')->name('admin.home');
     // Route::get('/admin/notice', 'AdminController@show')->name('admin.notice');
     Route::get('/admin/users', 'UserController@index')->name('admin.uac');
+
+    // ADMIN : NOTICE BOARD
+    Route::get('/admin/notice/all', 'NoticeController@show1')->name('notice.index');
     Route::get('/admin/notice/create', 'NoticeController@create')->name('notice.create');
     Route::post('/admin/notice', 'NoticeController@store')->name('notice.store');
-    Route::get('/admin/notice/all', 'NoticeController@show1')->name('notice.index');
+    Route::delete('/admin/notice/{notice}/delete', 'NoticeController@destroy')->name('notice.destroy');
+    Route::get('/admin/notice/{notice}/edit', 'NoticeController@edit')->name('notice.edit');
+    Route::post('/admin/notice/{notice}/update', 'NoticeController@update')->name('notice.update');
     
 });
 
