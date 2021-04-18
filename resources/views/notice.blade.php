@@ -1,3 +1,4 @@
+@extends('layouts.admin')
 {{-- @if (Route::has('login'))
 <div class="top-right links">
     @auth
@@ -8,11 +9,11 @@
 </div>
 @endif --}}
 
-@if(auth()->user()->userHasRole('admin'))
+{{-- @if(auth()->user()->userHasRole('admin'))
 @extends('layouts.admin')
 @else
 @extends('layouts.student')    
-@endif
+@endif --}}
 
 
 

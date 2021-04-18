@@ -141,12 +141,12 @@
               </a>
           </li>
 
-          <li class="nav-header"></li>
+          <li class="nav-header "></li>
           <li class="nav-item ">
             <a class="nav-link" href="{{ route('logout') }}"
             onclick="event.preventDefault();
                           document.getElementById('logout-form').submit();">
-            <i class="fas fa-sign-out-alt nav-icon"></i> Logout</a>
+            <i class="fas fa-sign-out-alt nav-icon"></i> <p>Logout</p></a>
             <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
                 @csrf
             </form>

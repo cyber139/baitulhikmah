@@ -1,4 +1,10 @@
 @extends('layouts.admin')
+{{-- @if(auth()->user()->userHasRole('admin'))
+@extends('layouts.admin')
+@else
+@extends('layouts.student')    
+@endif --}}
+
 
 {{-- @if (Route::has('login'))
 <div class="top-right links">
@@ -8,7 +14,7 @@
       @extends('layouts.student')
     @endauth
 </div>
-@endif --}}
+@endif  --}}
 
 @section('content-notice')
 {{-- <div class="container">
