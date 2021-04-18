@@ -1,7 +1,7 @@
 <!-- Main Sidebar Container -->
 <aside class="main-sidebar sidebar-dark-primary elevation-4">
   <!-- Brand Logo -->
-  <a href="{{url('/admin')}}" class="brand-link">
+  <a href="{{url('/home')}}" class="brand-link">
   <img src="{{asset('/images/logo.png')}}" alt="Baitul-Hikmah Logo" class="brand-image img-circle elevation-5"
       style="opacity: 1.8">
   <span class="brand-text font-weight-light"><b>BAITUL</b> HIKMAH</span>
@@ -15,7 +15,7 @@
       <img src="{{asset('/images/user2-160x160.jpg')}}" class="img-circle elevation-2" alt="User Image">
       </div>
       <div class="info">
-      <a href="#" class="d-block"><h3>{{ Auth::user()->username }}</h3></a>
+      <a href="{{route('admin.user.index',auth()->user())}}" class="d-block">{{ Auth::user()->username }}</a>
       {{-- {{ Auth::user()->username }} --}}
       </div>
   </div>
@@ -26,7 +26,7 @@
       <!-- Add icons to the links using the .nav-icon class
           with font-awesome or any other icon font library -->
           <li class="nav-item ">
-              <a href="{{ url('/admin') }}" class="nav-link">
+              <a href="{{ url('/home') }}" class="nav-link">
               <i class="nav-icon fas fa-tachometer-alt"></i>
               <p>
                   Dashboard
@@ -68,7 +68,7 @@
               </a>
               <ul class="nav nav-treeview">
               <li class="nav-item">
-                  <a href="{{url('/admin/users')}}" class="nav-link">
+                  <a href="{{url('/admin/uac')}}" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
                   <p>All User</p>
                   </a>
