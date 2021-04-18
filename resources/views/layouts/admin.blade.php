@@ -84,7 +84,7 @@
     bsCustomFileInput.init();
   });
   </script>
-  <script>
+  {{-- <script>
     $(function () {
       $("#example1").DataTable({
         "responsive": true,
@@ -94,6 +94,28 @@
         "paging": true,
         "lengthChange": false,
         "searching": false,
+        "ordering": true,
+        "info": true,
+        "autoWidth": false,
+        "responsive": true,
+      });
+    });
+  </script> --}}
+  <script>
+    $(function () {
+      $('#noticeTable').DataTable({
+        "paging": true,
+        "lengthChange": true,
+        "searching": true,
+        "ordering": true,
+        "info": true,
+        "autoWidth": false,
+        "responsive": true,
+      });
+      $('#userTable').DataTable({
+        "paging": true,
+        "lengthChange": true,
+        "searching": true,
         "ordering": true,
         "info": true,
         "autoWidth": false,

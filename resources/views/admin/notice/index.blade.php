@@ -75,7 +75,7 @@
            
             <!-- /.card-header -->
             <div class="card-body">
-              <table id="example2" class="table table-bordered table-hover">
+              <table id="noticeTable" class="table table-bordered table-hover">
                 <thead>
                 <tr>
                   <th>Id</th>
@@ -107,6 +107,7 @@
                   </td>
                 </tr>
                 @endforeach
+                </tbody>
                 <tfoot>
                 <tr>
                   <th>Id</th>

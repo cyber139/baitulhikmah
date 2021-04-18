@@ -102,6 +102,7 @@ class NoticeController extends Controller
         // return view('admin.notice',['notice'=>$notice]);
 
         $notice = Notice::all();
+        // $notice = Notice::paginate(2);
 
         return view('admin.notice.index', ['notice'=> $notice]);
         
