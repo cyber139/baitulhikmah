@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Notice;
+use App\User;
 use Illuminate\Http\Request;
 
 
@@ -31,7 +32,8 @@ class HomeController extends Controller
         // ])
 
         $notice = Notice::all();
+        $user = User::all();
 
-        return view('home',['notices'=>$notice]);
+        return view('home',['notices'=>$notice,'users'=>$user]);
     }
 }

@@ -30,7 +30,7 @@
           <div class="card">
             <div class="card-header">
               <h3 class="card-title">Notice Post</h3>
-              <button href="{{url('/admin/notice/create')}}" class="nav-link btn btn-sm btn-primary float-right"> <i class="fas fa-plus-circle"></i> Add Post</Button>
+              <a href="{{url('/admin/notice/create')}}" class="nav-link btn btn-sm btn-primary float-right"> <i class="fas fa-plus-circle"></i> Add Post</a>
             </div>
             @if(session('message'))
             {{-- <div class="col-lg-10 m-auto alert alert-danger">{{session('message')}}</div> --}}
@@ -90,7 +90,7 @@
                   @foreach ($notice as $notice)
                 <tr>
                   <td>{{$notice->id}}</td>
-                  <td>{{$notice->user->name}}</td>
+                  <td>{{$notice->user->username}}</td>
                   <td><a href="{{route('notice-detail', $notice->id)}}" >{{$notice->title}}</a></td>
                   <td> {{$notice->created_at->diffForHumans()}}</td>
                   <td> {{$notice->updated_at->diffForHumans()}}</td>
