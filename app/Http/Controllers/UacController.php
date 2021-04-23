@@ -180,4 +180,28 @@ class UacController extends Controller
         return back();
 
     }
+
+    public function status(User $user)
+    {
+        // dd($user);
+        $inputs = request()->validate([
+            'isActive' => ['required'],
+        ]);
+
+        // $user->isActive = $inputs['isActive'];
+        // $user->update();
+        // return redirect()->route('admin.uac.edit');
+
+        // $user->update([
+        //     'isActive' => $user['isActive'],
+        // ]);
+        // $user->update();
+        // $this->authorize('update', $notice);
+
+        $user->isActive = $inputs['isActive'];
+        $user->save();
+
+        // return  redirect()->route('admin.user.index');
+        return back();
+    }
 }

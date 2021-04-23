@@ -37,6 +37,11 @@
                 </div>
 
                 <h3 class="profile-username text-center">Nina Mcintire</h3>
+                @if($user->isActive == 'Yes')
+                <p class="text-muted text-center">Active</p> 
+                @else
+                <p class="text-muted text-center">Not Active</p> 
+                @endif
 
                 <ul>
                 @forelse ($user->roles as $role)
@@ -59,6 +64,7 @@
                   <li class="nav-item"><a class="nav-link" href="#edit" data-toggle="tab">Edit</a></li>
                   <li class="nav-item"><a class="nav-link" href="#account" data-toggle="tab">Change password</a></li>
                   <li class="nav-item"><a class="nav-link" href="#roles" data-toggle="tab">Change user roles</a></li>
+                  <li class="nav-item"><a class="nav-link" href="#status" data-toggle="tab">Change user status</a></li>
                 </ul>
               </div><!-- /.card-header -->
               <div class="card-body">
@@ -262,6 +268,42 @@
                         </tr>
                         </tfoot>
                     </table>
+                  </div>
+                  <!-- /.tab-pane -->
+                  <div class="tab-pane" id="status">
+                    <form class="form-horizontal" method="post" action="{{route('uac.status',$user->id)}}" enctype="multipart/form-data">
+                      @csrf
+                      @method('post')
+                      <div class="form-group row">
+                        <label for="username" class="col-sm-2 col-form-label">User Status</label>
+                        <div class="col-sm-10">
+                          <p class=" col-form-label">{{$user->isActive}}</p>
+                        </div>
+                      </div>
+                      <div class="form-group row">
+                        <label for="isActive" class="col-sm-2 col-form-label"> Change User status</label>
+                        <div class="col-sm-10">
+                          <select name="isActive" class="col-sm-2 form-control" required>
+                                {{-- <option value="{{ $user->isActive }}" {{ $user->isActive == old('isActive') ? 'selected' : '' }}>{{ $user->isActive }}</option>
+                                <option value="Yes" @if (old('isActive') == "Yes") {{ 'selected' }} @endif>Yes</option>
+                                <option value="No" @if (old('isActive') == "No") {{ 'selected' }} @endif>No</option> --}}
+
+                                  @if ($user->isActive =="Yes")
+                                      <option value={{$user->isActive}} selected>{{ $user->isActive }}</option>
+                                      <option value="No" @if (old('isActive') == "No") {{ 'selected' }} @endif>No</option> 
+                                  @else
+                                      <option value={{$user->isActive}} selected>{{ $user->isActive }}</option>
+                                      <option value="Yes" @if (old('isActive') == "Yes") {{ 'selected' }} @endif>Yes</option>
+                                  @endif
+                        </select>
+                        </div>
+                      </div>
+                      <div class="form-group row">
+                        <div class="offset-sm-2 col-sm-10">
+                          <button type="submit" class="btn btn-danger">Submit</button>
+                        </div>
+                      </div>
+                    </form>
                   </div>
                   <!-- /.tab-pane -->
                 </div>

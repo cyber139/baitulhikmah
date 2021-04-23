@@ -96,7 +96,9 @@
                       <th>User</th>
                       <th>E-mail</th>
                       <th>Role</th>
+                      <th>isActive</th>
                       <th>Edit</th>
+                      <th>Delete</th>
                       {{-- <th>Status</th> --}}
                     </tr>
                   </thead>
@@ -117,14 +119,20 @@
                       <td>{{ $role->name }}</td>       
                       @endempty
                       @endforeach --}}
-
+                      <td><ul>
                       @forelse ($user->roles as $role)
-                      <td>{{ $role->name }}</td>
+                      <li>{{ $role->name }}</li>
                       @empty
-                      <td>Not defined</td>
+                      <li>Not defined</li>
                       @endforelse
+                      </ul>
+                    </td>
+                      <td>{{$user->isActive}}</td>
+
                       <td>
                         <a class="btn btn-info btn-sm mb-2" href="{{route('admin.uac.edit',$user->id)}}"><i class="fas fa-user-edit"></i> Edit</a>
+                      </td>
+                      <td>
                         {{-- <a class="btn btn-danger btn-sm" href="#"><i class="fas fa-trash-alt"></i> Delete</a> --}}
                         <form method="post" action="{{route('admin.uac.destroy', $user->id)}}" enctype="multipart/form-data">
                           @csrf
@@ -150,7 +158,9 @@
                       <th>User</th>
                       <th>E-mail</th>
                       <th>Role</th>
+                      <th>isActive</th>
                       <th>Edit</th>
+                      <th>Delete</th>
                     </tr>
                     </tfoot>
                 </table>
