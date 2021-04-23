@@ -74,13 +74,13 @@
                   </a>
               </li>
               <li class="nav-item">
-                  <a href="subject.php" class="nav-link">
+                  <a href="{{url('/admin/teacher')}}" class="nav-link">
                   <i class="fas fa-user-tie nav-icon"></i>
                   <p>All Teacher</p>
                   </a>
               </li>
               <li class="nav-item">
-                  <a href="subject.php" class="nav-link">
+                  <a href="{{url('/admin/student')}}" class="nav-link">
                   <i class="fas fa-user-graduate nav-icon"></i>
                   <p>All Student</p>
                   </a>

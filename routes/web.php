@@ -54,6 +54,14 @@ Route::middleware('auth')->group(function(){
     Route::put('/admin/uac/{user}/detach', 'UacController@detach')->name('uac.detach');
     Route::post('/admin/uac/{user}/status', 'UacController@status')->name('uac.status');
 
+    // ADMIN : Teacher
+    Route::get('/admin/teacher', 'TeacherController@index')->name('teacher.index');
+    Route::get('/admin/teacher/{user}/edit', 'TeacherController@edit')->name('teacher.edit');
+    
+    // ADMIN : Student
+    Route::get('/admin/student', 'StudentController@index')->name('student.index');
+    Route::get('/admin/student/{user}/edit', 'StudentController@edit')->name('student.edit');
+
     // ADMIN : NOTICE BOARD
     Route::get('/admin/notice/all', 'NoticeController@show1')->name('notice.index');
     Route::post('/admin/notice', 'NoticeController@store')->name('notice.store');
