@@ -13,8 +13,8 @@
           </div>
           <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
-              <li class="breadcrumb-item"><a href="#">Home</a></li>
-              <li class="breadcrumb-item active">User Profile</li>
+              <li class="breadcrumb-item"><a href="/admin/uac">Home</a></li>
+              <li class="breadcrumb-item active">Edit User Profile</li>
             </ol>
           </div>
         </div>
@@ -38,27 +38,14 @@
 
                 <h3 class="profile-username text-center">Nina Mcintire</h3>
 
-
+                <ul>
                 @forelse ($user->roles as $role)
-                <p class="text-muted text-center">{{$role->name}}</p>
+                <li class="text-muted">{{$role->name}}</li>
                 @empty
-                <p class="text-muted text-center">Not Defined</p>
+                <li class="text-muted">Not Defined</li>
                 @endforelse
-                <td>
-
-                {{-- <ul class="list-group list-group-unbordered mb-3">
-                  <li class="list-group-item">
-                    <b>Followers</b> <a class="float-right">1,322</a>
-                  </li>
-                  <li class="list-group-item">
-                    <b>Following</b> <a class="float-right">543</a>
-                  </li>
-                  <li class="list-group-item">
-                    <b>Friends</b> <a class="float-right">13,287</a>
-                  </li>
-                </ul> --}}
-
-                {{-- <a href="#" class="btn btn-primary btn-block"><b>Follow</b></a> --}}
+                </li>
+    
               </div>
               <!-- /.card-body -->
             </div>
@@ -185,7 +172,7 @@
                   </div>
                   <!-- /.tab-pane -->
                   <div class="tab-pane" id="roles">
-                    <form class="form-horizontal" method="post" action="{{route('admin.user.update',$user->id)}}" enctype="multipart/form-data">
+                    {{-- <form class="form-horizontal" method="post" action="{{route('admin.user.update',$user->id)}}" enctype="multipart/form-data">
                       @csrf
                       <div class="form-group row">
                         <label for="username" class="col-sm-2 col-form-label">Assigned Role</label>
@@ -213,7 +200,68 @@
                           <button type="submit" class="btn btn-danger">Submit</button>
                         </div>
                       </div>
-                    </form>
+                    </form> --}}
+                    <table class="table table-bordered table-hover" id="role">
+                      <thead>
+                        <tr>
+                          <th>Roles Assigned</th>
+                          <th>Id</th>
+                          <th>name</th>
+                          <th>Attach</th>
+                          <th>Detach</th>
+                          {{-- <th>Status</th> --}}
+                        </tr>
+                      </thead>
+                      <tbody>
+                        @foreach ($selectRoles as $role)
+                            <tr>
+                              <td>
+                                <div class="form-check">
+                                <input class="form-check-input" type="checkbox"
+                                @foreach ($user->roles as $user_role)
+                                @if ($user_role->slug == $role->slug)
+                                    checked
+                                @endif
+                                    
+                                @endforeach>
+                              </div>
+                            </td>
+                              <td>{{$role->id}}</td>
+                              <td>{{$role->name}}</td>
+                          <td>
+                            <form method="post" action="{{route('uac.attach',$user)}}" enctype="multipart/form-data">
+                              @csrf
+                              @method('PUT')
+                                  <input type="hidden" name="role" value="{{$role->id}}">
+                                  <button class="btn btn-info btn-sm mb-2" type="submit" 
+                                  @if ($user->roles->contains($role))
+                                  disabled
+                                  @endif><i class="fas fa-user-edit"></i> Attach</button></td>
+                            </form>
+                            <td>
+                              <form method="post" action="{{route('uac.detach',$user)}}" enctype="multipart/form-data">
+                                @csrf
+                                @method('PUT')
+                                  <input type="hidden" name="role" value="{{$role->id}}">
+                                  <button class="btn btn-danger btn-sm" type="submit"
+                                  @if (!$user->roles->contains($role))
+                                  disabled
+                                  @endif> <i class="fas fa-trash-alt"></i>  Detach  </button>
+                            </form>
+                          </td>
+                            </tr>    
+                            @endforeach
+                      </tbody>
+                      <tfoot>
+                        <tr>
+                          <th>Roles Assigned</th>
+                          <th>Id</th>
+                          <th>name</th>
+                          <th>Attach</th>
+                          <th>Detach</th>
+                        </tr>
+                        </tfoot>
+                    </table>
                   </div>
                   <!-- /.tab-pane -->
                 </div>

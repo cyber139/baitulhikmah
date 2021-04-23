@@ -50,6 +50,8 @@ Route::middleware('auth')->group(function(){
     Route::delete('/admin/uac/{user}/delete', 'UacController@uac_delete')->name('admin.uac.destroy');
     Route::get('/admin/uac/create', 'UacController@uac_create')->name('admin.uac.create');
     Route::post('/admin/uac', 'UacController@uac_store')->name('uac.store');
+    Route::put('/admin/uac/{user}/attach', 'UacController@attach')->name('uac.attach');
+    Route::put('/admin/uac/{user}/detach', 'UacController@detach')->name('uac.detach');
 
     // ADMIN : NOTICE BOARD
     Route::get('/admin/notice/all', 'NoticeController@show1')->name('notice.index');
