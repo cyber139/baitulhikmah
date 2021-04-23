@@ -8,12 +8,12 @@
       <div class="container-fluid">
         <div class="row mb-2">
           <div class="col-sm-6">
-            <h1>Create (Admin)</h1>
+            <h1>Edit Class (Admin)</h1>
           </div>
           <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
               <li class="breadcrumb-item"><a href="{{route('admin.home')}}">Home</a></li>
-              <li class="breadcrumb-item active">Create Notice</li>
+              <li class="breadcrumb-item active">Edit Class</li>
             </ol>
           </div>
         </div>
@@ -24,22 +24,26 @@
     <section class="content col-lg-10 m-auto pb-1">
       <div class="card card-primary">
         <div class="card-header">
-          <h3 class="card-title">Create New Notice</h3>
+          <h3 class="card-title">Edit Class</h3>
         </div>
         <!-- /.card-header -->
         <!-- form start -->
-        <form role="form" method="post" action="{{route('notice.store')}}" enctype="multipart/form-data">
+        <form role="form" method="post" action="{{route('grade.update',$grade->grade_id)}}" enctype="multipart/form-data">
           @csrf
           <div class="card-body">
             <div class="form-group">
-              <label for="title">Title</label>
-              <input type="text" class="form-control" placeholder="Enter ..." name="title" id="title" aria-describedby="">
+              <label for="grade_title">Class Title</label>
+              <input type="text" class="form-control" placeholder="Enter ..." name="grade_title" id="grade_title" aria-describedby="" value="{{$grade->grade_title}}">
+            </div>
+            <div class="form-group">
+              <label for="grade_title">Class Slug</label>
+              <input type="text" class="form-control" placeholder="Enter ..." name="grade_slug" id="grade_slug" aria-describedby="" value="{{$grade->grade_slug}}">
             </div>
             {{-- <div class="form-group">
               <label>Body</label>
               <textarea class="form-control" rows="3" placeholder="Enter ..."></textarea>
             </div> --}}
-            <div class="form-group">
+            {{-- <div class="form-group">
               <label>Body</label>
               <div class="pad">
                 <div class="mb-3">
@@ -51,9 +55,9 @@
                   information.</a>
                 </p>
               </div>
-            </div>
+            </div> --}}
             
-            <div class="form-group">
+            {{-- <div class="form-group">
               <label for="File">File input</label>
               <div class="input-group">
                 <div class="custom-file">
@@ -64,14 +68,43 @@
                   <span class="input-group-text" id="post_image" name="post_image">Upload</span>
                 </div>
               </div>
-            </div>
+            </div> --}}
 
             
             <div class="form-group">
               <label>Publish</label>
               <select class="form-control" name="publish" id="publish">
-                <option value="Yes" selected='selected'>Yes</option>
-                <option value="No">No</option>
+                @if ($grade->publish =="Yes")
+                <option value={{$grade->publish}} selected>{{ $grade->publish }}</option>
+                <option value="No" @if (old('publish') == "No") {{ 'selected' }} @endif>No</option> 
+                @else
+                <option value={{$grade->publish}} selected>{{ $grade->publish }}</option>
+                <option value="Yes" @if (old('publish') == "Yes") {{ 'selected' }} @endif>Yes</option>
+                @endif
+              </select>
+            </div>
+            <div class="form-group">
+              <label>IsActive</label>
+              <select class="form-control" name="isActive" id="isActive">
+                @if ($grade->isActive =="Yes")
+                <option value={{$grade->isActive}} selected>{{ $grade->isActive }}</option>
+                <option value="No" @if (old('isActive') == "No") {{ 'selected' }} @endif>No</option> 
+                @else
+                <option value={{$grade->isActive}} selected>{{ $grade->isActive }}</option>
+                <option value="Yes" @if (old('isActive') == "Yes") {{ 'selected' }} @endif>Yes</option>
+                @endif
+              </select>
+            </div>
+            <div class="form-group">
+              <label>IsDelete</label>
+              <select class="form-control" name="isDelete" id="isDelete">
+                @if ($grade->isDelete =="Yes")
+                <option value={{$grade->isDelete}} selected>{{ $grade->isDelete }}</option>
+                <option value="No" @if (old('isDelete') == "No") {{ 'selected' }} @endif>No</option> 
+                @else
+                <option value={{$grade->isDelete}} selected>{{ $grade->isDelete }}</option>
+                <option value="Yes" @if (old('isDelete') == "Yes") {{ 'selected' }} @endif>Yes</option>
+                @endif
               </select>
             </div>
             {{-- <div class="form-check">
@@ -95,3 +128,5 @@
   </div>
   <!-- /.content-wrapper -->
 @endsection
+
+

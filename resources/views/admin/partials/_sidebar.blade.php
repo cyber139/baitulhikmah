@@ -34,15 +34,15 @@
               </a>
           </li>
           <li class="nav-item">
-              <a href="{{ url('/subject') }}" class="nav-link">
-              <i class="nav-icon fas fa-th"></i>
-              <p>Subjects  <i class="fas fa-angle-left right"></i></p>
+              <a href="{{ route('subject.index') }}" class="nav-link">
+              <i class="nav-icon fas fa-swatchbook"></i>
+              <p>Subjects  </p>
              
               </a>
-              <ul class="nav nav-treeview">
+              {{-- <ul class="nav nav-treeview">
               <li class="nav-item">
-                  <a href="{{ url('/all-subject') }}" class="nav-link">
-                  <i class="far fa-circle nav-icon"></i>
+                  <a href="{{ route('subject.index') }}" class="nav-link">
+                  <i class="far fa-circle nav-icon"><i class="fas fa-angle-left right"></i></i>
                   <p>All Subject</p>
                   </a>
               </li>
@@ -52,13 +52,40 @@
                   <p>Tauhid</p>
                   </a>
               </li>
-              {{-- <li class="nav-item">
+              <li class="nav-item">
                   <a href="subject2.php" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
                   <p>Hafazan</p>
                   </a>
-              </li> --}}
-              </ul>
+              </li>
+              </ul> --}}
+          </li>
+          <li class="nav-item">
+              <a href="{{ route('grade.index') }}" class="nav-link">
+              <i class="nav-icon fas fa-th"></i>
+              <p>Class  </p>
+             
+              </a>
+              {{-- <ul class="nav nav-treeview">
+              <li class="nav-item">
+                  <a href="{{ route('subject.index') }}" class="nav-link">
+                  <i class="far fa-circle nav-icon"><i class="fas fa-angle-left right"></i></i>
+                  <p>All Subject</p>
+                  </a>
+              </li>
+              <li class="nav-item">
+                  <a href="{{ url('/subject1') }}" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Tauhid</p>
+                  </a>
+              </li>
+              <li class="nav-item">
+                  <a href="subject2.php" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Hafazan</p>
+                  </a>
+              </li>
+              </ul> --}}
           </li>
           <li class="nav-item">
               <a href="#" class="nav-link">
@@ -130,7 +157,7 @@
             </ul>
         </li>
 
-          <li class="nav-header">Others</li>
+          {{-- <li class="nav-header">Others</li>
           <li class="nav-item">
               <a href="calendar.php" class="nav-link">
               <i class="nav-icon far fa-calendar-alt"></i>
@@ -139,7 +166,7 @@
                   <span class="badge badge-info right">2</span>
               </p>
               </a>
-          </li>
+          </li> --}}
 
           <li class="nav-header "></li>
           <li class="nav-item ">

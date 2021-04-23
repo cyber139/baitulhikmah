@@ -70,6 +70,23 @@ Route::middleware('auth')->group(function(){
     Route::get('/admin/notice/{notice}/edit', 'NoticeController@edit')->name('notice.edit');
     Route::post('/admin/notice/{notice}/update', 'NoticeController@update')->name('notice.update');
     
+    // ADMIN : Class
+    Route::get('/admin/class/all', 'GradeController@index')->name('grade.index');
+    Route::get('/admin/class/create', 'GradeController@create')->name('grade.create');
+    Route::post('/admin/add', 'GradeController@store')->name('grade.store');
+    Route::get('/admin/class/{grade}/edit', 'GradeController@edit')->name('grade.edit');
+    Route::post('/admin/class/{grade}/update', 'GradeController@update')->name('grade.update');
+    Route::delete('/admin/class/{grade}/delete', 'GradeController@destroy')->name('grade.destroy');
+    
+    // ADMIN : Subject
+    Route::get('/admin/subject/all', 'SubjectController@index')->name('subject.index');
+    Route::get('/admin/subject/create', 'SubjectController@create')->name('subject.create');
+    Route::post('/admin/add', 'SubjectController@store')->name('subject.store');
+    Route::get('/admin/subject/{subject}/edit', 'SubjectController@edit')->name('subject.edit');
+    Route::post('/admin/subject/{subject}/update', 'SubjectController@update')->name('subject.update');
+    Route::delete('/admin/subject/{subject}/delete', 'SubjectController@destroy')->name('subject.destroy');
+    
+    
 });
 
 
