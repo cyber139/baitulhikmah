@@ -38,13 +38,7 @@
 
                 <h3 class="profile-username text-center">Nina Mcintire</h3>
 
-
-                @forelse ($user->roles as $role)
-                <p class="text-muted text-center">{{$role->name}}</p>
-                @empty
-                <p class="text-muted text-center">Not Defined</p>
-                @endforelse
-                <td>
+                <p class="text-muted text-center"></p>
 
                 {{-- <ul class="list-group list-group-unbordered mb-3">
                   <li class="list-group-item">
@@ -71,7 +65,6 @@
                   <li class="nav-item"><a class="nav-link active" href="#profile" data-toggle="tab">Profile</a></li>
                   <li class="nav-item"><a class="nav-link" href="#edit" data-toggle="tab">Edit</a></li>
                   <li class="nav-item"><a class="nav-link" href="#account" data-toggle="tab">Change password</a></li>
-                  <li class="nav-item"><a class="nav-link" href="#roles" data-toggle="tab">Change user roles</a></li>
                 </ul>
               </div><!-- /.card-header -->
               <div class="card-body">
@@ -150,7 +143,7 @@
                   </div>
                   <!-- /.tab-pane -->
                   <div class="tab-pane" id="account">
-                    <form class="form-horizontal" method="post" action="{{route('admin.user.update',$user->id)}}" enctype="multipart/form-data">
+                    <form class="form-horizontal" method="post" action="#" enctype="multipart/form-data">
                       @csrf
                       <div class="form-group row">
                         <label for="username" class="col-sm-2 col-form-label">Username</label>
@@ -174,38 +167,6 @@
                         <label for="password_confirmation" class="col-sm-2 col-form-label">Confirm Password</label>
                         <div class="col-sm-10">
                           <input type="password" class="form-control" id="password_confirmation" name="password_confirmation">
-                        </div>
-                      </div>
-                      <div class="form-group row">
-                        <div class="offset-sm-2 col-sm-10">
-                          <button type="submit" class="btn btn-danger">Submit</button>
-                        </div>
-                      </div>
-                    </form>
-                  </div>
-                  <!-- /.tab-pane -->
-                  <div class="tab-pane" id="roles">
-                    <form class="form-horizontal" method="post" action="{{route('admin.user.update',$user->id)}}" enctype="multipart/form-data">
-                      @csrf
-                      <div class="form-group row">
-                        <label for="username" class="col-sm-2 col-form-label">Assigned Role</label>
-                        <div class="col-sm-10">
-                          @forelse ($user->roles as $role)
-                          <p class=" col-form-label">{{$role->name}}</p>
-                          @empty
-                          <p class=" col-form-label">Not Defined</p>
-                          @endforelse
-                        </div>
-                      </div>
-                      <div class="form-group row">
-                        <label for="role" class="col-sm-2 col-form-label">Assign New Role</label>
-                        <div class="col-sm-10">
-                          <select name="role_id" id="input-role" class="col-sm-2 form-control" required>
-                            <option value="">Select</option>
-                            @foreach ($selectRoles as $role)
-                                <option value="{{ $role->id }}" {{ $role->id == old('role_id') ? 'selected' : '' }}>{{ $role->name }}</option>
-                            @endforeach
-                        </select>
                         </div>
                       </div>
                       <div class="form-group row">
