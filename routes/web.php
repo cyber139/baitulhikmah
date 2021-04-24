@@ -53,7 +53,7 @@ Route::middleware('auth')->group(function(){
     Route::put('/admin/uac/{user}/attach', 'UacController@attach')->name('uac.attach');
     Route::put('/admin/uac/{user}/detach', 'UacController@detach')->name('uac.detach');
     Route::post('/admin/uac/{user}/status', 'UacController@status')->name('uac.status');
-
+    
     // ADMIN : Teacher
     Route::get('/admin/teacher', 'TeacherController@index')->name('teacher.index');
     Route::get('/admin/teacher/{user}/edit', 'TeacherController@edit')->name('teacher.edit');
@@ -61,7 +61,7 @@ Route::middleware('auth')->group(function(){
     // ADMIN : Student
     Route::get('/admin/student', 'StudentController@index')->name('student.index');
     Route::get('/admin/student/{user}/edit', 'StudentController@edit')->name('student.edit');
-
+    
     // ADMIN : NOTICE BOARD
     Route::get('/admin/notice/all', 'NoticeController@show1')->name('notice.index');
     Route::post('/admin/notice', 'NoticeController@store')->name('notice.store');
@@ -73,15 +73,17 @@ Route::middleware('auth')->group(function(){
     // ADMIN : Class
     Route::get('/admin/class/all', 'GradeController@index')->name('grade.index');
     Route::get('/admin/class/create', 'GradeController@create')->name('grade.create');
-    Route::post('/admin/add', 'GradeController@store')->name('grade.store');
+    Route::post('/admin/class/add', 'GradeController@store')->name('grade.store');
     Route::get('/admin/class/{grade}/edit', 'GradeController@edit')->name('grade.edit');
     Route::post('/admin/class/{grade}/update', 'GradeController@update')->name('grade.update');
     Route::delete('/admin/class/{grade}/delete', 'GradeController@destroy')->name('grade.destroy');
+    Route::put('/admin/class/{grade}/attach', 'GradeController@attach')->name('grade.attach');
+    Route::put('/admin/class/{grade}/detach', 'GradeController@detach')->name('grade.detach');
     
     // ADMIN : Subject
     Route::get('/admin/subject/all', 'SubjectController@index')->name('subject.index');
     Route::get('/admin/subject/create', 'SubjectController@create')->name('subject.create');
-    Route::post('/admin/add', 'SubjectController@store')->name('subject.store');
+    Route::post('/admin/subject/add', 'SubjectController@store')->name('subject.store');
     Route::get('/admin/subject/{subject}/edit', 'SubjectController@edit')->name('subject.edit');
     Route::post('/admin/subject/{subject}/update', 'SubjectController@update')->name('subject.update');
     Route::delete('/admin/subject/{subject}/delete', 'SubjectController@destroy')->name('subject.destroy');

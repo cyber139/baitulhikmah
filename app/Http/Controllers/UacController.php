@@ -110,6 +110,7 @@ class UacController extends Controller
     public function uac_edit(User $user)
     {
         //
+        
         $users = User::with('roles')->get();
         $selectRoles = Role::all();
         return view('admin.uac.edit',['user'=>$user,'selectRoles'=>$selectRoles]);

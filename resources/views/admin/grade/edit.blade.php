@@ -28,6 +28,9 @@
         </div>
         <!-- /.card-header -->
         <!-- form start -->
+        @foreach ($grades as $grade)
+            
+        
         <form role="form" method="post" action="{{route('grade.update',$grade->grade_id)}}" enctype="multipart/form-data">
           @csrf
           <div class="card-body">
@@ -118,6 +121,75 @@
             <button type="submit" class="btn-lg btn-primary ">Submit</button>
           </div>
         </form>
+        @endforeach
+      </div>
+      <div class="card card-info">
+        <div class="card-header">
+          <h3 class="card-title">Edit Subject</h3>
+        </div>
+        <table class="table table-bordered table-hover" id="role">
+          <thead>
+            <tr>
+              <th>Roles Assigned</th>
+              <th>Id</th>
+              <th>name</th>
+              <th>Attach</th>
+              <th>Detach</th>
+              {{-- <th>Status</th> --}}
+            </tr>
+          </thead>
+          <tbody>
+            @foreach ($selectSubjects as $subj)
+                <tr>
+                  <td>
+                    <div class="form-check">
+                    <input class="form-check-input" type="checkbox"
+                    @foreach ($grade->subjects as $subject)
+                    @if ($subject->subject_id == $subj->subject_id)
+                        checked
+                    @endif
+                        
+                    @endforeach>
+                  </div>
+                </td>
+                  <td>{{$subj->subject_id}}</td>
+                  <td>{{$subj->subject_title}}</td>
+              <td>
+                <form method="post" action="{{route('grade.attach',$grade->grade_id)}}" enctype="multipart/form-data">
+                  @csrf
+                  @method('PUT')
+                      <input type="hidden" name="subject" value="{{$subj->subject_id}}">
+                      <button class="btn btn-info btn-sm mb-2" type="submit" 
+                      @if ($grade->subjects->contains($subj))
+                      disabled
+                      @endif
+                      ><i class="fas fa-user-edit"></i> Attach</button></td>
+                </form>
+                <td>
+                  <form method="post" action="{{route('grade.detach',$grade->grade_id)}}" enctype="multipart/form-data">
+                    @csrf
+                    @method('PUT')
+                      <input type="hidden" name="subject" value="{{$subj->subject_id}}">
+                      <button class="btn btn-danger btn-sm" type="submit"
+                      @if (!$grade->subjects->contains($subj))
+                      disabled
+                      @endif
+                      > <i class="fas fa-trash-alt"></i>  Detach  </button>
+                </form>
+              </td>
+                </tr>    
+                @endforeach
+          </tbody>
+          <tfoot>
+            <tr>
+              <th>Roles Assigned</th>
+              <th>Id</th>
+              <th>name</th>
+              <th>Attach</th>
+              <th>Detach</th>
+            </tr>
+            </tfoot>
+        </table>
       </div>
 
 

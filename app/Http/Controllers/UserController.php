@@ -55,7 +55,7 @@ class UserController extends Controller
         // //
         // $users = User::all();
         // return view('admin.uac',['users'=>$users]);
-        $role = Role::findOrFail($user->id);
+        $role = Role::find($user->id);
         return view('admin.user.index',['user'=>$user,'role'=>$role]);
     }
 

@@ -2,10 +2,12 @@
 
 namespace App\Http\Controllers;
 
+use App\Subject;
 use App\Grade;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Database\Eloquent\Collection;
 
 class GradeController extends Controller
 {
@@ -85,7 +87,10 @@ class GradeController extends Controller
      */
     public function edit(Grade $grade)
     {
-        return view('admin.grade.edit', ['grade'=> $grade]);
+        $grades = Grade::with('subjects')->find($grade);
+        //  dd($grades->toJson());
+        $selectSubjects = Subject::all();
+        return view('admin.grade.edit', ['grades'=> $grades,'selectSubjects'=>$selectSubjects]);
     }
 
     /**
@@ -134,5 +139,18 @@ class GradeController extends Controller
         $request->session()->flash('message', 'Post was deleted');
 
         return back();
+    }
+
+    public function attach(Grade $grade){
+
+        $grade->subjects()->attach(request('subject'));
+        return back();
+
+    }
+    public function detach(Grade $grade){
+
+        $grade->subjects()->detach(request('subject'));
+        return back();
+
     }
 }
