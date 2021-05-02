@@ -38,11 +38,10 @@ Route::middleware('auth')->group(function(){
 
 
 
-    // ADMIN
-    Route::get('/admin', 'AdminController@index')->name('admin.home');
-    // Route::get('/admin/notice', 'AdminController@show')->name('admin.notice');
-    
-    //  ADMIN : USER PROFILE    
+    Route::group(['middleware' => 'isAdmin'], function () {
+        Route::get('/admin', 'AdminController@index')->name('admin.home');
+
+        //  ADMIN : USER PROFILE    
     Route::get('/admin/user/{user}/profile', 'UserController@show')->name('admin.user.index');
     Route::post('/admin/user/{user}/update', 'UserController@update')->name('admin.user.update');
 
@@ -89,6 +88,10 @@ Route::middleware('auth')->group(function(){
     Route::get('/admin/subject/{subject}/edit', 'SubjectController@edit')->name('subject.edit');
     Route::post('/admin/subject/{subject}/update', 'SubjectController@update')->name('subject.update');
     Route::delete('/admin/subject/{subject}/delete', 'SubjectController@destroy')->name('subject.destroy');
+    });
+    
+    
+    
     
     
 });
