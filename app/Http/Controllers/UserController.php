@@ -56,7 +56,7 @@ class UserController extends Controller
         // $users = User::all();
         // return view('admin.uac',['users'=>$users]);
         $role = Role::find($user->id);
-        return view('admin.user.index',['user'=>$user,'role'=>$role]);
+        return view('user.index',['user'=>$user,'role'=>$role]);
     }
 
     /**
@@ -68,7 +68,7 @@ class UserController extends Controller
     public function edit(User $user)
     {
         //
-        return view('admin.user.edit', ['user'=> $user]);
+        return view('user.edit', ['user'=> $user]);
     }
 
     /**

@@ -143,7 +143,7 @@
                   </div>
                   <!-- /.tab-pane -->
                   <div class="tab-pane" id="account">
-                    <form class="form-horizontal" method="post" action="#" enctype="multipart/form-data">
+                    <form class="form-horizontal" method="post" action="{{route('user.update',$user->id)}}" enctype="multipart/form-data">
                       @csrf
                       <div class="form-group row">
                         <label for="username" class="col-sm-2 col-form-label">Username</label>
