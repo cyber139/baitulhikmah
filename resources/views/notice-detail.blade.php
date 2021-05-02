@@ -36,9 +36,12 @@
               </div>
             </div>
         <div class="card-body">
-          Start creating your amazing application!
-            <img class="card-img-top" src="{{$notice->post_image}}" alt="Card image cap">
-                <p class="card-text">{{($notice->body)}}</p>
+          @if (is_null($notice->post_image))
+          <img class="card-img-top" src="{{$notice->post_image}}" alt="Card image cap">
+          ADA PICTURE
+          @endif
+          {!! $notice->body !!}
+                {{-- <p class="card-text">{{($notice->body)}}</p> --}}
                 {{-- <p class="card-text">{{Str::limit($notice->body, '50', '.....')}}</p> --}}
                 {{-- <a href="{{route('home', $notice->id)}}" class="btn btn-primary">Read More &rarr;</a> --}}
             

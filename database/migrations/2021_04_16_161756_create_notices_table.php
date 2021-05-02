@@ -18,7 +18,7 @@ class CreateNoticesTable extends Migration
             $table->foreignId('user_id')->constrained()->onDelete('cascade');
             $table->string('title')->nullable();
             $table->text('post_image')->nullable();
-            $table->text('body')->nullable();
+            $table->longText('body')->nullable();
             $table->enum('publish', ['Yes', 'No'])->default('Yes');
             $table->timestamps();
         });

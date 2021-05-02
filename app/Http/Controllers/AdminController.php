@@ -19,7 +19,7 @@ class AdminController extends Controller
     public function index(){
 
         
-        $notice = count(Notice::all());
+        $notice = Notice::orderBy('id', 'DESC','Publish','Yes')->first();
         $studentlist = Role::where('slug', 'student')->first()->users()->get()->count();
         $teacherlist = Role::where('slug', 'teacher')->first()->users()->get()->count();
         $subjectlist = Subject::get()->count();
@@ -27,7 +27,7 @@ class AdminController extends Controller
 
         // return view('admin.notice',['notices'=>$notice]);
         // return view('admin.home');
-        return view('admin.home',['studentlist'=>$studentlist,'teacherlist'=>$teacherlist,'subjectlist'=>$subjectlist,'classlist'=>$classlist]);
+        return view('admin.home',['studentlist'=>$studentlist,'teacherlist'=>$teacherlist,'subjectlist'=>$subjectlist,'classlist'=>$classlist,'notice'=>$notice]);
 
     }
 

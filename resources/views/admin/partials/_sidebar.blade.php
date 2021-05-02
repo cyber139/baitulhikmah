@@ -125,37 +125,37 @@
               </p>
               </a>
           </li> --}}
-          <li class="nav-item">
-            <a href="#" class="nav-link">
-            <i class="nav-icon fas fa-chalkboard"></i>
-            <p>Notice Board<i class="fas fa-angle-left right"></i></p>
-            
-            </a>
-            <ul class="nav nav-treeview">
             <li class="nav-item">
-                <a href="{{url('/notice')}}" class="nav-link">
-                    <i class="far fa-circle nav-icon"></i>
-                    <p>
-                        Preview Notice Board
-                        {{-- <span class="badge badge-info right">2</span> --}}
-                    </p>
-                    </a>
-            </li>
-            <li class="nav-item">
-                <a href="{{url('/admin/notice/all')}}" class="nav-link">
-                <i class="far fa-circle nav-icon"></i>
-                <p>All Notice</p>
+                <a href="#" class="nav-link">
+                <i class="nav-icon fas fa-chalkboard"></i>
+                <p>Notice Board<i class="fas fa-angle-left right"></i></p>
+                
                 </a>
+                <ul class="nav nav-treeview">
+                    <li class="nav-item">
+                        <a href="{{url('/notice')}}" class="nav-link">
+                            <i class="far fa-circle nav-icon"></i>
+                            <p>
+                                Preview Notice Board
+                                {{-- <span class="badge badge-info right">2</span> --}}
+                            </p>
+                            </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="{{url('/admin/notice/all')}}" class="nav-link">
+                        <i class="far fa-circle nav-icon"></i>
+                        <p>All Notice</p>
+                        </a>
+                    </li>
+                    {{-- <li class="nav-item">
+                        <a href="{{url('/admin/notice/create')}}" class="nav-link">
+                        <i class="fas fa-plus-circle  nav-icon"></i>
+                        <p>Add Notice</p>
+                        </a>
+                    </li> --}}
+                
+                </ul>
             </li>
-            {{-- <li class="nav-item">
-                <a href="{{url('/admin/notice/create')}}" class="nav-link">
-                <i class="fas fa-plus-circle  nav-icon"></i>
-                <p>Add Notice</p>
-                </a>
-            </li> --}}
-            
-            </ul>
-        </li>
 
           {{-- <li class="nav-header">Others</li>
           <li class="nav-item">
@@ -168,16 +168,16 @@
               </a>
           </li> --}}
 
-          <li class="nav-header "></li>
-          <li class="nav-item ">
-            <a class="nav-link" href="{{ route('logout') }}"
-            onclick="event.preventDefault();
-                          document.getElementById('logout-form').submit();">
-            <i class="fas fa-sign-out-alt nav-icon"></i> <p>Logout</p></a>
-            <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
-                @csrf
-            </form>
-        </li>
+            <li class="nav-header "></li>
+            <li class="nav-item ">
+                <a class="nav-link" href="{{ route('logout') }}"
+                onclick="event.preventDefault();
+                            document.getElementById('logout-form').submit();">
+                <i class="fas fa-sign-out-alt nav-icon"></i> <p>Logout</p></a>
+                <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+                    @csrf
+                </form>
+            </li>
       </ul>
   </nav>
   </div>

@@ -105,11 +105,11 @@
       </div>
       
       <div class="row">
-        <section class="col-lg-7 connectedSortable ui-sortable">
+        <section class="col-lg-8 connectedSortable ui-sortable">
           <!-- Default box -->
           <div class="card">
             <div class="card-header">
-              <h3 class="card-title">Title Admin</h3>
+              <h3 class="card-title">Latest Notice</h3>
               
 
               <div class="card-tools">
@@ -120,17 +120,26 @@
               </div>
             </div>
             <div class="card-body">
-              Start creating your amazing application!
+              <h3 class="card-title">{{$notice->title}}</h3>
+              <div class="card-text">
+                @if (is_null($notice->post_image))
+                <img class="card-img-top" src="{{$notice->post_image}}" alt="Card image cap">
+                ADA PICTURE
+                @endif
+                {!! $notice->body !!}
+                <a href="{{route('notice-detail', $notice->id)}}" class="btn btn-primary float-right">Go to Post &rarr;</a>
+              </div>
             </div>
             <!-- /.card-body -->
-            <div class="card-footer">
-              Footer
-            </div>
+            <div class="card-footer text-muted">
+              Posted on {{$notice->created_at->diffForHumans()}}<br>
+              Created by {{$notice->user->username}}
+          </div>
             <!-- /.card-footer-->
           </div>
           <!-- /.card -->
         </section>
-        <section class="col-lg-5 connectedSortable ui-sortable">
+        <section class="col-lg-4 connectedSortable ui-sortable">
           <div class="card bg-gradient-success">
             <div class="card-header border-0 ui-sortable-handle" style="cursor: move;">
 
