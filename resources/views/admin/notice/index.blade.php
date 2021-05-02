@@ -81,9 +81,11 @@
                   <th>Id</th>
                   <th>Owner</th>
                   <th>Title</th>
+                  <th>Publish</th>
                   <th>Created At</th>
                   <th>Updated At</th>
-                  <th>Action</th>
+                  <th>Edit</th>
+                  <th>Delete</th>
                 </tr>
                 </thead>
                 <tbody>
@@ -92,10 +94,13 @@
                   <td>{{$notice->id}}</td>
                   <td>{{$notice->user->username}}</td>
                   <td><a href="{{route('notice-detail', $notice->id)}}" >{{$notice->title}}</a></td>
+                  <td> {{$notice->publish}}</td>
                   <td> {{$notice->created_at->diffForHumans()}}</td>
                   <td> {{$notice->updated_at->diffForHumans()}}</td>
                   <td>
                     <a class="btn btn-info btn-sm" href="{{route('notice.edit', $notice->id)}}"> <i class="fas fa-pencil-alt"></i>  Edit  </a>
+                  </td>
+                  <td>
                     <div class="pt-1">
                       <form method="post" action="{{route('notice.destroy', $notice->id)}}" enctype="multipart/form-data">
                         @csrf
@@ -113,9 +118,11 @@
                   <th>Id</th>
                   <th>Owner</th>
                   <th>Title</th>
+                  <th>Publish</th>
                   <th>Created At</th>
                   <th>Updated At</th>
-                  <th>Action</th>
+                  <th>Edit</th>
+                  <th>Delete</th>
                 </tr>
                 </tfoot>
               </table>

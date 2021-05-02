@@ -23,7 +23,7 @@ class NoticeController extends Controller
 
     //     return view('admin.notice',['notices'=>$notice]);
 
-    $notice = Notice::all();
+    $notice = Notice::orderBy('id', 'DESC','Publish','Yes')->get();
 
     return view('notice',['notices'=>$notice]);
     }
@@ -101,7 +101,8 @@ class NoticeController extends Controller
         // Notice::findOrFail($id);
         // return view('admin.notice',['notice'=>$notice]);
 
-        $notice = Notice::all();
+        $notice = Notice::orderBy('id', 'DESC')->get();
+        // $notice = Notice::all();
         // $notice = Notice::paginate(2);
 
         return view('admin.notice.index', ['notice'=> $notice]);

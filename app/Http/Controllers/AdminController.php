@@ -3,6 +3,10 @@
 namespace App\Http\Controllers;
 
 use App\Notice;
+use App\User;
+use App\Role;
+use App\Grade;
+use App\Subject;
 use Illuminate\Http\Request;
 
 class AdminController extends Controller
@@ -15,10 +19,15 @@ class AdminController extends Controller
     public function index(){
 
         
-        // $notice = Notice::all();
+        $notice = count(Notice::all());
+        $studentlist = Role::where('slug', 'student')->first()->users()->get()->count();
+        $teacherlist = Role::where('slug', 'teacher')->first()->users()->get()->count();
+        $subjectlist = Subject::get()->count();
+        $classlist = Grade::get()->count();
 
         // return view('admin.notice',['notices'=>$notice]);
-        return view('admin.home');
+        // return view('admin.home');
+        return view('admin.home',['studentlist'=>$studentlist,'teacherlist'=>$teacherlist,'subjectlist'=>$subjectlist,'classlist'=>$classlist]);
 
     }
 
