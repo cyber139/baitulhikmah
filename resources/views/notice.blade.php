@@ -58,7 +58,7 @@
       <div class="container-fluid">
         <div class="row mb-2">
           <div class="col-sm-6">
-            <h1>Notice (Notice)</h1>
+            <h1>Notice </h1>
           </div>
           <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
@@ -98,9 +98,9 @@
                 <i class="fas fa-times"></i></button>
               </div>
             </div>
-        <div class="card-body">
-          Start creating your amazing application!
-            <img class="card-img-top" src="{{$notice->post_image}}" alt="Card image cap">
+        <div class="card-body">            
+          <img class="card-img-top img-responsive" src="{{$notice->post_image}}" alt="Card image cap">
+         
             {{-- {{ URL::asset('storage/images'.$notice->post_image) }} --}}
 
             {{-- IMAGE 

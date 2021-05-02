@@ -12,7 +12,7 @@
           </div>
           <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
-              <li class="breadcrumb-item"><a href="{{route('admin.home')}}">Home</a></li>
+              <li class="breadcrumb-item"><a href="{{route('home')}}">Home</a></li>
               <li class="breadcrumb-item"><a href="{{route('notice')}}">Notice</a></li>
               <li class="breadcrumb-item active">Notice Detail</li>
             </ol>
@@ -38,7 +38,6 @@
         <div class="card-body">
           @if (is_null($notice->post_image))
           <img class="card-img-top" src="{{$notice->post_image}}" alt="Card image cap">
-          ADA PICTURE
           @endif
           {!! $notice->body !!}
                 {{-- <p class="card-text">{{($notice->body)}}</p> --}}

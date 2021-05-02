@@ -61,4 +61,9 @@ class User extends Authenticatable
 
         return false;
     }
+
+    public function isAdmins()
+        {
+            return $this->admin ? true : false; // this looks for an admin column in your users table
+        }
 }

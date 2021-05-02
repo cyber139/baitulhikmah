@@ -12,7 +12,7 @@
           </div>
           <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
-              <li class="breadcrumb-item"><a href="{{route('admin.home')}}">Home</a></li>
+              <li class="breadcrumb-item"><a href="{{route('home')}}">Home</a></li>
               <li class="breadcrumb-item active">Create User</li>
             </ol>
           </div>
@@ -53,13 +53,13 @@
             </div>
 
             
-            <div class="form-group">
+            {{-- <div class="form-group">
               <label>Role</label>
               <select class="form-control" name="role" id="role">
-                <option value="Yes" selected='selected'>Student</option>
-                <option value="No">Teacher</option>
+                <option value='2' selected='selected'>Student</option>
+                <option value='3'>Teacher</option>
               </select>
-            </div>
+            </div> --}}
             <div class="form-group">
               <label>isActive</label>
               <select class="form-control" name="isActive" id="isActive">
@@ -73,6 +73,8 @@
             </div> --}}
           </div>
           <!-- /.card-body -->
+
+          
 
           <div class="card-footer text-center">
             <button type="submit" class="btn-lg btn-primary ">Submit</button>

@@ -143,7 +143,7 @@ class UacController extends Controller
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
             'password' => ['required', 'string', 'min:8', 'confirmed'],
             'isActive' =>['required'],
-            'role' => ['required']
+            // 'role' => ['required']
         ]);
 
         $inputs = User::create([
@@ -153,6 +153,10 @@ class UacController extends Controller
             'isActive'=>$inputs['isActive']
         ]);
 
+        // $insertedId = $input->id;
+        // $inputs2 = User::with('roles')->get($inputs->id);
+
+        // dd($inputs2);
         session()->flash('user-created-message', 'User '.$inputs['username'].' was created');
         
         return redirect()->route('admin.uac.index');

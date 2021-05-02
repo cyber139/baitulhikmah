@@ -12,7 +12,7 @@
           </div>
           <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
-              <li class="breadcrumb-item"><a href="{{route('admin.home')}}">Home</a></li>
+              <li class="breadcrumb-item"><a href="{{route('home')}}">Home</a></li>
               <li class="breadcrumb-item active">Dashboard</li>
             </ol>
           </div>
@@ -36,11 +36,12 @@
               </div>
             </div>
         <div class="card-body">
-          Start creating your amazing application!
-            <img class="card-img-top" src="{{$notice->post_image}}" alt="Card image cap">
+          @if (is_null($notice->post_image))
+          <img class="card-img-top" src="{{$notice->post_image}}" alt="Card image cap">
+          @endif
                 {{-- <p class="card-text">{{($notice->body)}}</p> --}}
                 <p class="card-text">{{Str::limit($notice->body, '50', '.....')}}</p>
-                <a href="{{route('home', $notice->id)}}" class="btn btn-primary">Read More &rarr;</a>
+                <a href="{{route('notice-detail', $notice->id)}}" class="btn btn-primary">Read More &rarr;</a>
             
         </div>
         <!-- /.card-body -->
