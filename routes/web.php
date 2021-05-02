@@ -1,5 +1,5 @@
 <?php
-
+use App\Notice;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -14,7 +14,9 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+
+    $notice = Notice::orderBy('id', 'DESC','Publish','Yes')->first();
+    return view('welcome',['notice'=>$notice]);
 });
 
 // Route::get('/admin', function () {

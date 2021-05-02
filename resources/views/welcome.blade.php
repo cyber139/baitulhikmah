@@ -110,13 +110,17 @@
                           <div class="col-md-12">
                               <div class="pricing-table pricing-table-highlighted">
                                   <div class="pricing-table-header grd1">
-                                      <h2>NOTIS PENUTUPAN SEKOLAH</h2>
+                                      <h2>{{strtoupper($notice->title)}}</h2>
                                       {{-- <h3>per month</h3> --}}
                                   </div>
                                   <div class="pricing-table-space"></div>
-                                  <div class="pricing-table-features">
-                                    <p><i class="fa fa-link"></i>DIMAKLUMKAN KAFA INTEGRASI AKAN <strong>DIBUKA SEMULA PADA 3 JANUARI 2021</strong>SELARAS DENGAN SARANAN PEJABAT KESIHATAN BANDAR BARU SALAK TINGGI 
-                                      BAGI MENGAWAL RISIKO MEREBAKNYA APA-APA PENYAKIT DI BAWAH AKTA PENCEGAHAN DAN PENGAWALAN PENYAKIT BERJANGKIT 1988.PENGETUA SEKOLAH</p>
+                                  <div class="pricing-table-features text-center">
+                                    {{-- <p><i class="fa fa-link"></i></p>          --}}
+                                       @if (is_null($notice->post_image))
+                                      <img class="card-img-top" src="{{$notice->post_image}}" alt="Image">
+                                      
+                                      @endif
+                                      {!! $notice->body !!}
                                       {{-- <p><i class="fa fa-envelope-o"></i> <strong>250</strong> Email Addresses</p>
                                       <p><i class="fa fa-rocket"></i> <strong>125GB</strong> of Storage</p>
                                       <p><i class="fa fa-database"></i> <strong>140</strong> Databases</p>
