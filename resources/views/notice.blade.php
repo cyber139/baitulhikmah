@@ -1,3 +1,4 @@
+@extends('layouts.admin')
 {{-- @if (Route::has('login'))
 <div class="top-right links">
     @auth
@@ -8,7 +9,11 @@
 </div>
 @endif --}}
 
+{{-- @if(auth()->user()->userHasRole('admin'))
 @extends('layouts.admin')
+@else
+@extends('layouts.student')    
+@endif --}}
 
 
 
@@ -117,7 +122,8 @@
         </div>
         <!-- /.card-body -->
         <div class="card-footer text-muted">
-          Posted on {{$notice->created_at->diffForHumans()}}
+          Posted on {{$notice->created_at->diffForHumans()}}<br>
+          Created by {{$notice->user->username}}
           <a href="#">Baitul Hikmah</a>
       </div>
       <!-- /.card-footer-->

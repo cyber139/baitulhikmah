@@ -2,13 +2,9 @@
 
 namespace App\Http\Controllers;
 
-use App\User;
-use App\Role;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Hash;
-use Illuminate\Support\Facades\DB;
 
-class UserController extends Controller
+class RoleController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -18,10 +14,7 @@ class UserController extends Controller
     public function index()
     {
         //
-
     }
-
-  
 
     /**
      * Show the form for creating a new resource.
@@ -50,13 +43,9 @@ class UserController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show(User $user)
+    public function show($id)
     {
-        // //
-        // $users = User::all();
-        // return view('admin.uac',['users'=>$users]);
-        $role = Role::find($user->id);
-        return view('admin.user.index',['user'=>$user,'role'=>$role]);
+        //
     }
 
     /**
@@ -65,10 +54,9 @@ class UserController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit(User $user)
+    public function edit($id)
     {
         //
-        return view('admin.user.edit', ['user'=> $user]);
     }
 
     /**
@@ -78,22 +66,9 @@ class UserController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(User $user)
+    public function update(Request $request, $id)
     {
         //
-        $inputs = request()->validate([
-            'password' => ['required', 'string', 'min:8', 'confirmed'],
-        ]);
-
-        $user->update([
-            'password' => Hash::make($user['password']),
-        ]);
-        // $user->update();
-        // $this->authorize('update', $notice);
-
-
-        // return  redirect()->route('admin.user.index');
-        return back();
     }
 
     /**
@@ -106,7 +81,4 @@ class UserController extends Controller
     {
         //
     }
-
-
-
 }

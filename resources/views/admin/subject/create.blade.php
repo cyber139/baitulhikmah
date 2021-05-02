@@ -8,7 +8,7 @@
       <div class="container-fluid">
         <div class="row mb-2">
           <div class="col-sm-6">
-            <h1>Create (Admin)</h1>
+            <h1>Create Subject (Admin)</h1>
           </div>
           <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
@@ -28,18 +28,22 @@
         </div>
         <!-- /.card-header -->
         <!-- form start -->
-        <form role="form" method="post" action="{{route('notice.store')}}" enctype="multipart/form-data">
+        <form role="form" method="post" action="{{route('subject.store')}}" enctype="multipart/form-data">
           @csrf
           <div class="card-body">
             <div class="form-group">
-              <label for="title">Title</label>
-              <input type="text" class="form-control" placeholder="Enter ..." name="title" id="title" aria-describedby="">
+              <label for="subject_title">Subject Title</label>
+              <input type="text" class="form-control" placeholder="Enter ..." name="subject_title" id="subject_title" aria-describedby="">
+            </div>
+            <div class="form-group">
+              <label for="subject_title">Subject Slug</label>
+              <input type="text" class="form-control" placeholder="Enter ..." name="subject_slug" id="subject_slug" aria-describedby="">
             </div>
             {{-- <div class="form-group">
               <label>Body</label>
               <textarea class="form-control" rows="3" placeholder="Enter ..."></textarea>
             </div> --}}
-            <div class="form-group">
+            {{-- <div class="form-group">
               <label>Body</label>
               <div class="pad">
                 <div class="mb-3">
@@ -51,9 +55,9 @@
                   information.</a>
                 </p>
               </div>
-            </div>
+            </div> --}}
             
-            <div class="form-group">
+            {{-- <div class="form-group">
               <label for="File">File input</label>
               <div class="input-group">
                 <div class="custom-file">
@@ -64,7 +68,7 @@
                   <span class="input-group-text" id="post_image" name="post_image">Upload</span>
                 </div>
               </div>
-            </div>
+            </div> --}}
 
             
             <div class="form-group">
@@ -72,6 +76,20 @@
               <select class="form-control" name="publish" id="publish">
                 <option value="Yes" selected='selected'>Yes</option>
                 <option value="No">No</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label>IsActive</label>
+              <select class="form-control" name="isActive" id="isActive">
+                <option value="Yes" selected='selected'>Yes</option>
+                <option value="No">No</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label>IsDelete</label>
+              <select class="form-control" name="isDelete" id="isDelete">
+                <option value="No" selected='selected'>No</option>
+                <option value="Yes">Yes</option>
               </select>
             </div>
             {{-- <div class="form-check">
@@ -95,3 +113,5 @@
   </div>
   <!-- /.content-wrapper -->
 @endsection
+
+

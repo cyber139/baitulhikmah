@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <title>AdminLTE 3 | Blank Page</title>
+  <title>Dashboard | Blank Page</title>
   <!-- Tell the browser to be responsive to screen width -->
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <!-- CSRF Token -->
@@ -34,7 +34,12 @@
   <!-- /.navbar -->
 
   <!-- Main Sidebar Container -->
+  @if(auth()->user()->userHasRole('admin'))
   @include('admin.partials._sidebar')
+  @else
+  @include('student.partials._sidebar') 
+  @endif
+
   {{-- @include('admin.partials._dashboard') --}}
 
 

@@ -5,6 +5,7 @@ namespace App;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
+use Illuminate\Support\Str;
 
 class User extends Authenticatable
 {
@@ -16,7 +17,7 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'name', 'email', 'password',
+        'username', 'email', 'password',
     ];
 
     /**
@@ -39,5 +40,25 @@ class User extends Authenticatable
 
     public function notices(){
         return $this->hasMany(Notice::class);
+    }
+
+    // Relationship with permission ; one user has many different permission
+    public function permission(){
+        return $this->belongsToMany(Permission::class);
+    }
+
+    // Relationship with roles ; one user has many different roles
+    public function roles(){
+        return $this->belongsToMany(Role::class);
+    }
+
+    // Limit users according to role
+    public function userHasRole($role_name){
+        foreach($this->roles as $role){
+            if(Str::lower($role_name) == Str::lower($role->name))
+                return true;
+        }
+
+        return false;
     }
 }

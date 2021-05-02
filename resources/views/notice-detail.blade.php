@@ -45,7 +45,8 @@
         </div>
         <!-- /.card-body -->
         <div class="card-footer text-muted">
-          Posted on {{$notice->created_at->diffForHumans()}}
+          Posted on {{$notice->created_at->diffForHumans()}}<br>
+          Created by {{$notice->user->username}}
           <a href="#">Baitul Hikmah</a>
       </div>
       <!-- /.card-footer-->

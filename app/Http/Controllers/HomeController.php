@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Notice;
+use App\User;
 use Illuminate\Http\Request;
 
 
@@ -13,6 +14,7 @@ class HomeController extends Controller
      *
      * @return void
      */
+    
     public function __construct()
     {
         $this->middleware('auth');
@@ -31,7 +33,8 @@ class HomeController extends Controller
         // ])
 
         $notice = Notice::all();
+        $user = User::all();
 
-        return view('home',['notices'=>$notice]);
+        return view('home',['notices'=>$notice,'users'=>$user]);
     }
 }
