@@ -51,9 +51,9 @@ class HomeController extends Controller
         // dd($UserRoles);
 
         if($UserRoles->roles->isNotEmpty()){
-            foreach($UserRoles as $role){
-                    // dd($role);
-                    if($role == 'admin')
+            foreach($UserRoles->roles as $role){
+                    // dd($role->id);
+                    if($role->id == 1)
                     {
                         // dd($role);
                         $notice = Notice::orderBy('id', 'DESC','Publish','Yes')->first();
@@ -65,6 +65,11 @@ class HomeController extends Controller
                         // return view('admin.notice',['notices'=>$notice]);
                         // return view('admin.home');
                         return view('admin.home',['studentlist'=>$studentlist,'teacherlist'=>$teacherlist,'subjectlist'=>$subjectlist,'classlist'=>$classlist,'notice'=>$notice]);
+                    }
+                    elseif($role->id == 2)
+                    {
+                        // dd($role);
+                        return view('teacher.home');
                     }
                     else{
                         $notice = Notice::all();

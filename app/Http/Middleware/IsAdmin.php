@@ -43,10 +43,10 @@ class IsAdmin
         if($UserRoles->roles->isNotEmpty()){
             // dd($UserRoles);
 
-            foreach($UserRoles as $role)
+            foreach($UserRoles->roles as $role)
             {
-                // dd($role);
-                if($role == 'admin')
+                // dd($role->id);
+                if($role->id == '1')
                 {
                     // dd($role);
                     $isAdmin = true;

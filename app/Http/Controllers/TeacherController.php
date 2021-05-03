@@ -27,6 +27,21 @@ class TeacherController extends Controller
         return view('admin.teacher.index',['users'=>$users]);
     }
 
+    public function home()
+    {
+        //
+        return view('teacher.home');
+    }
+
+    public function teacherProfile(User $user)
+    {
+        // //
+        // $users = User::all();
+        // return view('admin.uac',['users'=>$users]);
+        $role = Role::find($user->id);
+        return view('user.index',['user'=>$user,'role'=>$role]);
+    }
+
     /**
      * Show the form for creating a new resource.
      *

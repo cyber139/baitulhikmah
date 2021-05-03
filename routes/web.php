@@ -44,6 +44,11 @@ Route::middleware('auth')->group(function(){
     Route::get('/user/{user}/profile', 'UserController@show')->name('user.index');
     Route::post('/user/{user}/update', 'UserController@update')->name('user.update');
 
+    // // TEACHER
+    // Route::get('/home', 'TeacherController@index')->name('home');
+
+    // HOME
+
 
     
     
