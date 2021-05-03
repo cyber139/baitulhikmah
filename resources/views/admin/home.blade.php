@@ -26,7 +26,7 @@
       <div class="card card-primary card-outline">
         <div class="card-body row">
           <h2 class="card-titlex col-lg-6">Assalammualaikum, {{ ucfirst(Auth::user()->username) }}</h2>
-          <h2 class="card-titlex col-lg-6 text-right">Date : {{ date('Y-m-d') }}</h2>
+          <h2 class="card-titlex col-lg-6 text-right text-muted">{{ date('d/m/Y') }}</h2>
 
           {{-- <p class="card-text">
             Some quick example text to build on the card title and make up the bulk of the card's

@@ -36,7 +36,7 @@
                        alt="User profile picture">
                 </div>
 
-                <h3 class="profile-username text-center">Nina Mcintire</h3>
+                <h3 class="profile-username text-center">{{$user->username}}</h3>
                 @if($user->isActive == 'Yes')
                 <p class="text-muted text-center">Active</p> 
                 @else
@@ -61,6 +61,7 @@
               <div class="card-header p-2">
                 <ul class="nav nav-pills">
                   <li class="nav-item"><a class="nav-link active" href="#profile" data-toggle="tab">Profile</a></li>
+                  <li class="nav-item"><a class="nav-link " href="#assign" data-toggle="tab">Assign Teacher</a></li>
                   {{-- <li class="nav-item"><a class="nav-link" href="#edit" data-toggle="tab">Edit</a></li> --}}
                   <li class="nav-item"><a class="nav-link" href="#account" data-toggle="tab">Change password</a></li>
                   <li class="nav-item"><a class="nav-link" href="#roles" data-toggle="tab">Change user roles</a></li>
@@ -141,6 +142,99 @@
                       </div>
                     </form>
                   </div> --}}
+                  <!-- /.tab-pane -->
+                  <div class="tab-pane" id="assign">
+                    {{-- <form class="form-horizontal" method="post" action="{{route('admin.user.update',$user->id)}}" enctype="multipart/form-data">
+                      @csrf
+                      <div class="form-group row">
+                        <label for="username" class="col-sm-2 col-form-label">Assigned Role</label>
+                        <div class="col-sm-10">
+                          @forelse ($user->roles as $role)
+                          <p class=" col-form-label">{{$role->name}}</p>
+                          @empty
+                          <p class=" col-form-label">Not Defined</p>
+                          @endforelse
+                        </div>
+                      </div>
+                      <div class="form-group row">
+                        <label for="role" class="col-sm-2 col-form-label">Assign New Role</label>
+                        <div class="col-sm-10">
+                          <select name="role_id" id="input-role" class="col-sm-2 form-control" required>
+                            <option value="">Select</option>
+                            @foreach ($selectRoles as $role)
+                                <option value="{{ $role->id }}" {{ $role->id == old('role_id') ? 'selected' : '' }}>{{ $role->name }}</option>
+                            @endforeach
+                        </select>
+                        </div>
+                      </div>
+                      <div class="form-group row">
+                        <div class="offset-sm-2 col-sm-10">
+                          <button type="submit" class="btn btn-danger">Submit</button>
+                        </div>
+                      </div>
+                    </form> --}}
+                    <table class="table table-bordered table-hover" id="role">
+                      <thead>
+                        <tr>
+                          <th>Roles Assigned</th>
+                          <th>Id</th>
+                          <th>name</th>
+                          <th>Attach</th>
+                          <th>Detach</th>
+                          {{-- <th>Status</th> --}}
+                        </tr>
+                      </thead>
+                      <tbody>
+                        @foreach ($selectRoles as $role)
+                            <tr>
+                              <td>
+                                <div class="form-check">
+                                <input class="form-check-input" type="checkbox"
+                                @foreach ($user->roles as $user_role)
+                                @if ($user_role->slug == $role->slug)
+                                    checked
+                                @endif
+                                    
+                                @endforeach>
+                              </div>
+                            </td>
+                              <td>{{$role->id}}</td>
+                              <td>{{$role->name}}</td>
+                          <td>
+                            <form method="post" action="{{route('uac.attach',$user)}}" enctype="multipart/form-data">
+                              @csrf
+                              @method('PUT')
+                                  <input type="hidden" name="role" value="{{$role->id}}">
+                                  <button class="btn btn-info btn-sm mb-2" type="submit" 
+                                  @if ($user->roles->contains($role))
+                                  disabled
+                                  @endif><i class="fas fa-user-edit"></i> Attach</button></td>
+                            </form>
+                            <td>
+                              <form method="post" action="{{route('uac.detach',$user)}}" enctype="multipart/form-data">
+                                @csrf
+                                @method('PUT')
+                                  <input type="hidden" name="role" value="{{$role->id}}">
+                                  <button class="btn btn-danger btn-sm" type="submit"
+                                  @if (!$user->roles->contains($role))
+                                  disabled
+                                  @endif> <i class="fas fa-trash-alt"></i>  Detach  </button>
+                            </form>
+                          </td>
+                            </tr>    
+                            @endforeach
+                      </tbody>
+                      <tfoot>
+                        <tr>
+                          <th>Roles Assigned</th>
+                          <th>Id</th>
+                          <th>name</th>
+                          <th>Attach</th>
+                          <th>Detach</th>
+                        </tr>
+                        </tfoot>
+                    </table>
+                  </div>
                   <!-- /.tab-pane -->
                   <div class="tab-pane" id="account">
                     <form class="form-horizontal" method="post" action="{{route('admin.user.update',$user->id)}}" enctype="multipart/form-data">
@@ -306,6 +400,7 @@
                     </form>
                   </div>
                   <!-- /.tab-pane -->
+                  
                 </div>
                 <!-- /.tab-content -->
               </div><!-- /.card-body -->

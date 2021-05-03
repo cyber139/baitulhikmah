@@ -14,6 +14,7 @@ class CreateGradeSubjectTable extends Migration
     public function up()
     {
         Schema::create('grade_subject', function (Blueprint $table) {
+            $table->id('grade_subject_id');
             $table->primary(['grade_id','subject_id']);
             $table->foreignId('grade_id')->constrained()->onDelete('cascade');
             $table->foreignId('subject_id')->constrained()->onDelete('cascade');
