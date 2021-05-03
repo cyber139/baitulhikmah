@@ -4,7 +4,8 @@ namespace App\Http\Middleware;
 
 use Closure;
 use DB;
-use Auth;
+// use Auth;
+use Illuminate\Support\Facades\Auth;
 use App\User;
 use App\Role;
 
