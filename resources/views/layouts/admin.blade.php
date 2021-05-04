@@ -17,9 +17,8 @@
   <!-- Ionicons -->
   <link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
   <!-- overlayScrollbars -->
-  <link rel="stylesheet" href="{{asset('../../dist/css/adminlte.min.css')}}">
   <!-- Theme style -->
-  <link rel="stylesheet" href=".{{asset('./../dist/css/adminlte.min.css')}}">
+  <link rel="stylesheet" href="{{asset('../../dist/css/adminlte.min.css')}}">
   <!-- summernote -->
   <link rel="stylesheet" href="{{asset('../../plugins/summernote/summernote-bs4.css')}}">
   <!-- DataTables -->
@@ -37,11 +36,7 @@
   <!-- /.navbar -->
 
   <!-- Main Sidebar Container -->
-  @if(auth()->user()->userHasRole('admin'))
   @include('admin.partials._sidebar')
-  @else
-  @include('student.partials._sidebar') 
-  @endif
 
   {{-- @include('admin.partials._dashboard') --}}
 

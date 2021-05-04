@@ -98,8 +98,15 @@
                 <i class="fas fa-times"></i></button>
               </div>
             </div>
-        <div class="card-body">            
-          <img class="card-img-top img-responsive" src="{{$notice->post_image}}" alt="Card image cap">
+        <div class="card-body text-center">            
+          @if (is_null($notice->post_image))
+          
+          <img class="card-img-top" src="{{$notice->post_image}}" alt="Card image cap" style="display: none">
+          @else
+
+          <img class="card-img-top" src="{{$notice->post_image}}" alt="Card image cap" style="width: 50%">
+
+          @endif
          
             {{-- {{ URL::asset('storage/images'.$notice->post_image) }} --}}
 

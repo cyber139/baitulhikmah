@@ -1,5 +1,7 @@
 <?php
 use App\Notice;
+// use Auth;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
 /*

@@ -2,6 +2,7 @@
 
 /** @var \Illuminate\Database\Eloquent\Factory $factory */
 
+use App\Role;
 use App\User;
 use Faker\Generator as Faker;
 use Illuminate\Support\Str;
@@ -25,5 +26,22 @@ $factory->define(User::class, function (Faker $faker) {
         'password' => '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', 
         // 'password' => '$10$romaJhsNBax/0C6sOQ74w.x5BAM2xDR62Ulc8RDPU.ZAVMmWN0LjG', // password
         'remember_token' => Str::random(10),
+
     ];
 });
+
+$factory->define(Role::class, function (Faker $faker) {
+
+    $name = $faker->randomElement(['Admin' ,'Student','Teacher']);
+    $slug = strtolower($name);
+
+    return [
+        'name' =>  $name,
+        'slug' => $slug,
+        // 'created_at'=>$this->faker->dateTimeBetween("-1 day" , now()),
+
+
+    ];
+});
+
+

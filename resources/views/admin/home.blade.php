@@ -121,14 +121,19 @@
             </div>
             <div class="card-body">
               <h3 class="card-title">{{$notice->title}}</h3>
-              <div class="card-text">
-                @if (is_null($notice->post_image))
-                <img class="card-img-top" src="{{$notice->post_image}}" alt="Card image cap">
-                ADA PICTURE
-                @endif
+              <div class="card-text text-center">
                 {!! $notice->body !!}
-                <a href="{{route('notice-detail', $notice->id)}}" class="btn btn-primary float-right">Go to Post &rarr;</a>
+                @if (is_null($notice->post_image))
+          
+                <img class="card-img-top" src="{{$notice->post_image}}" alt="Card image cap" style="display: none">
+                @else
+      
+                <img class="card-img-top" src="{{$notice->post_image}}" alt="Card image cap" style="width: 50%">
+      
+                @endif
+                
               </div>
+              <a href="{{route('notice-detail', $notice->id)}}" class="btn btn-primary float-right">Go to Post &rarr;</a>
             </div>
             <!-- /.card-body -->
             <div class="card-footer text-muted">

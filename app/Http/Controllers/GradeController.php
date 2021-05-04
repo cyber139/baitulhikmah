@@ -87,9 +87,28 @@ class GradeController extends Controller
      */
     public function edit(Grade $grade)
     {
-        $grades = Grade::with('subjects')->find($grade);
+
+        // DB::enableQueryLog();
+        // $grades = Grade::with('subjects')->find($grade);
+        $grades = Grade::find($grade);
+
+       
+
+        // $query = Grade::with('subjects')->where('id',$grade);
+        // dd($query->toSql());
+        // dd($query);
+        // dd($grades);
         //  dd($grades->toJson());
-        $selectSubjects = Subject::all();
+        
+        // $selectSubjects = Subject::all();
+        // $selectSubjects = Subject::where('isActive', 'Yes')->get();
+        $selectSubjects = Subject::where([
+            ['isActive','=', 'Yes'],
+            ['publish','=','Yes'],
+            ['isDelete','=','No']
+            ])->get();
+
+        // dd(DB::getQueryLog());
         return view('admin.grade.edit', ['grades'=> $grades,'selectSubjects'=>$selectSubjects]);
     }
 

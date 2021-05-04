@@ -49,7 +49,7 @@ class User extends Authenticatable
 
     // Relationship with roles ; one user has many different roles
     public function roles(){
-        return $this->belongsToMany(Role::class);
+        return $this->belongsToMany(Role::class)->withTimestamps();
     }
 
     // Limit users according to role

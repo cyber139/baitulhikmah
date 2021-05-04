@@ -10,10 +10,10 @@ class Permission extends Model
     //
     // Relationship with roles ; one permissions has many different role
     public function roles(){
-        return $this->belongsToMany(Role::class);
+        return $this->belongsToMany(Role::class)->withTimestamps();
     }
     // Relationship with users ; one permissions has many different users
     public function users(){
-        return $this->belongsToMany(User::class);
+        return $this->belongsToMany(User::class)->withTimestamps();
     }
 }

@@ -15,7 +15,7 @@
       <img src="{{asset('/images/user2-160x160.jpg')}}" class="img-circle elevation-2" alt="User Image">
       </div>
       <div class="info">
-      <a href="{{route('admin.user.index',auth()->user())}}" class="d-block">{{ ucfirst(Auth::user()->username) }}</a>
+      <a href="{{route('user.index',auth()->user())}}" class="d-block">{{ ucfirst(Auth::user()->username) }}</a>
       {{-- {{ Auth::user()->username }} --}}
       </div>
   </div>

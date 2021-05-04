@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\User;
 use App\Role;
+use App\Subject;
+use App\Grade;
 // use App\Notice;
 use Illuminate\Http\Request;
 // use Illuminate\Support\Facades\Hash;
@@ -86,6 +88,21 @@ class TeacherController extends Controller
         $users = User::with('roles')->get();
         $selectRoles = Role::all();
         return view('admin.teacher.edit',['user'=>$user,'selectRoles'=>$selectRoles]);
+    }
+
+    /**
+     * Show the form for editing the specified resource.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function editSubject(User $user)
+    {
+        //
+        $users = User::with('roles')->get();
+        $selectSubject = Subject::all();
+        $selectGrade = Grade::all();
+        return view('admin.teacher.edit',['user'=>$user,'selectSubject'=>$selectSubject,'selectGrade'=>$selectGrade]);
     }
 
     /**

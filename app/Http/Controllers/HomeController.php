@@ -7,7 +7,8 @@ use App\User;
 use App\Role;
 use App\Grade;
 use App\Subject;
-use Auth;
+// use Auth;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
 
 

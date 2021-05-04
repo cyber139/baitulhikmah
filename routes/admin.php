@@ -6,9 +6,9 @@ Route::group(['middleware' => 'isAdmin'], function () {
     
     // Route::get('/home', 'AdminController@index')->name('admin.home');
 
-    //  ADMIN : USER PROFILE    
-    Route::get('/user/{user}/profile', 'UserController@show')->name('admin.user.index');
-    Route::post('/user/{user}/update', 'UserController@update')->name('admin.user.update');
+    // //  ADMIN : USER PROFILE    
+    // Route::get('/user/{user}/profile', 'UserController@show')->name('admin.user.index');
+    // Route::post('/user/{user}/update', 'UserController@update')->name('admin.user.update');
 
     // ADMIN : USER ACCESS CONTROL
     Route::get('/uac', 'UacController@uac')->name('admin.uac.index');

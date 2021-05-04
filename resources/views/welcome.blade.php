@@ -116,11 +116,15 @@
                                   <div class="pricing-table-space"></div>
                                   <div class="pricing-table-features text-center">
                                     {{-- <p><i class="fa fa-link"></i></p>          --}}
-                                       @if (is_null($notice->post_image))
-                                      <img class="card-img-top" src="{{$notice->post_image}}" alt="Image">
-                                      
-                                      @endif
-                                      {!! $notice->body !!}
+                                    {!! $notice->body !!}
+                                    @if (is_null($notice->post_image))
+                                    
+                                    <img class="card-img-top" src="{{$notice->post_image}}" alt="Card image cap" style="display: none">
+                                    @else
+                          
+                                    <img class="card-img-top" src="{{$notice->post_image}}" alt="Card image cap" style="width: 50%">
+                          
+                                    @endif
                                       {{-- <p><i class="fa fa-envelope-o"></i> <strong>250</strong> Email Addresses</p>
                                       <p><i class="fa fa-rocket"></i> <strong>125GB</strong> of Storage</p>
                                       <p><i class="fa fa-database"></i> <strong>140</strong> Databases</p>

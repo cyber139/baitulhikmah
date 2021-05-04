@@ -35,11 +35,17 @@
                 <i class="fas fa-times"></i></button>
               </div>
             </div>
-        <div class="card-body">
-          @if (is_null($notice->post_image))
-          <img class="card-img-top" src="{{$notice->post_image}}" alt="Card image cap">
-          @endif
+        <div class="card-body text-center">
+          
           {!! $notice->body !!}
+          @if (is_null($notice->post_image))
+          
+          <img class="card-img-top" src="{{$notice->post_image}}" alt="Card image cap" style="display: none">
+          @else
+
+          <img class="card-img-top" src="{{$notice->post_image}}" alt="Card image cap" style="width: 50%">
+
+          @endif
                 {{-- <p class="card-text">{{($notice->body)}}</p> --}}
                 {{-- <p class="card-text">{{Str::limit($notice->body, '50', '.....')}}</p> --}}
                 {{-- <a href="{{route('home', $notice->id)}}" class="btn btn-primary">Read More &rarr;</a> --}}

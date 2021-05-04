@@ -37,6 +37,19 @@
                 </div>
 
                 <h3 class="profile-username text-center">{{ucfirst($user->username)}}</h3>
+                @if($user->isActive == 'Yes')
+                <p class="text-muted text-center">Active</p> 
+                @else
+                <p class="text-muted text-center">Not Active</p> 
+                @endif
+
+                <ul>
+                @forelse ($user->roles as $role)
+                <li class="text-muted">{{$role->name}}</li>
+                @empty
+                <li class="text-muted">Not Defined</li>
+                @endforelse
+                </li>
 
                 <p class="text-muted text-center"></p>
 
