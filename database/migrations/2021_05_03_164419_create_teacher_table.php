@@ -13,12 +13,13 @@ class CreateTeacherTable extends Migration
      */
     public function up()
     {
-        Schema::create('teacher', function (Blueprint $table) {
+        Schema::create('teachers', function (Blueprint $table) {
             $table->id();
             $table->integer('user_id')->unsigned()->index();
-            $table->integer('grade_subject_id')->unsigned()->index();
+            $table->integer('grade_id')->unsigned()->index();
+            $table->integer('subject_id')->unsigned()->index();
             $table->enum('isActive', ['Yes', 'No'])->default('Yes');
-            $table->enum('isDelete', ['Yes', 'No'])->default('Yes');
+            $table->enum('isDelete', ['Yes', 'No'])->default('No');
             $table->timestamps();
         });
     }

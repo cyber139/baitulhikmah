@@ -15,7 +15,7 @@
         <img src="{{asset('/images/user2-160x160.jpg')}}" class="img-circle elevation-2" alt="User Image">
         </div>
         <div class="info">
-        <a href="#" class="d-block"><h3>{{ Auth::user()->username }}</h3></a>
+        <a href="{{route('user.index',auth()->user())}}" class="d-block">{{ ucfirst(Auth::user()->username) }}</h3></a>
         {{-- {{ Auth::user()->username }} --}}
         </div>
     </div>
@@ -77,7 +77,7 @@
               </a>
           </li>
   
-            <li class="nav-header">Others</li>
+            {{-- <li class="nav-header">Others</li>
             <li class="nav-item">
                 <a href="calendar.php" class="nav-link">
                 <i class="nav-icon far fa-calendar-alt"></i>
@@ -86,7 +86,7 @@
                     <span class="badge badge-info right">2</span>
                 </p>
                 </a>
-            </li>
+            </li> --}}
   
             <li class="nav-header"></li>
             <li class="nav-item ">

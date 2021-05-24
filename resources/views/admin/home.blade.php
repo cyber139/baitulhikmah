@@ -122,7 +122,7 @@
             <div class="card-body">
               <h3 class="card-title">{{$notice->title}}</h3>
               <div class="card-text text-center">
-                {!! $notice->body !!}
+                {!! $notice->body !!}<br>
                 @if (is_null($notice->post_image))
           
                 <img class="card-img-top" src="{{$notice->post_image}}" alt="Card image cap" style="display: none">
@@ -182,7 +182,7 @@
             <!-- /.card-body -->
           </div>
         </section>
-    </div>
+      </div>
     </section>
     <!-- /.content -->
   </div>

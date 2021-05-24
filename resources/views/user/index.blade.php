@@ -1,4 +1,11 @@
+{{-- {{dd($user->roles)}} --}}
+@foreach($user->roles as $role)
+@if($role->id == 1)
 @extends('layouts.admin')
+@elseif($role->id == 2)
+@extends('layouts.teacher')
+@endif
+@endforeach
 
 
 @section('content')
@@ -96,12 +103,12 @@
                           <p class=" col-form-label">{{$user->email}}</p>
                         </div>
                       </div>
-                      <div class="form-group row">
+                      {{-- <div class="form-group row">
                         <label for="inputName" class="col-sm-2 col-form-label">Password</label>
                         <div class="col-sm-10">
                           <p class=" col-form-label">{{$user->password}}</p>
                         </div>
-                      </div>
+                      </div> --}}
                       
                     </div>
                   </div>

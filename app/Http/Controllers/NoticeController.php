@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Notice;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\File;
@@ -15,6 +16,12 @@ class NoticeController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+
     public function index()
     {
         //
@@ -70,7 +77,7 @@ class NoticeController extends Controller
         // dd($request->post_image->originalName);
         // dd($request->input('post_image');
 
-        auth()->user()->notices()->create($inputs);
+       auth()->user()->notices()->create($inputs);
 
         session()->flash('notice-created-message', 'New post was created : '. $inputs['title']);
 

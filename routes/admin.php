@@ -23,6 +23,8 @@ Route::group(['middleware' => 'isAdmin'], function () {
     // ADMIN : Teacher
     Route::get('/teacher', 'TeacherController@index')->name('teacher.index');
     Route::get('/teacher/{user}/edit', 'TeacherController@edit')->name('teacher.edit');
+    Route::post('/teacher/{user}/assign', 'TeacherController@assign')->name('teacher.assign');
+    Route::post('/teacher/{user}/dismiss', 'TeacherController@dismiss')->name('teacher.dismiss');
     
     // ADMIN : Student
     Route::get('/student', 'StudentController@index')->name('student.index');

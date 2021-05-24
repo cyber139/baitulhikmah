@@ -70,13 +70,25 @@ class HomeController extends Controller
                     elseif($role->id == 2)
                     {
                         // dd($role);
-                        return view('teacher.home');
+                        $notice = Notice::orderBy('id', 'DESC','Publish','Yes')->first();
+
+                        return view('teacher.home',['notice'=>$notice]);
+                    }
+                    elseif($role->id==3)
+                    {
+                        // $notice = Notice::all();
+                        $notice = Notice::orderBy('id', 'DESC','Publish','Yes')->first();
+
+                        $user = User::all();
+
+                        return view('student.home',['notice'=>$notice,'users'=>$user]);
                     }
                     else{
                         $notice = Notice::all();
                         $user = User::all();
 
                         return view('home',['notices'=>$notice,'users'=>$user]);
+
                     }
                 }
         }else{

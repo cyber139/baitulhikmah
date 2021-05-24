@@ -157,6 +157,22 @@
                 </ul>
             </li>
 
+            <li class="nav-item">
+                <a href="#" class="nav-link">
+                <i class="fas fa-globe-americas nav-icon"></i>
+                <p>Website Management<i class="fas fa-angle-left right"></i></p>
+                
+                </a>
+                <ul class="nav nav-treeview">
+                    <li class="nav-item">
+                        <a href="{{url('/admin/notice/all')}}" class="nav-link">
+                        <i class="far fa-circle nav-icon"></i>
+                        <p>All Notice</p>
+                        </a>
+                    </li>                
+                </ul>
+            </li>
+
           {{-- <li class="nav-header">Others</li>
           <li class="nav-item">
               <a href="calendar.php" class="nav-link">

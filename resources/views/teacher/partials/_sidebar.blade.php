@@ -15,7 +15,7 @@
       <img src="{{asset('/images/user2-160x160.jpg')}}" class="img-circle elevation-2" alt="User Image">
       </div>
       <div class="info">
-      <a href="{{route('admin.user.index',auth()->user())}}" class="d-block">{{ ucfirst(Auth::user()->username) }}</a>
+      <a href="{{route('user.index',auth()->user())}}" class="d-block">{{ ucfirst(Auth::user()->username) }}</a>
       {{-- {{ Auth::user()->username }} --}}
       </div>
   </div>
@@ -33,17 +33,25 @@
               </p>
               </a>
           </li>
-          <li class="nav-item">
-              <a href="{{ route('subject.index') }}" class="nav-link">
+          <li class="nav-item ">
+              <a href="{{ route('teacher.subject.index') }}" class="nav-link">
+                <i class="nav-icon fas fa-swatchbook"></i>
+              <p>
+                Subjects
+              </p>
+              </a>
+          </li>
+          {{-- <li class="nav-item">
+              <a href="#" class="nav-link">
               <i class="nav-icon fas fa-swatchbook"></i>
-              <p>Subjects  </p>
+              <p>Subjects <i class="fas fa-angle-left right"></i> </p>
              
               </a>
-              {{-- <ul class="nav nav-treeview">
+              <ul class="nav nav-treeview">
               <li class="nav-item">
-                  <a href="{{ route('subject.index') }}" class="nav-link">
-                  <i class="far fa-circle nav-icon"><i class="fas fa-angle-left right"></i></i>
-                  <p>All Subject</p>
+                  <a href="{{ route('teacher.subject.index') }}" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p> All Subject</p>
                   </a>
               </li>
               <li class="nav-item">
@@ -58,10 +66,10 @@
                   <p>Hafazan</p>
                   </a>
               </li>
-              </ul> --}}
-          </li>
+              </ul>
+          </li> --}}
           <li class="nav-item">
-              <a href="{{ route('grade.index') }}" class="nav-link">
+              <a href="#" class="nav-link">
               <i class="nav-icon fas fa-th"></i>
               <p>Class  </p>
              
@@ -95,7 +103,7 @@
               </a>
               <ul class="nav nav-treeview">
               <li class="nav-item">
-                  <a href="{{url('/admin/uac')}}" class="nav-link">
+                  <a href="#" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
                   <p>All User</p>
                   </a>
@@ -133,7 +141,7 @@
                 </a>
                 <ul class="nav nav-treeview">
                     <li class="nav-item">
-                        <a href="{{route('notice')}}" class="nav-link">
+                        <a href="#" class="nav-link">
                             <i class="far fa-circle nav-icon"></i>
                             <p>
                                 Preview Notice Board
@@ -142,7 +150,7 @@
                             </a>
                     </li>
                     <li class="nav-item">
-                        <a href="{{url('/admin/notice/all')}}" class="nav-link">
+                        <a href="#')}}" class="nav-link">
                         <i class="far fa-circle nav-icon"></i>
                         <p>All Notice</p>
                         </a>

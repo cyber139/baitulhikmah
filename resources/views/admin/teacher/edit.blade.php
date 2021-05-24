@@ -173,35 +173,106 @@
                         </div>
                       </div>
                     </form> --}}
+
+{{--                     
+@foreach($selectClassSubjects as $grade_subject => $grade)
+    Key selectClassSubjects: {{ $grade_subject }}  <br>  
+    Value GRADE: {{ $grade }} <br><br>
+     
+    
+    @foreach ($grade->subjects as $subject) 
+    Value SUBJECT: {{ $subject }} <br><br>
+    @endforeach
+
+    END OF KEY
+    <br><br>
+
+@endforeach--}}
+
+{{-- @foreach($selectClassSubjects as $grade_subject => $grade)
+    
+     
+    
+    @foreach ($grade->subjects as $subject) 
+   grade_subject : {{ $grade->grade_title }}  {{ $subject->subject_title }} <br><br>
+   grade_subject : {{ $grade->id }}  {{ $subject->id }} <br><br>
+
+
+              @foreach($selectAssign as $assigned)
+
+              Values : {{$assigned->grade_id}} {{$assigned->subject_id}}<br>
+              grade_subject : {{ $grade->grade_title }}  {{ $subject->subject_title }} <br>
+              grade_subject : {{ $grade->id }}  {{ $subject->id }} <br><br>
+              
+              
+              @if ($assigned->user_id == $user->id)
+                @if ($assigned->subject_id == $subject->id)
+                    @if( $assigned->grade_id == $grade->id)
+                      @if( $assigned->isActive == 'Yes')
+                        @if( $assigned->isDelete == 'No')
+                          checked
+                          @endif
+                      @endif
+                  @endif
+                @endif
+              @endif
+
+
+          END<br><br><br>
+        @endforeach
+    @endforeach
+    
+@endforeach --}}
+
+{{-- @foreach($selectAssign as $assigned )
+KEYS : {{$selectAssign}}<br>
+Values : {{$assigned}}<br>
+END<br><br><br>
+@endforeach --}}
+
+
+
+
+
                     <table class="table table-bordered table-hover" id="role">
                       <thead>
                         <tr>
-                          <th>Roles Assigned</th>
-                          <th>Id</th>
-                          <th>name</th>
-                          <th>Attach</th>
+                          <th>Class/Subject Assigned</th>
+                          <th>Class</th>
+                          <th>Subject</th>
+                          <th>Assign</th>
                           <th>Detach</th>
                           {{-- <th>Status</th> --}}
                         </tr>
                       </thead>
                       <tbody>
-                        @foreach ($selectRoles as $role)
+                        @foreach($selectClassSubjects as $grade_subject => $grade)
+                          @foreach ($grade->subjects as $subject) 
                             <tr>
                               <td>
                                 <div class="form-check">
                                 <input class="form-check-input" type="checkbox"
-                                @foreach ($user->roles as $user_role)
-                                @if ($user_role->slug == $role->slug)
-                                    checked
-                                @endif
-                                    
-                                @endforeach>
+ 
+                                  @foreach($selectAssign as $assigned)
+                                    @if ($assigned->user_id == $user->id)
+                                      @if ($assigned->subject_id == $subject->id)
+                                          @if( $assigned->grade_id == $grade->id)
+                                            @if( $assigned->isActive == 'Yes')
+                                              @if( $assigned->isDelete == 'No')
+                                                checked
+                                              @endif
+                                            @endif
+                                        @endif
+                                      @endif
+                                    @endif
+                                  @endforeach
+                                >
                               </div>
                             </td>
-                              <td>{{$role->id}}</td>
-                              <td>{{$role->name}}</td>
+                              <td>{{$grade->grade_title}}</td>
+                              <td>{{$subject->subject_title}}</td>
                           <td>
-                            <form method="post" action="{{route('uac.attach',$user)}}" enctype="multipart/form-data">
+                            {{-- <form method="post" action="{{route('uac.attach',$user)}}" enctype="multipart/form-data">
                               @csrf
                               @method('PUT')
                                   <input type="hidden" name="role" value="{{$role->id}}">
@@ -209,9 +280,22 @@
                                   @if ($user->roles->contains($role))
                                   disabled
                                   @endif><i class="fas fa-user-edit"></i> Attach</button></td>
+                            </form> --}}
+                            <form method="post" action="{{route('teacher.assign',$user)}}" enctype="multipart/form-data">
+                              @csrf
+                                  <input type="hidden" name="user_id" value="{{$user->id}}">
+                                  <input type="hidden" name="grade_id" value="{{$grade->id}}">
+                                  <input type="hidden" name="subject_id" value="{{$subject->id}}">
+                                  <input type="hidden" name="isActive" value="Yes">
+                                  <input type="hidden" name="isDelete" value="No">
+                                  <button class="btn btn-info btn-sm mb-2" type="submit" 
+
+
+
+                                  ><i class="fas fa-user-edit"></i> Assign</button></td>
                             </form>
                             <td>
-                              <form method="post" action="{{route('uac.detach',$user)}}" enctype="multipart/form-data">
+                              {{-- <form method="post" action="{{route('uac.detach',$user)}}" enctype="multipart/form-data">
                                 @csrf
                                 @method('PUT')
                                   <input type="hidden" name="role" value="{{$role->id}}">
@@ -219,17 +303,47 @@
                                   @if (!$user->roles->contains($role))
                                   disabled
                                   @endif> <i class="fas fa-trash-alt"></i>  Detach  </button>
+                            </form> --}}
+
+                            
+                            {{-- @forelse($selectAssign as $assigned) --}}
+                              <form method="post" action="{{route('teacher.dismiss',$assigned->id)}}" enctype="multipart/form-data">
+                                @csrf
+                                    <input type="hidden" name="user_id" value="{{$user->id}}">
+                                    <input type="hidden" name="grade_id" value="{{$grade->id}}">
+                                    <input type="hidden" name="subject_id" value="{{$subject->id}}">
+                                    <input type="hidden" name="isActive" value="No">
+                                    <input type="hidden" name="isDelete" value="Yes">
+                                    <button class="btn btn-danger btn-sm" type="submit" 
+                              ><i class="fas fa-trash-alt"></i> Dismiss</button>
+                            {{-- @empty
+                              <form method="post" action="" enctype="multipart/form-data">
+                                @csrf
+                                    <input type="hidden" name="user_id" value="{{$user->id}}">
+                                    <input type="hidden" name="grade_id" value="{{$grade->id}}">
+                                    <input type="hidden" name="subject_id" value="{{$subject->id}}">
+                                    <input type="hidden" name="isActive" value="No">
+                                    <input type="hidden" name="isDelete" value="Yes">
+                                    <button class="btn btn-danger btn-sm" type="submit" disabled
+                              ><i class="fas fa-trash-alt"></i> Dismiss</button>
+                            
                             </form>
+                            @endforelse --}}
+                            
+                            </td>
+                             </form>
+                             
                           </td>
                             </tr>    
+                            @endforeach
                             @endforeach
                       </tbody>
                       <tfoot>
                         <tr>
-                          <th>Roles Assigned</th>
-                          <th>Id</th>
-                          <th>name</th>
-                          <th>Attach</th>
+                          <th>Class/Subject Assigned</th>
+                          <th>Class</th>
+                          <th>Subject</th>
+                          <th>Assign</th>
                           <th>Detach</th>
                         </tr>
                         </tfoot>
@@ -237,7 +351,7 @@
                   </div>
                   <!-- /.tab-pane -->
                   <div class="tab-pane" id="account">
-                    <form class="form-horizontal" method="post" action="{{route('admin.user.update',$user->id)}}" enctype="multipart/form-data">
+                    <form class="form-horizontal" method="post" action="{{route('user.update',$user->id)}}" enctype="multipart/form-data">
                       @csrf
                       <div class="form-group row">
                         <label for="username" class="col-sm-2 col-form-label">Username</label>

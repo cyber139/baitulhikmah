@@ -116,7 +116,7 @@
                                   <div class="pricing-table-space"></div>
                                   <div class="pricing-table-features text-center">
                                     {{-- <p><i class="fa fa-link"></i></p>          --}}
-                                    {!! $notice->body !!}
+                                    {!! $notice->body !!}<br>
                                     @if (is_null($notice->post_image))
                                     
                                     <img class="card-img-top" src="{{$notice->post_image}}" alt="Card image cap" style="display: none">

@@ -1,5 +1,12 @@
-@extends('layouts.admin')
-
+{{-- {{dd(Auth::user()->roles()->first()->id)}} --}}
+  @if ((Auth::user()->roles()->first()->id) === 1))
+      @extends('layouts.admin')
+  @elseif ((Auth::user()->roles()->first()->id)  === 2)
+     @extends('layouts.teacher')
+  @else
+  @extends('layouts.student')
+  @endif
+  
 @section('content')
   <!-- Content Wrapper. Contains page content -->
   <div class="content-wrapper">
