@@ -17,9 +17,8 @@
   <!-- Ionicons -->
   <link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
   <!-- overlayScrollbars -->
-  <link rel="stylesheet" href="{{asset('../../dist/css/adminlte.min.css')}}">
   <!-- Theme style -->
-  <link rel="stylesheet" href="{{asset('./../dist/css/adminlte.min.css')}}">
+  <link rel="stylesheet" href="{{asset('../../dist/css/adminlte.min.css')}}">
   <!-- summernote -->
   <link rel="stylesheet" href="{{asset('../../plugins/summernote/summernote-bs4.css')}}">
   <!-- DataTables -->
@@ -32,24 +31,34 @@
 <body class="hold-transition sidebar-mini">
 <!-- Site wrapper -->
 <div class="wrapper">
+
   <!-- Navbar -->
-  @if(auth()->user()->userHasRole('admin'))
-  @include('admin.partials._navbar')
-  @elseif(auth()->user()->userHasRole('teacher'))
-  @include('teacher.partials._navbar')
-  @else
-  {{-- @include('student.partials._sidebar')  --}}
-  @endif
+    @if ($role_id == 1)
+        @include('admin.partials._navbar')
+    @elseif($role_id == 2)
+    @include('teacher.partials._navbar')
+    @else
+        @include('student.partials._navbar')
+    @endif
+
+
+  {{-- @include('admin.partials._navbar') --}}
+
+
+
   <!-- /.navbar -->
 
   <!-- Main Sidebar Container -->
-  @if(auth()->user()->userHasRole('admin'))
+  {{-- @include('admin.partials._sidebar') --}}
+
+  @if ($role_id == 1)
   @include('admin.partials._sidebar')
-  @elseif(auth()->user()->userHasRole('teacher'))
+  @elseif($role_id == 2)
   @include('teacher.partials._sidebar')
   @else
-  @include('student.partials._sidebar') 
+    @include('student.partials._sidebar')
   @endif
+
 
   {{-- @include('admin.partials._dashboard') --}}
 
@@ -87,7 +96,6 @@
 <script src="{{asset('../../plugins/datatables-bs4/js/dataTables.bootstrap4.min.js')}}"></script>
 <script src="{{asset('../../plugins/datatables-responsive/js/dataTables.responsive.min.js')}}"></script>
 <script src="{{asset('../../plugins/datatables-responsive/js/responsive.bootstrap4.min.js')}}"></script>
-{{-- <script src="{{asset('../../plugins/ekko-lightbox/ekko-lightbox.min.js')}}"></script> --}}
 
 <script>
   $(function () {
@@ -140,7 +148,5 @@
       });
     });
   </script>
-
-
 </body>
 </html>

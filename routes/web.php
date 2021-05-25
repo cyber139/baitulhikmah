@@ -43,8 +43,12 @@ Route::middleware('auth')->group(function(){
     // Route::get('/notice-detail', 'NoticeController@show')->name('notice-detail');
 
     //  USER PROFILE    
-    Route::get('/user/{user}/profile', 'UserController@show')->name('user.index');
-    Route::post('/user/{user}/update', 'UserController@update')->name('user.update');
+    Route::get('/user/{user}/profile', 'ProfileController@show')->name('user.index');
+    Route::post('/user/{user}/update', 'ProfileController@update')->name('user.update');
+    Route::post('/user/{user}/edit', 'ProfileController@edit')->name('user.edit');
+    // Route::get('user/{user}/create', 'ProfileController@create')->name('user.create');
+
+    Route::post('/user/{user}/store', 'ProfileController@store')->name('user.store');
 
     // // TEACHER
     // Route::get('/home', 'TeacherController@index')->name('home');

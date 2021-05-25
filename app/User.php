@@ -70,4 +70,8 @@ class User extends Authenticatable
         {
             return $this->admin ? true : false; // this looks for an admin column in your users table
         }
+
+        public function profile(){
+            return $this->hasOne(Profile::class);
+        }
 }
