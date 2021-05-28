@@ -16,4 +16,9 @@ class Teacher extends Model
     public function users(){
         return $this->belongsTo(User::class)->withTimestamps();
     }
+
+    public function posts()
+    {
+        return $this->hasMany(Post::class);
+    }
 }

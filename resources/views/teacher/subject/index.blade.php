@@ -37,16 +37,52 @@
                         <!-- small card -->
                         <div class="small-box bg-info">
                           <div class="inner">
+                            {{-- {{dd($assigns)}} --}}
                             <h3>{{$subject->subject_title}}</h3>
             
                             <p>{{$grade->grade_title}}</p>
+                            @php
+
+                            $SubjectGrade = []; 
+                            $SubjectGrade[] =$grade->grade_slug;  
+                            $SubjectGrade[] =$subject->subject_slug;
+                            $SubjectGrade[] =$assign->id;
+                            
+                            foreach ($posts as $post) {
+                              // echo $post->teacher_id;
+                              // echo $assign->id;
+                              if ($post->teacher_id == $assign->id) {
+                                $teacher = $post->teacher_id;
+                                $assigned = $assign->id;
+                                // dd($post);
+                              // echo $teacher;
+
+                                break;
+                              }else{
+                                $teacher=null;
+                                // break;
+                              }
+                            }
+                            
+                            @endphp
+                            <br>
+                            Assign id :{{$assigned}}<br>
+                            Teacher id:{{$teacher}}
+
                           </div>
                           {{-- <div class="icon">
                             <i class="fas fa-shopping-cart"></i>
                           </div> --}}
-                          <a href="#" class="small-box-footer">
+                          @if ($teacher != null)
+                          <a href="{{route('subject.post',$assign->id)}}" class="small-box-footer">
                             More info <i class="fas fa-arrow-circle-right"></i>
                           </a>
+                          @else
+                          <a href="{{route('subject.post.none',$assign->id)}}" class="small-box-footer">
+                            More info <i class="fas fa-arrow-circle-right"></i>
+                          </a>
+                          @endif
+                          
                         </div>
                       </div>
                     @endif

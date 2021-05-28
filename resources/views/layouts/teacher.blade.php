@@ -87,7 +87,7 @@
 <script src="{{asset('../../plugins/datatables-bs4/js/dataTables.bootstrap4.min.js')}}"></script>
 <script src="{{asset('../../plugins/datatables-responsive/js/dataTables.responsive.min.js')}}"></script>
 <script src="{{asset('../../plugins/datatables-responsive/js/responsive.bootstrap4.min.js')}}"></script>
-{{-- <script src="{{asset('../../plugins/ekko-lightbox/ekko-lightbox.min.js')}}"></script> --}}
+<script src="{{asset('../../plugins/ekko-lightbox/ekko-lightbox.min.js')}}"></script>
 
 <script>
   $(function () {
@@ -139,6 +139,18 @@
         "responsive": true,
       });
     });
+  </script>
+  <script>
+    $(function () {
+      $(document).on('click', '[data-toggle="lightbox"]', function(event) {
+        event.preventDefault();
+        $(this).ekkoLightbox({
+          alwaysShowClose: true
+        });
+      });
+  
+      
+    })
   </script>
 
 

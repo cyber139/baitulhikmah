@@ -60,8 +60,20 @@ Route::middleware('auth')->group(function(){
     Route::post('teacher/subject/{subject}/update', 'SubjectController@update')->name('subject.update');
     Route::delete('teacher/subject/{subject}/delete', 'SubjectController@destroy')->name('subject.destroy');
 
-    // HOME
+    // POST
+    Route::get('teacher/post/{post}/index', 'PostController@index')->name('subject.post');
+    Route::get('teacher/post/{post}/none', 'PostController@show')->name('subject.post.none');
+    // Route::get('/teacher/notice/{$notice}', 'NoticeController@show')->name('admin.notice-detail');
+    Route::get('teacher/post/{post}/detail', 'PostController@detail')->name('post.detail');
+    Route::post('teacher/post', 'PostController@store')->name('post.store');
+    Route::get('teacher/post/{post}/create', 'PostController@create')->name('post.create');
+    Route::get('teacher/post/{post}/edit', 'PostController@edit')->name('post.edit');
+    Route::post('teacher/post/{post}/update', 'PostController@update')->name('post.update');
+    Route::delete('teacher/post/{post}/delete', 'PostController@destroy')->name('post.destroy');
 
+
+
+    
 
     
     
