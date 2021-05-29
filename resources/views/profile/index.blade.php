@@ -79,10 +79,26 @@
             <div class="card card-primary card-outline">
               <div class="card-body box-profile">
                 <div class="text-center">
-                  <img class="profile-user-img img-fluid img-circle"
+                  {{-- <img class="profile-user-img img-fluid img-circle"
                        src="{{asset('../../dist/img/user4-128x128.jpg')}}"
-                       alt="User profile picture">
+                       alt="User profile picture"> --}}
+                @if ($profile != null)
+
+                  @if ($profile->profile_image != null)
+                    <div><a href="{{$profile->profile_image}}" data-toggle="lightbox" data-title="{{$profile->full_name}}">
+                    <img class="profile-user-img img-fluid img-circle" src="{{$profile->profile_image}}" alt="{{$profile->full_name}}" style="height: 128px; width: 128px;" >
+                    </a> </div>
+                    @else
+                    <div><img class="profile-user-img img-fluid img-circle" h src="{{asset('../../dist/img/user4-128x128.jpg')}}" alt="{{ucfirst($user->username)}}" ></div>
+                    @endif
+
+                 @else
+
+                 <div><img class="profile-user-img img-fluid img-circle" h src="{{asset('../../dist/img/user4-128x128.jpg')}}" alt="{{ucfirst($user->username)}}" ></div>
+
+                @endif
                 </div>
+                
 
                 <h3 class="profile-username text-center">{{ucfirst($user->username)}}</h3>
                 @if($user->isActive == 'Yes')
@@ -150,7 +166,20 @@
                           <p class=" col-form-label">{{$user->email}}</p>
                         </div>
                       </div>
-                      @if ($profile != null)
+                      <div class="form-group row">
+                        <label for="inputName" class="col-sm-2 col-form-label">Profile Image</label>
+                        
+                        @if ($profile != null)
+                          @if ($profile->profile_image!=null)
+                          <div><a href="{{$profile->profile_image}}" data-toggle="lightbox" data-title="{{$profile->full_name}}">
+                            <img class="img-fluid mb-2" src="{{$profile->profile_image}}" alt="Image" style="height: 180px; width: auto;" >
+                          </a> </div>
+                          @else
+                          <div><img class="col-sm-10"  src="http://placehold.it/350x150.jpg&text=No+Image+Uploaded" alt="Image" style="height: 100px;width: auto;"></div>
+                              
+                          @endif
+                      </div>
+
                       <div class="form-group row">
                         <label for="full_name" class="col-sm-2 col-form-label">Full Name</label>
                         <div class="col-sm-10">
@@ -215,6 +244,7 @@
                     <form class="form-horizontal"method="post" action="{{route('user.store',$user->id)}}" enctype="multipart/form-data">
                       @csrf
                       @method('POST')
+                      
                       <div class="form-group row">
                         <label for="full_name" class="col-sm-3 col-form-label">Full Name</label>
                         <div class="col-sm-9">
@@ -255,6 +285,18 @@
                         <label for="gphone_no2" class="col-sm-3 col-form-label">Guardian Phone No</label>
                         <div class="col-sm-9">
                           <input type="text" class="form-control" name="gphone_no2" id="gphone_no2" placeholder="Phone No">
+                        </div>
+                      </div>
+                      <div class="form-group ">
+                        <label for="File">File input</label>
+                        <div class="input-group">
+                          <div class="custom-file">
+                            <input type="file" class="custom-file-input" id="profile_image" name="profile_image">
+                            <label class="custom-file-label" for="File">Choose file</label>
+                          </div>
+                          <div class="input-group-append">
+                            <span class="input-group-text" id="profile_image" name="profile_image">Upload</span>
+                          </div>
                         </div>
                       </div>
                       <div class="form-group row">
@@ -311,6 +353,31 @@
                         <label for="gphone_no2" class="col-sm-3 col-form-label">Guardian Phone No</label>
                         <div class="col-sm-9">
                           <input type="text" class="form-control" name="gphone_no2" id="gphone_no2" value="{{$profile->gphone_no2}}">
+                        </div>
+                      </div>
+                      <div class="form-group row">
+                        <label for="profile_image" class="col-sm-3 col-form-label">Profile Image</label>
+
+                        @if ($profile->profile_image != null)
+                        <div><a href="{{$profile->profile_image}}" data-toggle="lightbox" data-title="{{$profile->full_name}}">
+                          <img class="img-fluid mb-2" src="{{$profile->profile_image}}" alt="Image" style="height: 300px; width: auto;" >
+                        </a> </div>
+                            
+                        @else
+                        <div><img class="col-sm-9" height=100px; width=auto; src="http://placehold.it/350x150.jpg&text=No+Image+Uploaded" alt="Image" style="height: 100px;width: auto;"></div>
+                            
+                        @endif
+                      </div>
+                      <div class="form-group row">
+                        <label for="profile_image" class="col-sm-3 col-form-label">File input</label>
+                        <div class="input-group  col-sm-9">
+                          <div class="custom-file">
+                            <input type="file" class="custom-file-input" id="profile_image" name="profile_image">
+                            <label class="custom-file-label" for="File">Choose file</label>
+                          </div>
+                          <div class="input-group-append">
+                            <span class="input-group-text" id="profile_image" name="profile_image">Upload</span>
+                          </div>
                         </div>
                       </div>
                       <div class="form-group row">

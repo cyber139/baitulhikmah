@@ -50,6 +50,8 @@ class ProfileController extends Controller
         // dd(auth()->user()->id);
         // dd($request);
         $user_id = auth()->user()->id;
+        $profile = Profile::where('user_id', $user_id)->first();
+
         // $profileExist = Profile::where('user_id', $user_id)->first();
         // dd($profileExist);
 
@@ -59,6 +61,7 @@ class ProfileController extends Controller
         
         $input = request()->validate([
             // 'user_id'=> ['required'],
+            'profile_image'=>['file'],
             'full_name' => ['required', 'string', 'max:255'],
             'address' => ['required'],
             'phone_no' => ['required', 'string'],
@@ -72,6 +75,10 @@ class ProfileController extends Controller
 
         // dd($request);
         // auth()->user()->profile()->create($input);
+        if(request('profile_image')){
+            $inputs['profile_image'] = request('profile_image')->store('profiles');
+            $profile->profile_image = $inputs['profile_image'];
+        }
 
         $input = Profile::create([
             'user_id'=>$user_id,
@@ -165,6 +172,7 @@ class ProfileController extends Controller
 
         $input = request()->validate([
             'full_name' => ['required', 'string', 'max:255'],
+            'profile_image'=>['file'],
             'address' => ['required'],
             'phone_no' => ['required', 'string'],
             'guardian_name1' => ['required', 'string'],
@@ -172,6 +180,11 @@ class ProfileController extends Controller
             'guardian_name2' => ['string'],
             'gphone_no2' => ['string']
         ]);
+
+        if(request('profile_image')){
+            $inputs['profile_image'] = request('profile_image')->store('profiles');
+            $profile->profile_image = $inputs['profile_image'];
+        }
 
         $profile->update([
             'full_name' => $input['full_name'],

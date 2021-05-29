@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Notice;
 use App\User;
+use App\Profile;
 use App\Role;
 use App\Grade;
 use App\Subject;
@@ -62,32 +63,40 @@ class HomeController extends Controller
                         $teacherlist = Role::where('slug', 'teacher')->first()->users()->get()->count();
                         $subjectlist = Subject::get()->count();
                         $classlist = Grade::get()->count();
+                        $user_id = auth()->user()->id;
+                        $profile = Profile::where('user_id', $user_id)->first();
                 
                         // return view('admin.notice',['notices'=>$notice]);
                         // return view('admin.home');
-                        return view('admin.home',['studentlist'=>$studentlist,'teacherlist'=>$teacherlist,'subjectlist'=>$subjectlist,'classlist'=>$classlist,'notice'=>$notice]);
+                        return view('admin.home',['studentlist'=>$studentlist,'teacherlist'=>$teacherlist,'subjectlist'=>$subjectlist,'classlist'=>$classlist,'notice'=>$notice,'profile'=>$profile]);
                     }
                     elseif($role->id == 2)
                     {
                         // dd($role);
                         $notice = Notice::orderBy('id', 'DESC','Publish','Yes')->first();
+                        $user_id = auth()->user()->id;
+                        $profile = Profile::where('user_id', $user_id)->first();
 
-                        return view('teacher.home',['notice'=>$notice]);
+                        return view('teacher.home',['notice'=>$notice,'profile'=>$profile]);
                     }
                     elseif($role->id==3)
                     {
                         // $notice = Notice::all();
                         $notice = Notice::orderBy('id', 'DESC','Publish','Yes')->first();
+                        $user_id = auth()->user()->id;
+                        $profile = Profile::where('user_id', $user_id)->first();
 
                         $user = User::all();
 
-                        return view('student.home',['notice'=>$notice,'users'=>$user]);
+                        return view('student.home',['notice'=>$notice,'users'=>$user,'profile'=>$profile]);
                     }
                     else{
+                        $user_id = auth()->user()->id;
+                        $profile = Profile::where('user_id', $user_id)->first();
                         $notice = Notice::all();
                         $user = User::all();
 
-                        return view('home',['notices'=>$notice,'users'=>$user]);
+                        return view('home',['notices'=>$notice,'users'=>$user,'profile'=>$profile]);
 
                     }
                 }

@@ -26,6 +26,8 @@ class PostController extends Controller
         // dd($id);
         //
        
+        $user_id = auth()->user()->id;
+        $profile = Profile::where('user_id', $user_id)->first();
 
         $posts = Post::where('teacher_id',$id)->orderBy('id','DESC')->get();
 
@@ -57,7 +59,7 @@ class PostController extends Controller
         // $author = Post::with('teachers')->find(Auth::user()->id);
         // dd($author->full_name);
         // dd($posts);
-        return view('teacher.post.index',['posts'=>$posts,'author'=>$author,'teacher'=>$teacher,'SubjectGrades'=>$SubjectGrades]);
+        return view('teacher.post.index',['posts'=>$posts,'author'=>$author,'teacher'=>$teacher,'SubjectGrades'=>$SubjectGrades,'profile'=>$profile]);
         
     }
 
@@ -69,9 +71,11 @@ class PostController extends Controller
     public function create($id)
     {
         //
+        $user_id = auth()->user()->id;
+        $profile = Profile::where('user_id', $user_id)->first();
         $teacher = Teacher::where('id', $id)->first();
         // dd($teacher);
-        return view('teacher.post.create',['teacher'=>$teacher]);
+        return view('teacher.post.create',['teacher'=>$teacher,'profile'=>$profile]);
     }
 
     /**
@@ -166,6 +170,9 @@ class PostController extends Controller
     {
         //
         // dd($id);
+        $user_id = auth()->user()->id;
+        $profile = Profile::where('user_id', $user_id)->first();
+
         $teacher = Teacher::where('id', $id)->first();
         $author = Profile::where('user_id',$teacher->user_id)->first();
 
@@ -188,7 +195,7 @@ class PostController extends Controller
         }
         // dd($SubjectGrades);
 
-        return view('teacher.post.NoIndex',['author'=>$author,'teacher'=>$teacher,'SubjectGrades'=>$SubjectGrades]);
+        return view('teacher.post.NoIndex',['author'=>$author,'teacher'=>$teacher,'SubjectGrades'=>$SubjectGrades,'profile'=>$profile]);
     }
 
     /**
@@ -200,7 +207,9 @@ class PostController extends Controller
     public function edit(Post $post)
     {
         //
-        return view('teacher.post.edit', ['post'=> $post]);
+        $user_id = auth()->user()->id;
+        $profile = Profile::where('user_id', $user_id)->first();
+        return view('teacher.post.edit', ['post'=> $post,'profile'=>$profile]);
     }
 
 
@@ -214,9 +223,12 @@ class PostController extends Controller
     {
         // dd($post);
         //
+        $user_id = auth()->user()->id;
+        $profile = Profile::where('user_id', $user_id)->first();
+
         $teacher = Teacher::where('id', $post->teacher_id)->first();
         $author = Profile::where('user_id',$teacher->user_id)->first();
-        return view('teacher.post.detail', ['post'=> $post,'author'=>$author]);
+        return view('teacher.post.detail', ['post'=> $post,'author'=>$author,'profile'=>$profile]);
     }
 
     /**

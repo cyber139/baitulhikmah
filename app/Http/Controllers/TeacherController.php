@@ -7,6 +7,7 @@ use App\Role;
 use App\Subject;
 use App\Grade;
 use App\Teacher;
+use App\Profile;
 use App\Post;
 // use App\Notice;
 use Illuminate\Http\Request;
@@ -269,13 +270,18 @@ class TeacherController extends Controller
         $selectClassSubjects = Grade::with('subjects')->get();
         // dd($selectClassSubjects);
         // $assigned=Teacher::all();
+        $user_id = auth()->user()->id;
+        $profile = Profile::where('user_id', $user_id)->first();
+
+
+
         foreach (Teacher::all() as $assigned) {
            if($assigned->user_id != $user->id){
-                return view('teacher.subject.noSubject',['subjects'=>$subjects]);
+                return view('teacher.subject.noSubject',['subjects'=>$subjects,'profile'=>$profile]);
             }else{
                 $assigns = Teacher::where('user_id',$user->id)->get();
                 // dd($assigns);
-                return view('teacher.subject.index',['subjects'=>$subjects,'assigns'=>$assigns,'user'=>$user,'selectClassSubjects'=>$selectClassSubjects,'posts'=>$posts]);
+                return view('teacher.subject.index',['subjects'=>$subjects,'assigns'=>$assigns,'user'=>$user,'selectClassSubjects'=>$selectClassSubjects,'posts'=>$posts,'profile'=>$profile]);
            }
         }
         
