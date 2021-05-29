@@ -63,7 +63,6 @@ Route::middleware('auth')->group(function(){
     // POST
     Route::get('teacher/post/{post}/index', 'PostController@index')->name('subject.post');
     Route::get('teacher/post/{post}/none', 'PostController@show')->name('subject.post.none');
-    // Route::get('/teacher/notice/{$notice}', 'NoticeController@show')->name('admin.notice-detail');
     Route::get('teacher/post/{post}/detail', 'PostController@detail')->name('post.detail');
     Route::post('teacher/post', 'PostController@store')->name('post.store');
     Route::get('teacher/post/{post}/create', 'PostController@create')->name('post.create');

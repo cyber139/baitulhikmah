@@ -27,7 +27,7 @@ class PostController extends Controller
         //
        
 
-        $posts = Post::where('teacher_id',$id)->get();
+        $posts = Post::where('teacher_id',$id)->orderBy('id','DESC')->get();
 
         foreach($posts as $post){
             $teacher = Teacher::where('id', $post->teacher_id)->first();
@@ -95,8 +95,35 @@ class PostController extends Controller
             'teacher_id'=>'int',
         ]);
 
+        $body = $input['body'];
+        $dom = new \domdocument();
+        $dom->loadHtml($body, LIBXML_HTML_NOIMPLIED | LIBXML_HTML_NODEFDTD);
+        $images = $dom->getelementsbytagname('img');
+      
+        //loop over img elements, decode their base64 src and save them to public folder,
+        //and then replace base64 src with stored image URL.
+        foreach($images as $k => $img){
+            $data = $img->getattribute('src');
+      
+            list($type, $data) = explode(';', $data);
+            list(, $data)      = explode(',', $data);
+      
+            $data = base64_decode($data);
+            $image_name= 'upload/'.time().$k.'.png';
+            $path = public_path() .'/storage/'. $image_name;
+            // $path =asset('storage/' . $image_name) ;
 
+            // dd($path);
+            file_put_contents($path, $data);
+      
+            $img->removeattribute('src');
+            $img->setattribute('src',asset('storage/' . $image_name));
+        }
+        // dd($images);
         
+        $body = $dom->savehtml();
+
+
         // If post image request exist
         if(request('post_image')){
             $inputs['post_image'] = request('post_image')->store('images');
@@ -106,7 +133,8 @@ class PostController extends Controller
         $input = Post::create([
             'teacher_id'=>$input['teacher_id'],
             'title' => $input['title'],
-            'body' => $input['body'],
+            'body' => $body,
+            // 'body' => $input['body'],
             // 'post_image' => $input['post_image'],
             'publish' => $input['publish'],
         ]);
@@ -201,7 +229,7 @@ class PostController extends Controller
 
     public function update(Post $post){
 
-        // dd($post);
+        // dd(request());
         $inputs = request()->validate([
             'title'=>'required|max:255',
             'body'=>'required',
@@ -211,29 +239,38 @@ class PostController extends Controller
         ]);
 
 
+        $body = $inputs['body'];
         $dom = new \domdocument();
-        $dom->loadHtml($inputs['body'], LIBXML_HTML_NOIMPLIED | LIBXML_HTML_NODEFDTD);
+        $dom->loadHtml($body, LIBXML_HTML_NOIMPLIED | LIBXML_HTML_NODEFDTD);
         $images = $dom->getelementsbytagname('img');
       
         //loop over img elements, decode their base64 src and save them to public folder,
         //and then replace base64 src with stored image URL.
         foreach($images as $k => $img){
             $data = $img->getattribute('src');
-      
+            // dd(strpos($data, 'data:image'));
+            if (strpos($data, 'data:image')!==false){
             list($type, $data) = explode(';', $data);
             list(, $data)      = explode(',', $data);
       
             $data = base64_decode($data);
-            $image_name= time().$k.'.png';
-            $path = public_path() .'/'. $image_name;
-      
+            $image_name= 'upload/'.time().$k.'.png';
+            $path = public_path() .'/storage/'. $image_name;
+            // $path =asset('storage/' . $image_name) ;
+
+            // dd($path);
             file_put_contents($path, $data);
       
             $img->removeattribute('src');
-            $img->setattribute('src', $image_name);
+            $img->setattribute('src',asset('storage/' . $image_name));
+
+            } // <!--endif
         }
-      
-        $detail = $dom->savehtml();
+
+
+        // dd($images);
+        
+        $body = $dom->savehtml();
 
 
         if(request('post_image')){
@@ -242,7 +279,7 @@ class PostController extends Controller
         }
 
         $post->title = $inputs['title'];
-        $post->body =$detail;
+        $post->body =$body;
         $post->publish = $inputs['publish'];
         
 

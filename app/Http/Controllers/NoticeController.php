@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Notice;
+use App\User;
+use App\Profile;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
@@ -31,8 +33,20 @@ class NoticeController extends Controller
     //     return view('admin.notice',['notices'=>$notice]);
 
     $notice = Notice::orderBy('id', 'DESC','Publish','Yes')->get();
+    $user_id = auth()->user()->id;
+    $user_roles = User::with('roles')->where('id', $user_id)->get();
+    $profile = Profile::where('user_id', $user_id)->first();
 
-    return view('notice',['notices'=>$notice]);
+    foreach($user_roles as $user){
+        foreach($user->roles as $role){
+            $role_id = $role->id;
+        }
+    }
+
+    // dd($role_id);
+    
+
+    return view('notice.index',['notices'=>$notice,'user'=>$user,'user_roles'=>$user_roles,'profile'=>$profile,'role_id'=>$role_id]);
     }
 
     /**
@@ -98,8 +112,24 @@ class NoticeController extends Controller
         //
         // Notice::findOrFail($id);
         // return view('admin.notice',['notice'=>$notice]);
+        
         // dd($notice);
-        return view('notice-detail', ['notice'=> $notice]);
+        
+        $user_id = auth()->user()->id;
+        $user_roles = User::with('roles')->where('id', $user_id)->get();
+        $profile = Profile::where('user_id', $user_id)->first();
+
+        foreach($user_roles as $user){
+            foreach($user->roles as $role){
+                $role_id = $role->id;
+            }
+        }
+
+        // dd($role_id);
+    
+
+    return view('notice.notice-detail',['notice'=> $notice,'user'=>$user,'user_roles'=>$user_roles,'profile'=>$profile,'role_id'=>$role_id]);
+
         
     }
 

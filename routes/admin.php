@@ -31,7 +31,7 @@ Route::group(['middleware' => 'isAdmin'], function () {
     Route::get('/student/{user}/edit', 'StudentController@edit')->name('student.edit');
     
     // ADMIN : NOTICE BOARD
-    Route::get('/notice', 'NoticeController@index')->name('notice');
+    // Route::get('/notice', 'NoticeController@index')->name('notice');
     Route::get('/notice/all', 'NoticeController@show1')->name('notice.index');
     Route::post('/notice', 'NoticeController@store')->name('notice.store');
     Route::get('/notice/create', 'NoticeController@create')->name('notice.create');

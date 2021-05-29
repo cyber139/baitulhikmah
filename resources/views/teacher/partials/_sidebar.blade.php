@@ -41,6 +41,14 @@
               </p>
               </a>
           </li>
+          <li class="nav-item ">
+              <a href="{{route('notice')}}" class="nav-link">
+                <i class="nav-icon fas fa-chalkboard"></i>
+              <p>
+                Notice Board
+              </p>
+              </a>
+          </li>
           {{-- <li class="nav-item">
               <a href="#" class="nav-link">
               <i class="nav-icon fas fa-swatchbook"></i>
@@ -133,7 +141,7 @@
               </p>
               </a>
           </li> --}}
-            <li class="nav-item">
+            {{-- <li class="nav-item">
                 <a href="#" class="nav-link">
                 <i class="nav-icon fas fa-chalkboard"></i>
                 <p>Notice Board<i class="fas fa-angle-left right"></i></p>
@@ -145,25 +153,25 @@
                             <i class="far fa-circle nav-icon"></i>
                             <p>
                                 Preview Notice Board
-                                {{-- <span class="badge badge-info right">2</span> --}}
+                                <span class="badge badge-info right">2</span>
                             </p>
                             </a>
                     </li>
                     <li class="nav-item">
-                        <a href="#')}}" class="nav-link">
+                        <a href="{{route('notice')}}" class="nav-link">
                         <i class="far fa-circle nav-icon"></i>
-                        <p>All Notice</p>
+                        <p>Notice</p>
                         </a>
                     </li>
-                    {{-- <li class="nav-item">
+                    <li class="nav-item">
                         <a href="{{url('/admin/notice/create')}}" class="nav-link">
                         <i class="fas fa-plus-circle  nav-icon"></i>
                         <p>Add Notice</p>
                         </a>
-                    </li> --}}
+                    </li>
                 
                 </ul>
-            </li>
+            </li> --}}
 
           {{-- <li class="nav-header">Others</li>
           <li class="nav-item">

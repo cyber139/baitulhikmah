@@ -79,17 +79,43 @@
             <div class="form-group">
               <label>Publish</label>
               <select class="form-control" name="publish" id="publish">
-                <option value="{{$post->publish}}" selected='selected'>{{$post->publish}}</option>
+                {{-- <option value="{{$post->publish}}" selected='selected'>{{$post->publish}}</option>
                 <option value="Yes">Yes</option>
-                <option value="No">No</option>
+                <option value="No">No</option> --}}
+                
+              @if ($post->publish =="Yes")
+                  <option value={{$post->publish}} selected>{{ $post->publish }}</option>
+                  <option value="No" @if (old('publish') == "No") {{ 'selected' }} @endif>No</option> 
+              @else
+                  <option value={{$post->publish}} selected>{{ $post->publish }}</option>
+                  <option value="Yes" @if (old('publish') == "Yes") {{ 'selected' }} @endif>Yes</option>
+              @endif
               </select>
             </div>
+
+            {{-- <select name="isActive" class="col-sm-2 form-control" required> --}}
+            {{-- <option value="{{ $user->isActive }}" {{ $user->isActive == old('isActive') ? 'selected' : '' }}>{{ $user->isActive }}</option>
+            <option value="Yes" @if (old('isActive') == "Yes") {{ 'selected' }} @endif>Yes</option>
+            <option value="No" @if (old('isActive') == "No") {{ 'selected' }} @endif>No</option> --}}
+
+              {{-- @if ($user->publish =="Yes")
+                  <option value={{$user->publish}} selected>{{ $user->publish }}</option>
+                  <option value="No" @if (old('publish') == "No") {{ 'selected' }} @endif>No</option> 
+              @else
+                  <option value={{$user->publish}} selected>{{ $user->publish }}</option>
+                  <option value="Yes" @if (old('publish') == "Yes") {{ 'selected' }} @endif>Yes</option>
+              @endif
+           </select> --}}
+
             {{-- <div class="form-check">
               <input type="checkbox" class="form-check-input" id="exampleCheck1">
               <label class="form-check-label" for="exampleCheck1">Check me out</label>
             </div> --}}
           </div>
           <!-- /.card-body -->
+
+          <input type="hidden" name="teacher_id" value="{{$post->teacher_id}}">
+
 
           <div class="card-footer text-center">
             <button type="submit" class="btn-lg btn-primary ">Submit</button>
