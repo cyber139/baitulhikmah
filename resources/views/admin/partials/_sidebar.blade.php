@@ -12,7 +12,24 @@
   <!-- Sidebar user panel (optional) -->
   <div class="user-panel mt-3 pb-3 mb-3 d-flex">
       <div class="image">
-      <img src="{{asset('/images/user2-160x160.jpg')}}" class="img-circle elevation-2" alt="User Image">
+      {{-- <img src="{{asset('/images/user2-160x160.jpg')}}" class="img-circle elevation-2" alt="User Image"> --}}
+      @if ($profile != null)
+
+      @if ($profile->profile_image != null)
+      {{-- {{dd($profile->profile_image)}}  --}}
+        <div><a href="{{$profile->profile_image}}" data-toggle="lightbox" data-title="{{$profile->full_name}}">
+        <img class="img-circle elevation-2" src="{{$profile->profile_image}}" alt="{{$profile->full_name}}" style="height: 34px; width: 34px;" >
+        </a> </div>
+        @else
+        <div><img class="img-circle elevation-2" h src="http://placehold.it/128x128.jpg&text=No+Uploaded" alt="{{ucfirst($user->username)}}" ></div>
+        @endif
+
+     @else
+
+     <div><img class="img-circle elevation-2" h src="http://placehold.it/128x128.jpg&text=No+Uploaded" alt="{{ucfirst($user->username)}}" ></div>
+     {{-- <div><img class="img-circle elevation-2" h src="{{asset('../../dist/img/user4-128x128.jpg')}}" alt="{{ucfirst($user->username)}}" ></div> --}}
+
+    @endif
       </div>
       <div class="info">
       <a href="{{route('user.index',auth()->user())}}" class="d-block">{{ ucfirst(Auth::user()->username) }}</a>
@@ -157,7 +174,7 @@
                 </ul>
             </li>
 
-            <li class="nav-item">
+            {{-- <li class="nav-item">
                 <a href="#" class="nav-link">
                 <i class="fas fa-globe-americas nav-icon"></i>
                 <p>Website Management<i class="fas fa-angle-left right"></i></p>
@@ -171,6 +188,14 @@
                         </a>
                     </li>                
                 </ul>
+            </li> --}}
+            <li class="nav-item ">
+                <a href="{{route('website.index')}}" class="nav-link">
+                <i class="fas fa-globe-americas nav-icon"></i>
+                <p>
+                    Website Management
+                </p>
+                </a>
             </li>
 
           {{-- <li class="nav-header">Others</li>

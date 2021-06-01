@@ -85,16 +85,17 @@
                 @if ($profile != null)
 
                   @if ($profile->profile_image != null)
+                  {{-- {{dd($profile->profile_image)}} --}}
                     <div><a href="{{$profile->profile_image}}" data-toggle="lightbox" data-title="{{$profile->full_name}}">
                     <img class="profile-user-img img-fluid img-circle" src="{{$profile->profile_image}}" alt="{{$profile->full_name}}" style="height: 128px; width: 128px;" >
                     </a> </div>
                     @else
-                    <div><img class="profile-user-img img-fluid img-circle" h src="{{asset('../../dist/img/user4-128x128.jpg')}}" alt="{{ucfirst($user->username)}}" ></div>
+                    <div><img class="profile-user-img img-fluid img-circle" h src="http://placehold.it/128x128.jpg&text=No+Uploaded" alt="{{ucfirst($user->username)}}" ></div>
                     @endif
 
                  @else
 
-                 <div><img class="profile-user-img img-fluid img-circle" h src="{{asset('../../dist/img/user4-128x128.jpg')}}" alt="{{ucfirst($user->username)}}" ></div>
+                 <div><img class="profile-user-img img-fluid img-circle" h src="http://placehold.it/128x128.jpg&text=No+Uploaded" alt="{{ucfirst($user->username)}}" ></div>
 
                 @endif
                 </div>
@@ -166,10 +167,10 @@
                           <p class=" col-form-label">{{$user->email}}</p>
                         </div>
                       </div>
+                      @if ($profile != null)
                       <div class="form-group row">
                         <label for="inputName" class="col-sm-2 col-form-label">Profile Image</label>
                         
-                        @if ($profile != null)
                           @if ($profile->profile_image!=null)
                           <div><a href="{{$profile->profile_image}}" data-toggle="lightbox" data-title="{{$profile->full_name}}">
                             <img class="img-fluid mb-2" src="{{$profile->profile_image}}" alt="Image" style="height: 180px; width: auto;" >

@@ -57,7 +57,9 @@ class NoticeController extends Controller
     public function create()
     {
         //
-        return view('admin.notice.create');
+        $user_id = auth()->user()->id;
+        $profile = Profile::where('user_id', $user_id)->first();
+        return view('admin.notice.create',['profile'=>$profile]);
     }
 
     /**
@@ -71,6 +73,7 @@ class NoticeController extends Controller
         //Check data request send
         // dd(request()->all());
         // auth()->user();
+        
 
         $inputs = request()->validate([
             // 'title'=>'required,min:8'
@@ -140,10 +143,12 @@ class NoticeController extends Controller
         // return view('admin.notice',['notice'=>$notice]);
 
         $notice = Notice::orderBy('id', 'DESC')->get();
+        $user_id = auth()->user()->id;
+        $profile = Profile::where('user_id', $user_id)->first();
         // $notice = Notice::all();
         // $notice = Notice::paginate(2);
 
-        return view('admin.notice.index', ['notice'=> $notice]);
+        return view('admin.notice.index', ['notice'=> $notice,'profile'=>$profile]);
         
     }
 
@@ -162,8 +167,10 @@ class NoticeController extends Controller
 //
 //        }
         // $notice = Notice::all();
+        $user_id = auth()->user()->id;
+        $profile = Profile::where('user_id', $user_id)->first();
 
-        return view('admin.notice.edit', ['notice'=> $notice]);
+        return view('admin.notice.edit', ['notice'=> $notice,'profile'=>$profile]);
     }
 
 

@@ -24,6 +24,12 @@ class Post extends Model
     //     }
 
     public function getPostImageAttribute($value){
+
+        if($value == null){
+            return $value;
+        }
+
+
         if (strpos($value, 'https://') !== FALSE || strpos($value, 'http://') !== FALSE) {
             return $value;
         }

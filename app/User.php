@@ -42,8 +42,12 @@ class User extends Authenticatable
         return $this->hasMany(Notice::class);
     }
 
-    public function teacher(){
+    public function teachers(){
         return $this->hasMany(Teacher::class);
+    }
+
+    public function students(){
+        return $this->hasMany(Student::class);
     }
 
     // Relationship with permission ; one user has many different permission

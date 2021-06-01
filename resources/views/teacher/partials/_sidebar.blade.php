@@ -20,12 +20,12 @@
         <img class="img-circle elevation-2" src="{{$profile->profile_image}}" alt="{{$profile->full_name}}" style="height: 34px; width: 34px;" >
         </a> </div>
         @else
-        <div><img class="img-circle elevation-2" h src="{{asset('../../dist/img/user4-128x128.jpg')}}" alt="{{ucfirst($user->username)}}" ></div>
+        <div><img class="img-circle elevation-2" h src="http://placehold.it/128x128.jpg&text=No+Uploaded" alt="{{ucfirst($user->username)}}" ></div>
         @endif
 
      @else
 
-     <div><img class="img-circle elevation-2" h src="{{asset('../../dist/img/user4-128x128.jpg')}}" alt="{{ucfirst($user->username)}}" ></div>
+     <div><img class="img-circle elevation-2" h src="http://placehold.it/128x128.jpg&text=No+Uploaded" alt="{{ucfirst($user->username)}}" ></div>
 
     @endif
       </div>

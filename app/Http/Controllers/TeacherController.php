@@ -30,7 +30,9 @@ class TeacherController extends Controller
         //
 
         $users = Role::where('slug', 'teacher')->first()->users()->get();
-        return view('admin.teacher.index',['users'=>$users]);
+        $user_id = auth()->user()->id;
+        $profile = Profile::where('user_id', $user_id)->first();
+        return view('admin.teacher.index',['users'=>$users,'profile'=>$profile]);
     }
 
     public function home()
@@ -45,7 +47,9 @@ class TeacherController extends Controller
         // $users = User::all();
         // return view('admin.uac',['users'=>$users]);
         $role = Role::find($user->id);
-        return view('user.index',['user'=>$user,'role'=>$role]);
+        $user_id = auth()->user()->id;
+        $profile = Profile::where('user_id', $user_id)->first();
+        return view('user.index',['user'=>$user,'role'=>$role,'profile'=>$profile]);
     }
 
     /**
@@ -93,12 +97,15 @@ class TeacherController extends Controller
         $selectRoles = Role::all();
         $selectClassSubjects = Grade::with('subjects')->get();
         $selectAssign = Teacher::all();
+        $user_id = auth()->user()->id;
+        $profile = Profile::where('user_id', $user_id)->first();
         // dd($selectAssign);
+        $userProfile = Profile::where('user_id', $user->id)->first();
 
 
 
 
-        return view('admin.teacher.edit',['user'=>$user,'selectRoles'=>$selectRoles,'selectClassSubjects'=>$selectClassSubjects,'selectAssign'=>$selectAssign]);
+        return view('admin.teacher.edit',['user'=>$user,'selectRoles'=>$selectRoles,'selectClassSubjects'=>$selectClassSubjects,'selectAssign'=>$selectAssign,'profile'=>$profile,'userProfile'=>$userProfile]);
     }
 
     /**

@@ -29,6 +29,9 @@ Route::group(['middleware' => 'isAdmin'], function () {
     // ADMIN : Student
     Route::get('/student', 'StudentController@index')->name('student.index');
     Route::get('/student/{user}/edit', 'StudentController@edit')->name('student.edit');
+    Route::post('/student/{user}/assign', 'StudentController@assign')->name('student.assign');
+    Route::post('/student/{user}/dismiss', 'StudentController@dismiss')->name('student.dismiss');
+
     
     // ADMIN : NOTICE BOARD
     // Route::get('/notice', 'NoticeController@index')->name('notice');
@@ -57,4 +60,16 @@ Route::group(['middleware' => 'isAdmin'], function () {
     Route::get('/subject/{subject}/edit', 'SubjectController@edit')->name('subject.edit');
     Route::post('/subject/{subject}/update', 'SubjectController@update')->name('subject.update');
     Route::delete('/subject/{subject}/delete', 'SubjectController@destroy')->name('subject.destroy');
+
+    // ADMIN : Website
+    Route::get('/website_management', 'WebsiteController@index')->name('website.index');
+    Route::post('/website_management/add', 'WebsiteController@store')->name('website.store');
+    Route::post('/website_management/banner1/update', 'WebsiteController@updateBanner1')->name('website.banner1');
+    Route::post('/website_management/banner2/update', 'WebsiteController@updateBanner2')->name('website.banner2');
+    Route::post('/website_management/counter/update', 'WebsiteController@updateCounter')->name('website.counter');
+    Route::post('/website_management/about/update', 'WebsiteController@updateAbout')->name('website.about');
+    Route::post('/website_management/contact/update', 'WebsiteController@updateContact')->name('website.contact');
+
+
+
 });

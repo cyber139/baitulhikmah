@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Subject;
 use App\Grade;
+use App\Profile;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Storage;
@@ -20,7 +21,9 @@ class GradeController extends Controller
     {
         //
         $grades= Grade::all();
-        return view('admin.grade.index',['grades'=>$grades]);
+        $user_id = auth()->user()->id;
+        $profile = Profile::where('user_id', $user_id)->first();
+        return view('admin.grade.index',['grades'=>$grades,'profile'=>$profile]);
     }
 
     /**
@@ -30,7 +33,9 @@ class GradeController extends Controller
      */
     public function create()
     {
-        return view('admin.grade.create');
+        $user_id = auth()->user()->id;
+        $profile = Profile::where('user_id', $user_id)->first();
+        return view('admin.grade.create',['profile'=>$profile]);
     }
 
     /**
@@ -90,6 +95,8 @@ class GradeController extends Controller
 
         // DB::enableQueryLog();
         // $grades = Grade::with('subjects')->find($grade);
+        $user_id = auth()->user()->id;
+        $profile = Profile::where('user_id', $user_id)->first();
         $grades = Grade::find($grade);
 
        
@@ -109,7 +116,7 @@ class GradeController extends Controller
             ])->get();
 
         // dd(DB::getQueryLog());
-        return view('admin.grade.edit', ['grades'=> $grades,'selectSubjects'=>$selectSubjects]);
+        return view('admin.grade.edit', ['grades'=> $grades,'selectSubjects'=>$selectSubjects,'profile'=>$profile]);
     }
 
     /**

@@ -119,7 +119,7 @@
                       <td>{{$user->isActive}}</td>
 
                       <td>
-                        <a class="btn btn-info btn-sm mb-2" href="{{route('admin.uac.edit',$user->id)}}"><i class="fas fa-user-edit"></i> Edit</a>
+                        <a class="btn btn-info btn-sm mb-2" href="{{route('student.edit',$user->id)}}"><i class="fas fa-user-edit"></i> Edit</a>
                       </td>
                     </tr>
                     @endforeach

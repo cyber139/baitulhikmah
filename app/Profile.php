@@ -19,6 +19,10 @@ class Profile extends Model
     }
 
     public function getProfileImageAttribute($value){
+        if($value == null){
+            return $value;
+        }
+
         if (strpos($value, 'https://') !== FALSE || strpos($value, 'http://') !== FALSE) {
             return $value;
         }

@@ -24,6 +24,8 @@
   <!-- DataTables -->
   <link rel="stylesheet" href="{{asset('../../plugins/datatables-bs4/css/dataTables.bootstrap4.min.css')}}">
   <link rel="stylesheet" href="{{asset('../../plugins/datatables-responsive/css/responsive.bootstrap4.min.css')}}">
+   <!-- Ekko Lightbox -->
+   <link rel="stylesheet" href="{{asset('../../plugins/ekko-lightbox/ekko-lightbox.css')}}">
   
   <!-- Google Font: Source Sans Pro -->
   <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
@@ -75,8 +77,8 @@
 <script src="{{asset('../../plugins/datatables-bs4/js/dataTables.bootstrap4.min.js')}}"></script>
 <script src="{{asset('../../plugins/datatables-responsive/js/dataTables.responsive.min.js')}}"></script>
 <script src="{{asset('../../plugins/datatables-responsive/js/responsive.bootstrap4.min.js')}}"></script>
+<!-- Ekko Lightbox -->
 <script src="{{asset('../../plugins/ekko-lightbox/ekko-lightbox.min.js')}}"></script>
-
 
 <script>
   $(function () {
@@ -129,5 +131,16 @@
       });
     });
   </script>
+
+<script>
+  $(function () {
+    $(document).on('click', '[data-toggle="lightbox"]', function(event) {
+      event.preventDefault();
+      $(this).ekkoLightbox({
+        alwaysShowClose: true
+      });
+    });
+  })
+</script>
 </body>
 </html>

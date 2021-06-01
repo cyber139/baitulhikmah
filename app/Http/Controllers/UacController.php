@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 
 use App\User;
 use App\Role;
+use App\Profile;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\DB;
@@ -104,16 +105,25 @@ class UacController extends Controller
         // return view('admin.uac.index',['users'=>$users,'roles'=>$roles]);
 
         // dd($users);
-        return view('admin.uac.index',['users'=>$users]);
+        $user_id = auth()->user()->id;
+        $profile = Profile::where('user_id', $user_id)->first();
+        return view('admin.uac.index',['users'=>$users,'profile'=>$profile]);
     }
 
     public function uac_edit(User $user)
     {
         //
         
-        $users = User::with('roles')->get();
+        $user_id = auth()->user()->id;
+        $profile = Profile::where('user_id', $user_id)->first();
+        
         $selectRoles = Role::all();
-        return view('admin.uac.edit',['user'=>$user,'selectRoles'=>$selectRoles]);
+        $userProfile = Profile::where('user_id', $user->id)->first();
+
+        // dd($userProfile);
+        // dd($user);
+        
+        return view('admin.uac.edit',['user'=>$user,'selectRoles'=>$selectRoles,'profile'=>$profile,'userProfile'=>$userProfile]);
     }
 
     public function uac_update()
@@ -129,10 +139,12 @@ class UacController extends Controller
     {
         //
         $user = User::all();
+        $user_id = auth()->user()->id;
+        $profile = Profile::where('user_id', $user_id)->first();
 
         // session()->flash('notice-updated-message', 'Post '.$user['username'].' was created');
         
-        return view('admin.uac.create',['user'=>$user]);
+        return view('admin.uac.create',['user'=>$user,'profile'=>$profile]);
     }
 
     public function uac_store(Request $request)

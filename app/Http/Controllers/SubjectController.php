@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Subject;
+use App\Profile;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Storage;
@@ -18,7 +19,9 @@ class SubjectController extends Controller
     {
         //
         $subjects= Subject::all();
-        return view('admin.subject.index',['subjects'=>$subjects]);
+        $user_id = auth()->user()->id;
+        $profile = Profile::where('user_id', $user_id)->first();
+        return view('admin.subject.index',['subjects'=>$subjects,'profile'=>$profile]);
     }
 
     /**
@@ -29,7 +32,9 @@ class SubjectController extends Controller
     public function create()
     {
         //
-        return view('admin.subject.create');
+        $user_id = auth()->user()->id;
+        $profile = Profile::where('user_id', $user_id)->first();
+        return view('admin.subject.create',['profile'=>$profile]);
     }
 
     /**
@@ -87,7 +92,9 @@ class SubjectController extends Controller
     public function edit(Subject $subject)
     {
         // //
-        return view('admin.subject.edit', ['subject'=> $subject]);
+        $user_id = auth()->user()->id;
+        $profile = Profile::where('user_id', $user_id)->first();
+        return view('admin.subject.edit', ['subject'=> $subject,'profile'=>$profile]);
     }
 
     /**

@@ -1,5 +1,9 @@
 <?php
 use App\Notice;
+use App\Web_About;
+use App\Web_Banner;
+use App\Web_Contact;
+use App\Web_Counter;
 // use Auth;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
@@ -18,7 +22,13 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
 
     $notice = Notice::orderBy('id', 'DESC','Publish','Yes')->first();
-    return view('welcome',['notice'=>$notice]);
+    $banner = Web_Banner::find(1)->first();
+    $banner2 = Web_Banner::where('id', 2)->first();
+    $about = Web_About::all()->first();
+    $counter = Web_Counter::all()->first();
+    // dd($banner2);
+    $contact = Web_Contact::all()->first();
+    return view('welcome',['notice'=>$notice,'banner'=>$banner,'banner2'=>$banner2,'about'=>$about,'counter'=>$counter,'contact'=>$contact,]);
 });
 
 // Route::get('/admin', function () {
@@ -50,7 +60,11 @@ Route::middleware('auth')->group(function(){
 
     Route::post('/user/{user}/store', 'ProfileController@store')->name('user.store');
 
+
+
+
     // // TEACHER
+    // SUBJECT
     // Route::get('/home', 'TeacherController@index')->name('home');
     Route::get('teacher/subject/all', 'TeacherController@SubjectIndex')->name('teacher.subject.index');
     Route::get('teacher/subject/not_assigned', 'TeacherController@SubjectIndex')->name('teacher.subject.none');
@@ -69,6 +83,12 @@ Route::middleware('auth')->group(function(){
     Route::get('teacher/post/{post}/edit', 'PostController@edit')->name('post.edit');
     Route::post('teacher/post/{post}/update', 'PostController@update')->name('post.update');
     Route::delete('teacher/post/{post}/delete', 'PostController@destroy')->name('post.destroy');
+
+
+    
+    //// STUDENT
+    // SUBJECT
+    Route::get('student/class/subject', 'StudentController@show')->name('student-subject.index');
 
 
 
