@@ -38,4 +38,9 @@ class Post extends Model
         return asset('storage/' . $value);
     }
 
+    public function submissions()
+    {
+        return $this->hasOne(Submission::class,'post_id');
+    }
+
 }

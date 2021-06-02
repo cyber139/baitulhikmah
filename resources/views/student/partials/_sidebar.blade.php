@@ -58,7 +58,15 @@
                 </p>
                 </a>
             </li>
-            <li class="nav-item">
+            <li class="nav-item ">
+                <a href="{{ route('submission.index') }}" class="nav-link">
+                    <i class="nav-icon fas fa-th"></i>
+                <p>
+                    Submisssion
+                </p>
+                </a>
+            </li>
+            {{-- <li class="nav-item">
                 <a href="{{ url('#') }}" class="nav-link">
                 <i class="nav-icon fas fa-th"></i>
                 <p>Subjects  <i class="fas fa-angle-left right"></i></p>
@@ -76,15 +84,15 @@
                     <i class="far fa-circle nav-icon"></i>
                     <p>Tauhid</p>
                     </a>
-                </li>
+                </li> --}}
                 {{-- <li class="nav-item">
                     <a href="subject2.php" class="nav-link">
                     <i class="far fa-circle nav-icon"></i>
                     <p>Hafazan</p>
                     </a>
                 </li> --}}
-                </ul>
-            </li>
+                {{-- </ul>
+            </li> --}}
   
             {{-- <li class="nav-item">
                 <a href="{{url('/notice')}}" class="nav-link">

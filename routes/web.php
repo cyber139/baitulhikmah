@@ -64,6 +64,11 @@ Route::middleware('auth')->group(function(){
     Route::get('/post/{post}/none', 'PostController@show')->name('subject.post.none');
     Route::get('/post/{post}/detail', 'PostController@detail')->name('post.detail');
 
+    // SUBMISSION
+    Route::get('/submission/{submission}/detail', 'SubmissionController@detail')->name('submission.detail');
+    Route::get('/download/{file_download}', 'SubmissionController@download')->name('submission.download');
+    // Route::get('/download/{file_download}', 'SubmissionController@edit')->name('submission.edit');
+
 
 
 
@@ -79,17 +84,28 @@ Route::middleware('auth')->group(function(){
     Route::delete('teacher/subject/{subject}/delete', 'SubjectController@destroy')->name('subject.destroy');
 
     // POST
-       Route::post('teacher/post', 'PostController@store')->name('post.store');
+    Route::post('teacher/post', 'PostController@store')->name('post.store');
     Route::get('teacher/post/{post}/create', 'PostController@create')->name('post.create');
     Route::get('teacher/post/{post}/edit', 'PostController@edit')->name('post.edit');
     Route::post('teacher/post/{post}/update', 'PostController@update')->name('post.update');
     Route::delete('teacher/post/{post}/delete', 'PostController@destroy')->name('post.destroy');
 
+    // ASSIGNMENT
+    Route::get('teacher/{post}/submission/all', 'SubmissionController@teacherIndex')->name('submission.teacherIndex');
+    Route::get('teachers/{id}/submission/all', 'SubmissionController@IndexByPost')->name('submission.IndexByPost');
+    Route::get('teacher/submission/all', 'SubmissionController@IndexAll')->name('submission.teacherAll');
 
     
-    //// STUDENT
+    // // STUDENT
     // SUBJECT
     Route::get('student/class/subject', 'StudentController@show')->name('student-subject.index');
+
+
+    // ASSIGNMENT
+    Route::get('student/submission/all', 'SubmissionController@index')->name('submission.index');
+    Route::post('student/submission', 'SubmissionController@store')->name('submission.store');
+    Route::get('student/submission/{submission}/edit', 'SubmissionController@edit')->name('submission.edit');
+    Route::post('student/submission/{submission}/update', 'SubmissionController@update')->name('submission.update');
 
 
 

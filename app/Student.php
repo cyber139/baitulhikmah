@@ -17,4 +17,8 @@ class Student extends Model
         return $this->belongsTo(User::class)->withTimestamps();
     }
 
+    // public function submissions(){
+    //     return $this->hasMany(Submission::class,'student_id')->withTimestamps();
+    // }
+
 }

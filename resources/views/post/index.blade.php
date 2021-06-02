@@ -87,13 +87,7 @@
                 </div>
                 <hr>
                 <div class="timeline-footer">
-                  <a class="btn btn-primary btn-sm float-right mx-1 " href="{{route('post.detail',$post->id)}}"> <i class="fas fa-eye"></i>  View  </a>
-
-                  @if ($role_id == 1)
-                  @elseif($role_id == 2)
-                  <a class="btn btn-primary btn-sm float-right mx-1 " href="{{route('post.edit',$post->id)}}"> <i class="fas fa-pencil-alt"></i>  Edit  </a>
-                  @else
-                  @endif
+                  
 
                   @if ($role_id == 1)
                   @elseif($role_id == 2)
@@ -103,6 +97,15 @@
                     {{-- <button type="submit" class="btn btn-danger">Delete</button> --}}
                     <button class="btn btn-danger btn-sm float-right mx-1" type="submit"> <i class="fas fa-trash-alt"></i>  Delete  </button>
                   </form>
+                  @else
+                  @endif
+
+                  <a class="btn btn-primary btn-sm float-right mx-1 " href="{{route('post.detail',$post->id)}}"> <i class="fas fa-eye"></i>  View  </a>
+
+                  @if ($role_id == 1)
+                  @elseif($role_id == 2)
+                  <a class="btn btn-primary btn-sm float-right mx-1 " href="{{route('submission.teacherIndex',$post->id)}}"><i class="fas fa-folder-open"></i> View All Submission</a>
+                  <a class="btn btn-primary btn-sm float-right mx-1 " href="{{route('post.edit',$post->id)}}"> <i class="fas fa-pencil-alt"></i>  Edit  </a>
                   @else
                   @endif
                   

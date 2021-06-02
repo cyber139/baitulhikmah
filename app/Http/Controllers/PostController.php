@@ -9,6 +9,8 @@ use App\Subject;
 use App\Grade;
 use App\Profile;
 use App\Teacher;
+use App\Student;
+use App\Submission;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use Illuminate\Support\Facades\Hash;
@@ -231,12 +233,26 @@ class PostController extends Controller
     {
         // dd($post);
         //
+
+        $UserRoles = User::with('roles')->find(Auth::user()->id);
+        foreach($UserRoles->roles as $role){
+            $role_id = $role->id;
+        }
+
         $user_id = auth()->user()->id;
         $profile = Profile::where('user_id', $user_id)->first();
 
+        $student = Student::where('user_id',$user_id)->first();
+        // dd($student); 
         $teacher = Teacher::where('id', $post->teacher_id)->first();
+        // dd($post); 
+
         $author = Profile::where('user_id',$teacher->user_id)->first();
-        return view('post.detail', ['post'=> $post,'author'=>$author,'profile'=>$profile]);
+
+        $submission = Submission::where('post_id',$post->id)->first();
+
+        // dd($submission);
+        return view('post.detail', ['post'=> $post,'author'=>$author,'profile'=>$profile,'student'=>$student,'teacher'=>$teacher,'submission'=>$submission,'role_id'=>$role_id]);
     }
 
     /**
