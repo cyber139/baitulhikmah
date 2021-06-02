@@ -1,4 +1,9 @@
-@extends('layouts.teacher')
+@extends('layouts.master')
+
+{{-- @if ($role_id == 1)
+@elseif($role_id == 2)
+@else
+@endif --}}
 
 @section('content')
 <!-- Content Wrapper. Contains page content -->
@@ -28,7 +33,7 @@
         <div class="col-sm-6">
           <ol class="breadcrumb float-sm-right">
             <li class="breadcrumb-item"><a href="{{route('home')}}">Home</a></li>
-            <li class="breadcrumb-item active">Notice Post</li>
+            <li class="breadcrumb-item active">{{$name}}</li>
           </ol>
         </div>
       </div>
@@ -43,7 +48,11 @@
       <!-- Timelime example  -->
       <div class="row">
         <div class="offset-md-10 col-md-2">
+          @if ($role_id == 1)
+          @elseif($role_id == 2)
           <a href="{{route('post.create',$teacher->id)}}" class="nav-link btn btn-sm btn-primary float-right"> <i class="fas fa-plus-circle"></i> Add New Post</a>
+          @else
+          @endif
         </div>
         <div class="col-md-12">
           <!-- The time line -->
@@ -79,14 +88,24 @@
                 <hr>
                 <div class="timeline-footer">
                   <a class="btn btn-primary btn-sm float-right mx-1 " href="{{route('post.detail',$post->id)}}"> <i class="fas fa-eye"></i>  View  </a>
-                  
+
+                  @if ($role_id == 1)
+                  @elseif($role_id == 2)
                   <a class="btn btn-primary btn-sm float-right mx-1 " href="{{route('post.edit',$post->id)}}"> <i class="fas fa-pencil-alt"></i>  Edit  </a>
+                  @else
+                  @endif
+
+                  @if ($role_id == 1)
+                  @elseif($role_id == 2)
                   <form method="post" action="{{route('post.destroy', $post->id)}}" enctype="multipart/form-data">
                     @csrf
                     @method('DELETE')
                     {{-- <button type="submit" class="btn btn-danger">Delete</button> --}}
                     <button class="btn btn-danger btn-sm float-right mx-1" type="submit"> <i class="fas fa-trash-alt"></i>  Delete  </button>
                   </form>
+                  @else
+                  @endif
+                  
                  
                   <div class="text-muted">
                     <p>Post by : {{$author->full_name}}<br>

@@ -39,7 +39,15 @@ class PostController extends Controller
 
         // $subjects= Subject::all();
         // $posts= Post::all();
+
+        // ROLE ID FOR MASTER LAYOUT
         $selectClassSubjects = Grade::where('id',$teacher->grade_id)->with('subjects')->get();
+        $UserRoles = User::with('roles')->find(Auth::user()->id);
+        foreach($UserRoles->roles as $role){
+            $role_id = $role->id;
+        }
+        // dd($role_id);
+
         // $selectClassSubjects = 
 
         foreach($selectClassSubjects as $ClassSubject){
@@ -59,7 +67,7 @@ class PostController extends Controller
         // $author = Post::with('teachers')->find(Auth::user()->id);
         // dd($author->full_name);
         // dd($posts);
-        return view('teacher.post.index',['posts'=>$posts,'author'=>$author,'teacher'=>$teacher,'SubjectGrades'=>$SubjectGrades,'profile'=>$profile]);
+        return view('post.index',['posts'=>$posts,'author'=>$author,'teacher'=>$teacher,'SubjectGrades'=>$SubjectGrades,'profile'=>$profile,'role_id'=>$role_id]);
         
     }
 
@@ -195,7 +203,7 @@ class PostController extends Controller
         }
         // dd($SubjectGrades);
 
-        return view('teacher.post.NoIndex',['author'=>$author,'teacher'=>$teacher,'SubjectGrades'=>$SubjectGrades,'profile'=>$profile]);
+        return view('post.NoIndex',['author'=>$author,'teacher'=>$teacher,'SubjectGrades'=>$SubjectGrades,'profile'=>$profile]);
     }
 
     /**
@@ -228,7 +236,7 @@ class PostController extends Controller
 
         $teacher = Teacher::where('id', $post->teacher_id)->first();
         $author = Profile::where('user_id',$teacher->user_id)->first();
-        return view('teacher.post.detail', ['post'=> $post,'author'=>$author,'profile'=>$profile]);
+        return view('post.detail', ['post'=> $post,'author'=>$author,'profile'=>$profile]);
     }
 
     /**

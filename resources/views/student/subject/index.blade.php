@@ -45,9 +45,25 @@
                   <div class="icon">
                     <i class="fas fa-shopping-cart"></i>
                   </div>
-                  <a href="#" class="small-box-footer">
+                  @foreach ($teacherList as $teacher)
+                  {{-- {{var_dump($teacher)}}
+                  {{dd($teacher)}} --}}
+                  {{-- {{dd($teacher->grade_id == $grade->id && $teacher->subject_id == $subject->id)}} --}}
+                  @if ($teacher['grade_id'] == $grade->id && $teacher['subject_id'] == $subject->id )
+                   
+                    <a href="{{route('subject.post',$teacher->id)}}" class="small-box-footer">
                     More info <i class="fas fa-arrow-circle-right"></i>
+                    </a> 
+                  @else
                   </a>
+                  @endif
+                  @endforeach
+                  {{-- <a href="#" class="small-box-footer">
+                    More info <i class="fas fa-arrow-circle-right"></i>
+                  </a> --}}
+                  {{-- <a href="{{route('subject.post',$assign->id)}}" class="small-box-footer">
+                    More info <i class="fas fa-arrow-circle-right"></i>
+                  </a> --}}
                 </div>
               </div>
               @endforeach

@@ -57,8 +57,12 @@ Route::middleware('auth')->group(function(){
     Route::post('/user/{user}/update', 'ProfileController@update')->name('user.update');
     Route::post('/user/{user}/edit', 'ProfileController@edit')->name('user.edit');
     // Route::get('user/{user}/create', 'ProfileController@create')->name('user.create');
-
     Route::post('/user/{user}/store', 'ProfileController@store')->name('user.store');
+
+    // POST SUBJECT
+    Route::get('/post/{post}/index', 'PostController@index')->name('subject.post');
+    Route::get('/post/{post}/none', 'PostController@show')->name('subject.post.none');
+    Route::get('/post/{post}/detail', 'PostController@detail')->name('post.detail');
 
 
 
@@ -75,10 +79,7 @@ Route::middleware('auth')->group(function(){
     Route::delete('teacher/subject/{subject}/delete', 'SubjectController@destroy')->name('subject.destroy');
 
     // POST
-    Route::get('teacher/post/{post}/index', 'PostController@index')->name('subject.post');
-    Route::get('teacher/post/{post}/none', 'PostController@show')->name('subject.post.none');
-    Route::get('teacher/post/{post}/detail', 'PostController@detail')->name('post.detail');
-    Route::post('teacher/post', 'PostController@store')->name('post.store');
+       Route::post('teacher/post', 'PostController@store')->name('post.store');
     Route::get('teacher/post/{post}/create', 'PostController@create')->name('post.create');
     Route::get('teacher/post/{post}/edit', 'PostController@edit')->name('post.edit');
     Route::post('teacher/post/{post}/update', 'PostController@update')->name('post.update');

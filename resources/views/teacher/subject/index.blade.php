@@ -65,9 +65,9 @@
                             }
                             
                             @endphp
-                            <br>
+                            {{-- <br>
                             Assign id :{{$assigned}}<br>
-                            Teacher id:{{$teacher}}
+                            Teacher id:{{$teacher}} --}}
 
                           </div>
                           {{-- <div class="icon">

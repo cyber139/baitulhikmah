@@ -86,17 +86,18 @@ class HomeController extends Controller
                         $user_id = auth()->user()->id;
                         $profile = Profile::where('user_id', $user_id)->first();
 
-                        $user = User::all();
+                        $user = User::find($user_id);
 
-                        return view('student.home',['notice'=>$notice,'users'=>$user,'profile'=>$profile]);
+                        return view('student.home',['notice'=>$notice,'user'=>$user,'profile'=>$profile]);
                     }
                     else{
                         $user_id = auth()->user()->id;
                         $profile = Profile::where('user_id', $user_id)->first();
                         $notice = Notice::all();
-                        $user = User::all();
+                        $user = User::find($user_id);
 
-                        return view('home',['notices'=>$notice,'users'=>$user,'profile'=>$profile]);
+
+                        return view('home',['notices'=>$notice,'user'=>$user,'profile'=>$profile]);
 
                     }
                 }

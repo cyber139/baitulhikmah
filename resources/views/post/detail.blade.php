@@ -40,9 +40,15 @@
           <p class="card-text">{!!$post->body!!}</p>
             {{-- <img class="card-img-top" src="{{$post->post_image}}" alt="Card image cap"> --}}
                 {{-- <p class="card-text">{{($post->body)}}</p> --}}
+                @if ($post->post_image != null)
                 <a href="{{$post->post_image}}" data-toggle="lightbox" data-title="{{$post->title}}">
                   <img class="img-fluid mb-2" src="{{$post->post_image}}" alt="Image" style="height: 500px; width: auto;" >
                 </a>
+                @else
+                    
+                @endif
+                
+                
         </div>
         <!-- /.card-body -->
         <div class="card-footer text-muted">
@@ -56,6 +62,40 @@
     </div>
     <!-- /.card -->
     {{-- @endforeach --}}
+
+          <!-- Default box -->
+          <div class="card">
+            <div class="card-header">
+              <h3 class="card-title">Assignment Submission</h3>
+              {{-- <div class="card-tools">
+                <button type="button" class="btn btn-tool" data-card-widget="collapse" data-toggle="tooltip" title="Collapse">
+                  <i class="fas fa-minus"></i></button>
+                  <button type="button" class="btn btn-tool" data-card-widget="remove" data-toggle="tooltip" title="Remove">
+                    <i class="fas fa-times"></i></button>
+              </div> --}}
+            </div>
+            <div class="card-body">
+              {{-- <p class="card-text">{!!Str::limit($post->body, '50', '.....')!!}</p> --}}
+              <p class="card-text">Assignment</p>
+                {{-- <img class="card-img-top" src="{{$post->post_image}}" alt="Card image cap"> --}}
+                    {{-- <p class="card-text">{{($post->body)}}</p> --}}
+                    {{-- <a href="{{$post->post_image}}" data-toggle="lightbox" data-title="{{$post->title}}">
+                      <img class="img-fluid mb-2" src="{{$post->post_image}}" alt="Image" style="height: 500px; width: auto;" >
+                    </a> --}}
+            </div>
+            <!-- /.card-body -->
+            <div class="card-footer text-muted">
+              {{-- Posted on {{$post->created_at->format('Y-m-d H:i:s')}}<br>
+              <p>Post by {{$author->full_name}}<br> --}}
+    
+              {{-- Created by {{$post->user->username}} --}}
+              {{-- <a href="#">Start Bootstrap</a> --}}
+            </div>
+          <!-- /.card-footer-->
+        </div>
+        <!-- /.card -->
+
+
 
     <div id="disqus_thread"></div>
     <script>

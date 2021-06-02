@@ -7,6 +7,7 @@ use App\Profile;
 use App\User;
 use App\Student;
 use App\Grade;
+use App\Teacher;
 use Illuminate\Http\Request;
 
 class StudentController extends Controller
@@ -72,16 +73,24 @@ class StudentController extends Controller
                 ]);
         }
         $gradeList = Grade::with('subjects')->where('id', $class->grade_id)->get();
-        // foreach($gradeList as $grades){
-        //     // $subjects[] ='';
-        //     foreach($grades->subjects as $subject){
-        //         $subjectList[] = $subject;
+        
+        foreach($gradeList as $grades){
+            // $subjects[] ='';
+            // dd($grades);
 
-        //     }
-        //     // dd($subjects);
+            foreach($grades->subjects as $subject){
+                // dd($grades->id,$subject);
+                $teacherList [] = Teacher::where([
+                ['grade_id','=',$grades->id],
+                ['subject_id','=',$subject->id]
+                ])->first();
 
-        // }
-        // dd($gradeList);
+                // dd($teacherList);
+            }
+            // dd($subjects);
+        }
+        // dd($teacherList);
+
         return view('student.subject.index',[
             'user_id'=>$user_id,
             'selectRoles'=>$selectRoles,
@@ -89,6 +98,7 @@ class StudentController extends Controller
             'userProfile'=>$userProfile,
             'gradeList'=>$gradeList,
             'class'=>$class,
+            'teacherList'=>$teacherList,
             ]);
 
     }
