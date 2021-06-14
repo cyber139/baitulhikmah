@@ -94,7 +94,12 @@ class NoticeController extends Controller
         // dd($request->post_image->originalName);
         // dd($request->input('post_image');
 
-       auth()->user()->notices()->create($inputs);
+       $inputs = Notice::create([
+        'title' => $inputs['title'],
+        'body' => $inputs['body'],
+        'publish' => $inputs['publish'],
+        'user_id'=>auth()->user()->id
+    ]);
 
         session()->flash('notice-created-message', 'New post was created : '. $inputs['title']);
 
