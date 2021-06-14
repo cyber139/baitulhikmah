@@ -66,61 +66,35 @@
                 </p>
                 </a>
             </li>
-            {{-- <li class="nav-item">
-                <a href="{{ url('#') }}" class="nav-link">
-                <i class="nav-icon fas fa-th"></i>
-                <p>Subjects  <i class="fas fa-angle-left right"></i></p>
-               
-                </a>
-                <ul class="nav nav-treeview">
-                <li class="nav-item">
-                    <a href="{{ url('/all-subject') }}" class="nav-link">
-                    <i class="far fa-circle nav-icon"></i>
-                    <p>All Subject</p>
-                    </a>
-                </li>
-                <li class="nav-item">
-                    <a href="{{ url('/subject1') }}" class="nav-link">
-                    <i class="far fa-circle nav-icon"></i>
-                    <p>Tauhid</p>
-                    </a>
-                </li> --}}
-                {{-- <li class="nav-item">
-                    <a href="subject2.php" class="nav-link">
-                    <i class="far fa-circle nav-icon"></i>
-                    <p>Hafazan</p>
-                    </a>
-                </li> --}}
-                {{-- </ul>
-            </li> --}}
-  
-            {{-- <li class="nav-item">
-                <a href="{{url('/notice')}}" class="nav-link">
-                <i class="nav-icon fas fa-chalkboard"></i>
-                <p>
-                    Notice Board
-                    <span class="badge badge-info right">2</span>
-                </p>
-                </a>
-            </li> --}}
             <li class="nav-item">
               <a href="{{route('notice')}}" class="nav-link">
               <i class="nav-icon fas fa-chalkboard"></i>
               <p>Notice Board</p>              
               </a>
-          </li>
-  
-            {{-- <li class="nav-header">Others</li>
+            </li>
             <li class="nav-item">
-                <a href="calendar.php" class="nav-link">
-                <i class="nav-icon far fa-calendar-alt"></i>
-                <p>
-                    Calendar
-                    <span class="badge badge-info right">2</span>
-                </p>
+                <a href="#" class="nav-link">
+                    <i class="fas fa-comments nav-icon"></i>
+                <p>Forum<i class="fas fa-angle-left right"></i></p>
+                
                 </a>
-            </li> --}}
-  
+                <ul class="nav nav-treeview">
+                    <li class="nav-item">
+                        <a href="{{route('forum')}}" class="nav-link">
+                            <i class="far fa-circle nav-icon"></i>
+                            <p>
+                                All Forum
+                            </p>
+                            </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="{{route('forum-user')}}" class="nav-link">
+                        <i class="far fa-circle nav-icon"></i>
+                        <p>User Forum</p>
+                        </a>
+                    </li>                
+                </ul>
+            </li>
             <li class="nav-header"></li>
             <li class="nav-item ">
               <a class="nav-link" href="{{ route('logout') }}"

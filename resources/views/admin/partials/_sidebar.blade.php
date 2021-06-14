@@ -56,26 +56,6 @@
               <p>Subjects  </p>
              
               </a>
-              {{-- <ul class="nav nav-treeview">
-              <li class="nav-item">
-                  <a href="{{ route('subject.index') }}" class="nav-link">
-                  <i class="far fa-circle nav-icon"><i class="fas fa-angle-left right"></i></i>
-                  <p>All Subject</p>
-                  </a>
-              </li>
-              <li class="nav-item">
-                  <a href="{{ url('/subject1') }}" class="nav-link">
-                  <i class="far fa-circle nav-icon"></i>
-                  <p>Tauhid</p>
-                  </a>
-              </li>
-              <li class="nav-item">
-                  <a href="subject2.php" class="nav-link">
-                  <i class="far fa-circle nav-icon"></i>
-                  <p>Hafazan</p>
-                  </a>
-              </li>
-              </ul> --}}
           </li>
           <li class="nav-item">
               <a href="{{ route('grade.index') }}" class="nav-link">
@@ -83,26 +63,6 @@
               <p>Class  </p>
              
               </a>
-              {{-- <ul class="nav nav-treeview">
-              <li class="nav-item">
-                  <a href="{{ route('subject.index') }}" class="nav-link">
-                  <i class="far fa-circle nav-icon"><i class="fas fa-angle-left right"></i></i>
-                  <p>All Subject</p>
-                  </a>
-              </li>
-              <li class="nav-item">
-                  <a href="{{ url('/subject1') }}" class="nav-link">
-                  <i class="far fa-circle nav-icon"></i>
-                  <p>Tauhid</p>
-                  </a>
-              </li>
-              <li class="nav-item">
-                  <a href="subject2.php" class="nav-link">
-                  <i class="far fa-circle nav-icon"></i>
-                  <p>Hafazan</p>
-                  </a>
-              </li>
-              </ul> --}}
           </li>
           <li class="nav-item">
               <a href="#" class="nav-link">
@@ -132,16 +92,6 @@
               
               </ul>
           </li>
-
-          {{-- <li class="nav-item">
-              <a href="{{url('/notice')}}" class="nav-link">
-              <i class="nav-icon fas fa-chalkboard"></i>
-              <p>
-                  Notice Board
-                  <span class="badge badge-info right">2</span>
-              </p>
-              </a>
-          </li> --}}
             <li class="nav-item">
                 <a href="#" class="nav-link">
                 <i class="nav-icon fas fa-chalkboard"></i>
@@ -154,7 +104,6 @@
                             <i class="far fa-circle nav-icon"></i>
                             <p>
                                 Preview Notice Board
-                                {{-- <span class="badge badge-info right">2</span> --}}
                             </p>
                             </a>
                     </li>
@@ -163,32 +112,32 @@
                         <i class="far fa-circle nav-icon"></i>
                         <p>All Notice</p>
                         </a>
-                    </li>
-                    {{-- <li class="nav-item">
-                        <a href="{{url('/admin/notice/create')}}" class="nav-link">
-                        <i class="fas fa-plus-circle  nav-icon"></i>
-                        <p>Add Notice</p>
-                        </a>
-                    </li> --}}
-                
+                    </li>                
                 </ul>
             </li>
-
-            {{-- <li class="nav-item">
+            <li class="nav-item">
                 <a href="#" class="nav-link">
-                <i class="fas fa-globe-americas nav-icon"></i>
-                <p>Website Management<i class="fas fa-angle-left right"></i></p>
+                    <i class="fas fa-comments nav-icon"></i>
+                <p>Forum<i class="fas fa-angle-left right"></i></p>
                 
                 </a>
                 <ul class="nav nav-treeview">
                     <li class="nav-item">
-                        <a href="{{url('/admin/notice/all')}}" class="nav-link">
+                        <a href="{{route('forum')}}" class="nav-link">
+                            <i class="far fa-circle nav-icon"></i>
+                            <p>
+                                All Forum
+                            </p>
+                            </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="{{route('forum-user')}}" class="nav-link">
                         <i class="far fa-circle nav-icon"></i>
-                        <p>All Notice</p>
+                        <p>User Forum</p>
                         </a>
                     </li>                
                 </ul>
-            </li> --}}
+            </li>
             <li class="nav-item ">
                 <a href="{{route('website.index')}}" class="nav-link">
                 <i class="fas fa-globe-americas nav-icon"></i>
@@ -197,18 +146,6 @@
                 </p>
                 </a>
             </li>
-
-          {{-- <li class="nav-header">Others</li>
-          <li class="nav-item">
-              <a href="calendar.php" class="nav-link">
-              <i class="nav-icon far fa-calendar-alt"></i>
-              <p>
-                  Calendar
-                  <span class="badge badge-info right">2</span>
-              </p>
-              </a>
-          </li> --}}
-
             <li class="nav-header "></li>
             <li class="nav-item ">
                 <a class="nav-link" href="{{ route('logout') }}"

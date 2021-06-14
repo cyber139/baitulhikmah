@@ -46,7 +46,7 @@ Route::middleware('auth')->group(function(){
     // Route::get('/home', 'AdminController@index')->name('admin.home')->middleware('isAdmin');
 
     
-    // Notice
+    // NOTICE
     Route::get('/notice', 'NoticeController@index')->name('notice');
     // Route::get('/admin/notice/{$notice}', 'NoticeController@show')->name('admin.notice-detail');
     Route::get('/notice-detail/{notice}', 'NoticeController@show')->name('notice-detail');
@@ -69,7 +69,16 @@ Route::middleware('auth')->group(function(){
     Route::get('/download/{file_download}', 'SubmissionController@download')->name('submission.download');
     // Route::get('/download/{file_download}', 'SubmissionController@edit')->name('submission.edit');
 
-
+    // FORUM
+    Route::get('/forum', 'ForumController@index')->name('forum');
+    Route::get('/forum/all', 'ForumController@show1')->name('forum-user');
+    // Route::get('/admin/notice/{$notice}', 'NoticeController@show')->name('admin.notice-detail');
+    Route::get('/forum-detail/{forum}', 'ForumController@show')->name('forum-detail'); 
+    Route::post('/forum', 'ForumController@store')->name('forum.store');
+    Route::get('/forum/create', 'ForumController@create')->name('forum.create');
+    Route::delete('/forum/{forum}/delete', 'ForumController@destroy')->name('forum.destroy');
+    Route::get('/forum/{forum}/edit', 'ForumController@edit')->name('forum.edit');
+    Route::post('/forum/{forum}/update', 'ForumController@update')->name('forum.update');
 
 
     // // TEACHER

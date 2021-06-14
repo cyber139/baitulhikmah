@@ -42,6 +42,10 @@ class User extends Authenticatable
         return $this->hasMany(Notice::class);
     }
 
+    public function forums(){
+        return $this->hasMany(Forum::class);
+    }
+
     public function teachers(){
         return $this->hasMany(Teacher::class);
     }

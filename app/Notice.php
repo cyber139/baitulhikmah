@@ -28,13 +28,13 @@ class Notice extends Model
             return $value;
         }
 
-    if (strpos($value, 'https://') !== FALSE || strpos($value, 'http://') !== FALSE) {
-        return $value;
-    }
+        if (strpos($value, 'https://') !== FALSE || strpos($value, 'http://') !== FALSE) {
+            return $value;
+        }
+        
     
- 
-    return asset('storage/' . $value);
-    }
+        return asset('storage/' . $value);
+        }
 
     // public function getNoticeImageAttribute($value) {
      
