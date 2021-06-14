@@ -10,14 +10,15 @@
   </ol>
   <div class="carousel-inner" role="listbox">
     <div class="carousel-item active">
-      <div id="home" class="first-section" style="background-image:url('{{asset('images/c-1.png')}}');">
+      {{-- <div id="home" class="first-section" style="background-image:url('{{asset('images/c-1.png')}}');"> --}}
+      <div id="home" class="first-section" style="background-image:url('{{$banner->banner_image}}');">
         <div class="dtab">
           <div class="container">
             <div class="row">
               <div class="col-md-12 col-sm-12 text-right">
                 <div class="big-tagline">
-                  <h2><strong>KAFAI </strong> Baitul Hikmah</h2>
-                  <p class="lead">With Landigoo responsive landing page template, you can promote your all hosting, domain and email services. </p>
+                  <h2>{{$banner->title}}</h2>
+                  <p class="lead">{!!$banner->teacher_notice!!} </p>
                     {{-- <a href="#" class="hover-btn-new"><span>Contact Us</span></a>
                     &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                     <a href="#" class="hover-btn-new"><span>Read More</span></a> --}}
@@ -29,14 +30,15 @@
       </div><!-- end section -->
     </div>
     <div class="carousel-item">
-      <div id="home" class="first-section" style="background-image:url('{{asset('img/c-3.jpg')}}');">
+      {{-- <div id="home" class="first-section" style="background-image:url('{{asset('img/c-3.jpg')}}');"> --}}
+      <div id="home" class="first-section" style="background-image:url('{{$banner2->banner_image}}');">
         <div class="dtab">
           <div class="container">
             <div class="row">
               <div class="col-md-12 col-sm-12 text-left">
                 <div class="big-tagline">
-                  <h2 data-animation="animated zoomInRight">KAFAI <strong>BAITUL HIKMAH</strong></h2>
-                  <p class="lead" data-animation="animated fadeInLeft">With Landigoo responsive landing page template, you can promote your all hosting, domain and email services. </p>
+                  <h2 data-animation="animated zoomInRight">{{$banner2->title}}</h2>
+                  <p class="lead" data-animation="animated fadeInLeft">{!!$banner->teacher_notice!!} </p>
                     {{-- <a href="#" class="hover-btn-new"><span>Contact Us</span></a>
                     &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                     <a href="#" class="hover-btn-new"><span>Read More</span></a> --}}
@@ -47,7 +49,7 @@
         </div>
       </div><!-- end section -->
     </div>
-    <div class="carousel-item">
+    {{-- <div class="carousel-item">
       <div id="home" class="first-section" style="background-image:url('{{asset('img/c-2.jpg')}}');">
         <div class="dtab">
           <div class="container">
@@ -58,16 +60,16 @@
                   <p class="lead" data-animation="animated fadeInLeft">1 IP included with each server 
                     Your Choice of any OS (CentOS, Windows, Debian, Fedora)
                     FREE Reboots</p>
-                    {{-- <a href="#" class="hover-btn-new"><span>Contact Us</span></a>
+                    <a href="#" class="hover-btn-new"><span>Contact Us</span></a>
                     &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                    <a href="#" class="hover-btn-new"><span>Read More</span></a> --}}
+                    <a href="#" class="hover-btn-new"><span>Read More</span></a>
                 </div>
               </div>
             </div><!-- end row -->            
           </div><!-- end container -->
         </div>
       </div><!-- end section -->
-    </div>
+    </div> --}}
     <!-- Left Control -->
     <a class="new-effect carousel-control-prev" href="#carouselExampleControls" role="button" data-slide="prev">
       <span class="fa fa-angle-left" aria-hidden="true"></span>
@@ -116,11 +118,15 @@
                                   <div class="pricing-table-space"></div>
                                   <div class="pricing-table-features text-center">
                                     {{-- <p><i class="fa fa-link"></i></p>          --}}
-                                       @if (is_null($notice->post_image))
-                                      <img class="card-img-top" src="{{$notice->post_image}}" alt="Image">
-                                      
-                                      @endif
-                                      {!! $notice->body !!}
+                                    {!! $notice->body !!}<br>
+                                    @if (is_null($notice->post_image))
+                                    
+                                    <img class="card-img-top" src="{{$notice->post_image}}" alt="Card image cap" style="display: none">
+                                    @else
+                          
+                                    <img class="card-img-top" src="{{$notice->post_image}}" alt="Card image cap" style="width: 50%">
+                          
+                                    @endif
                                       {{-- <p><i class="fa fa-envelope-o"></i> <strong>250</strong> Email Addresses</p>
                                       <p><i class="fa fa-rocket"></i> <strong>125GB</strong> of Storage</p>
                                       <p><i class="fa fa-database"></i> <strong>140</strong> Databases</p>
@@ -132,45 +138,6 @@
                                   </div>
                               </div>
                           </div>
-                          {{-- <div class="col-md-4">
-                              <div class="pricing-table pricing-table-highlighted">
-                                  <div class="pricing-table-header grd1">
-                                      <h2>$59</h2>
-                                      <h3>per month</h3>
-                                  </div>
-                                  <div class="pricing-table-space"></div>
-                                  <div class="pricing-table-features">
-                                      <p><i class="fa fa-envelope-o"></i> <strong>150</strong> Email Addresses</p>
-                                      <p><i class="fa fa-rocket"></i> <strong>65GB</strong> of Storage</p>
-                                      <p><i class="fa fa-database"></i> <strong>60</strong> Databases</p>
-                                      <p><i class="fa fa-link"></i> <strong>30</strong> Domains</p>
-                                      <p><i class="fa fa-life-ring"></i> <strong>24/7 Unlimited</strong> Support</p>
-                                  </div>
-                                  <div class="pricing-table-sign-up">
-                                      <a href="#" class="hover-btn-new orange"><span>Order Now</span></a>
-                                  </div>
-                              </div>
-                          </div>
-
-                          <div class="col-md-4">
-                              <div class="pricing-table pricing-table-highlighted">
-                                  <div class="pricing-table-header grd1">
-                                      <h2>$85</h2>
-                                      <h3>per month</h3>
-                                  </div>
-                                  <div class="pricing-table-space"></div>
-                                  <div class="pricing-table-features">
-                                      <p><i class="fa fa-envelope-o"></i> <strong>250</strong> Email Addresses</p>
-                                      <p><i class="fa fa-rocket"></i> <strong>125GB</strong> of Storage</p>
-                                      <p><i class="fa fa-database"></i> <strong>140</strong> Databases</p>
-                                      <p><i class="fa fa-link"></i> <strong>60</strong> Domains</p>
-                                      <p><i class="fa fa-life-ring"></i> <strong>24/7 Unlimited</strong> Support</p>
-                                  </div>
-                                  <div class="pricing-table-sign-up">
-                                      <a href="#" class="hover-btn-new orange"><span>Order Now</span></a>
-                                  </div>
-                              </div>
-                          </div> --}}
                       </div><!-- end row -->
                   </div><!-- end pane -->
 
@@ -179,21 +146,12 @@
                         <div class="col-md-12">
                           <div class="pricing-table pricing-table-highlighted">
                               <div class="pricing-table-header grd1">
-                                  <h2>NOTIS LAPOR DIRI</h2>
+                                  <h2>NOTIS</h2>
                                   {{-- <h3>per month</h3> --}}
                               </div>
                               <div class="pricing-table-space"></div>
                               <div class="pricing-table-features">
-                                <p><i class="fa fa-link"></i>DIMAKLUMKAN BAHAWA GURU-GURU PERLU MELAPOR DIRI PADA <strong>1 JANUARI 2021</strong>SELARAS DENGAN SARANAN PEJABAT KESIHATAN BANDAR BARU SALAK TINGGI 
-                                  BAGI MENGAWAL RISIKO MEREBAKNYA APA-APA PENYAKIT DI BAWAH AKTA PENCEGAHAN DAN PENGAWALAN PENYAKIT BERJANGKIT 1988.PENGETUA SEKOLAH</p>
-                                  {{-- <p><i class="fa fa-envelope-o"></i> <strong>250</strong> Email Addresses</p>
-                                  <p><i class="fa fa-rocket"></i> <strong>125GB</strong> of Storage</p>
-                                  <p><i class="fa fa-database"></i> <strong>140</strong> Databases</p>
-                                  <p><i class="fa fa-link"></i> <strong>60</strong> Domains</p>
-                                  <p><i class="fa fa-life-ring"></i> <strong>24/7 Unlimited</strong> Support</p> --}}
-                              </div>
-                              <div class="pricing-table-sign-up">
-                                  {{-- <a href="#" class="hover-btn-new orange"><span>Order Now</span></a> --}}
+                                <p><i class="fa fa-link"> </i> {!! $banner2->teacher_notice !!}</p>
                               </div>
                           </div>
                       </div>
@@ -210,19 +168,19 @@
     <div class="row text-left stat-wrap">
       <div class="col-md-4 col-sm-4 col-xs-12">
         <span data-scroll class="global-radius icon_wrap effect-1 alignleft"><i class="flaticon-study"></i></span>
-        <p class="stat_count">12000</p>
+        <p class="stat_count">{{$counter->student_no}}</p>
         <h3>Students</h3>
       </div><!-- end col -->
 
       <div class="col-md-4 col-sm-4 col-xs-12">
         <span data-scroll class="global-radius icon_wrap effect-1 alignleft"><i class="flaticon-online"></i></span>
-        <p class="stat_count">28</p>
+        <p class="stat_count">{{$counter->teacher_no}}</p>
         <h3>Teachers</h3>
       </div><!-- end col -->
 
       <div class="col-md-4 col-sm-4 col-xs-12">
         <span data-scroll class="global-radius icon_wrap effect-1 alignleft"><i class="flaticon-years"></i></span>
-        <p class="stat_count">50</p>
+        <p class="stat_count">{{$counter->year_no}}</p>
         <h3>Years</h3>
       </div><!-- end col -->
     </div><!-- end row -->
@@ -234,104 +192,25 @@
       <div class="section-title row text-center">
           <div class="col-md-8 offset-md-2">
               <h3>About</h3>
-              <p class="lead">Lorem Ipsum dolroin gravida nibh vel velit auctor aliquet. Aenean sollicitudin, lorem quis bibendum auctor, nisi elit consequat ipsum, nec sagittis sem!</p>
+              <p class="lead">{{$about->desc}}</p>
           </div>
       </div><!-- end title -->
-  
       <div class="row align-items-center">
           <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12">
               <div class="message-box">
                   <h4>KAFA INTEGRASI BAITUL HIKMAH</h4>
-                  <h2>Selamat Datang</h2>
-                  <p>Quisque eget nisl id nulla sagittis auctor quis id. Aliquam quis vehicula enim, non aliquam risus. Sed a tellus quis mi rhoncus dignissim.</p>
-
-                  <p> Integer rutrum ligula eu dignissim laoreet. Pellentesque venenatis nibh sed tellus faucibus bibendum. Sed fermentum est vitae rhoncus molestie. Cum sociis natoque penatibus et magnis montes, nascetur ridiculus mus. Sed vitae rutrum neque. </p>
-
-                  {{-- <a href="#" class="hover-btn-new orange"><span>Learn More</span></a> --}}
+                  <h2>{{$about->title}}</h2>
+                  <p>{{$about->body}}</p>
               </div><!-- end messagebox -->
           </div><!-- end col -->
-  
-  <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12">
+          <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12">
               <div class="post-media wow fadeIn">
                   <img src="{{asset('images/bg-1.jpg')}}" alt="" class="img-fluid img-rounded">
               </div><!-- end media -->
           </div><!-- end col -->
-</div>
-{{-- <div class="row align-items-center">
-  <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12">
-              <div class="post-media wow fadeIn">
-                  <img src="images/about_03.jpg" alt="" class="img-fluid img-rounded">
-              </div><!-- end media -->
-          </div><!-- end col -->
-  
-  <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12">
-              <div class="message-box">
-                  <h2>The standard Lorem Ipsum passage, used since the 1500s</h2>
-                  <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
-
-                  <p> Integer rutrum ligula eu dignissim laoreet. Pellentesque venenatis nibh sed tellus faucibus bibendum.</p>
-
-                  <a href="#" class="hover-btn-new orange"><span>Learn More</span></a>
-              </div><!-- end messagebox -->
-          </div><!-- end col -->
-  
-      </div><!-- end row --> --}}
+      </div>
   </div><!-- end container -->
 </div><!-- end section -->
-
-
- 
-{{-- 
-  <div class="all-title-box">
-		<div class="container text-center">
-			<h1>Contact<span class="m_1">Lorem Ipsum dolroin gravida nibh vel velit.</span></h1>
-		</div>
-	</div>
-	
-    <div id="contact" class="section wb">
-        <div class="container">
-            <div class="section-title text-center">
-                <h3>Need Help? Sure we are Online!</h3>
-                <p class="lead">Let us give you more details about the special offer website you want us. Please fill out the form below. <br>We have million of website owners who happy to work with us!</p>
-            </div><!-- end title -->
-
-            <div class="row">
-                <div class="col-xl-6 col-md-12 col-sm-12">
-                    <div class="contact_form">
-                        <div id="message"></div>
-                        <form id="contactform" class="" action="contact.php" name="contactform" method="post">
-                            <div class="row row-fluid">
-                                <div class="col-lg-6 col-md-6 col-sm-6">
-                                    <input type="text" name="first_name" id="first_name" class="form-control" placeholder="First Name">
-                                </div>
-                                <div class="col-lg-6 col-md-6 col-sm-6">
-                                    <input type="text" name="last_name" id="last_name" class="form-control" placeholder="Last Name">
-                                </div>
-                                <div class="col-lg-6 col-md-6 col-sm-6">
-                                    <input type="email" name="email" id="email" class="form-control" placeholder="Your Email">
-                                </div>
-                                <div class="col-lg-6 col-md-6 col-sm-6">
-                                    <input type="text" name="phone" id="phone" class="form-control" placeholder="Your Phone">
-                                </div>
-                                <div class="col-lg-12 col-md-12 col-sm-12">
-                                    <textarea class="form-control" name="comments" id="comments" rows="6" placeholder="Give us more details.."></textarea>
-                                </div>
-                                <div class="text-center pd">
-                                    <button type="submit" value="SEND" id="submit" class="btn btn-light btn-radius btn-brd grd1 btn-block">Get a Quote</button>
-                                </div>
-                            </div>
-                        </form>
-                    </div>
-                </div><!-- end col -->
-				<div class="col-xl-6 col-md-12 col-sm-12">
-					<div class="map-box">
-						<div id="custom-places" class="small-map"></div>
-					</div>
-				</div>
-            </div><!-- end row -->
-        </div><!-- end container -->
-    </div><!-- end section --> --}}
-
 
   <footer id="ct" class="footer">
       <div class="container">
@@ -365,11 +244,10 @@
                       </div>
 
                       <ul class="footer-links">
-                          <li><a href="mailto:baitulhikmah@gmail.com">baitulhikmah@gmail.com</a></li>
-                          <li><a href="#">www.baitulhikmah.com</a></li>
-                          <li>Kafai Baitulhikmah Taman Seroja<br>
-                            No. 22, Jalan Seroja 2, Taman Seroja, 43900 Sepang, Selangor</li>
-                          <li>+603 8376 6284</li>
+                          <li><a href="mailto:{{$contact->email}}">{{$contact->email}}</a></li>
+                          <li><a href="{{$contact->web}}">{{$contact->web}}</a></li>
+                          <li>{{$contact->address}}</li>
+                          <li>{{$contact->contact_no}}</li>
                       </ul><!-- end links -->
                   </div><!-- end clearfix -->
               </div><!-- end col -->

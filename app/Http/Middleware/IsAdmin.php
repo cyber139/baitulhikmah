@@ -4,7 +4,8 @@ namespace App\Http\Middleware;
 
 use Closure;
 use DB;
-use Auth;
+// use Auth;
+use Illuminate\Support\Facades\Auth;
 use App\User;
 use App\Role;
 
@@ -43,10 +44,10 @@ class IsAdmin
         if($UserRoles->roles->isNotEmpty()){
             // dd($UserRoles);
 
-            foreach($UserRoles as $role)
+            foreach($UserRoles->roles as $role)
             {
-                // dd($role);
-                if($role == 'admin')
+                // dd($role->id);
+                if($role->id == '1')
                 {
                     // dd($role);
                     $isAdmin = true;

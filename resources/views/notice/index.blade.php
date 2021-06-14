@@ -1,55 +1,7 @@
-@extends('layouts.admin')
-{{-- @if (Route::has('login'))
-<div class="top-right links">
-    @auth
-      @extends('layouts.admin')
-    @else
-      @extends('layouts.student')
-    @endauth
-</div>
-@endif --}}
-
-{{-- @if(auth()->user()->userHasRole('admin'))
-@extends('layouts.admin')
-@else
-@extends('layouts.student')    
-@endif --}}
-
+@extends('layouts.master')
 
 
 @section('content')
-{{-- <div class="container">
-    <div class="row justify-content-center">
-        <div class="col-md-8">
-            <div class="card">
-                <div class="card-header">{{ __('Dashboard') }}</div>
-
-                <div class="card-body">
-                    @if (session('status'))
-                        <div class="alert alert-success" role="alert">
-                            {{ session('status') }}
-                        </div>
-                    @endif
-
-                    {{ __('You are logged in!') }}
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
-<div class="container">
-    <div class="row justify-content-center">
-        <div class="col-md-8">
-            <div class="card">
-                <div class="card-header">{{ __('Notice') }}</div>
-
-                <div class="card-body">
-                    @include('admin.notice')
-                </div>
-            </div>
-        </div>
-    </div>
-</div> --}}
 
   <!-- Content Wrapper. Contains page content -->
   <div class="content-wrapper">
@@ -58,7 +10,7 @@
       <div class="container-fluid">
         <div class="row mb-2">
           <div class="col-sm-6">
-            <h1>Notice </h1>
+            <h1>All Notice </h1>
           </div>
           <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
@@ -94,12 +46,19 @@
           <div class="card-tools">
             <button type="button" class="btn btn-tool" data-card-widget="collapse" data-toggle="tooltip" title="Collapse">
               <i class="fas fa-minus"></i></button>
-              <button type="button" class="btn btn-tool" data-card-widget="remove" data-toggle="tooltip" title="Remove">
-                <i class="fas fa-times"></i></button>
-              </div>
-            </div>
-        <div class="card-body">            
-          <img class="card-img-top img-responsive" src="{{$notice->post_image}}" alt="Card image cap">
+            <button type="button" class="btn btn-tool" data-card-widget="remove" data-toggle="tooltip" title="Remove">
+              <i class="fas fa-times"></i></button>
+          </div>
+        </div>
+        <div class="card-body text-center">            
+          @if (is_null($notice->post_image))
+          
+          <img class="card-img-top" src="{{$notice->post_image}}" alt="Card image cap" style="display: none">
+          @else
+
+          <img class="card-img-top" src="{{$notice->post_image}}" alt="Card image cap" style="width: 50%">
+
+          @endif
          
             {{-- {{ URL::asset('storage/images'.$notice->post_image) }} --}}
 
@@ -122,15 +81,20 @@
         </div>
         <!-- /.card-body -->
         <div class="card-footer text-muted">
-          Posted on {{$notice->created_at->diffForHumans()}}<br>
-          Created by {{$notice->user->username}}
-          <a href="#">Baitul Hikmah</a>
+          <p>Posted on {{$notice->created_at->diffForHumans()}} <br>
+          Created by {{$notice->user->username}}<br>
+          @if ($notice->publish == 'Yes')
+              Published</p>
+          @else
+              Unpublished</p>
+          @endif 
+          {{-- <a href="#">Baitul Hikmah</a> --}}
+        </div>
+        <!-- /.card-footer-->
       </div>
-      <!-- /.card-footer-->
-    </div>
-    <!-- /.card -->
-    @endif
-    @endforeach
+      <!-- /.card -->
+      @endif
+      @endforeach
 
     </section>
     <!-- /.content -->

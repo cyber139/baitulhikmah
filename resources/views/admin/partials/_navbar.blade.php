@@ -6,7 +6,11 @@
         <a class="nav-link" data-widget="pushmenu" href="#" role="button"><i class="fas fa-bars"></i></a>
       </li>
       <li class="nav-item d-none d-sm-inline-block">
-        <a href="{{url('/home')}}" class="nav-link">Home</a>
+        <a class="nav-link">Admin Version</a>
+      </li>
+      <li class="nav-item d-none d-sm-inline-block">
+        <a href="{{url('/home')}}" class="nav-link"> 
+          <i class="fas fa-home nav-icon"></i> Home</a>
       </li>
       {{-- <li class="nav-item d-none d-sm-inline-block">
         <a href="#" class="nav-link">Contact</a>
@@ -29,7 +33,7 @@
     <ul class="navbar-nav ml-auto">
       <li class="nav-item dropdown">
         <a class="nav-link" href="{{ url('/') }}">
-        <i class="fas fa-home nav-icon"></i> </a>
+          <i class="fas fa-money-check"></i> Web</a>
 
       </li>
       <li class="nav-item dropdown">

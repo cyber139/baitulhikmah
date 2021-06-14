@@ -30,8 +30,10 @@
         <!-- form start -->
         @foreach ($grades as $grade)
             
+                
+           
         
-        <form role="form" method="post" action="{{route('grade.update',$grade->grade_id)}}" enctype="multipart/form-data">
+        <form role="form" method="post" action="{{route('grade.update',$grade->id)}}" enctype="multipart/form-data">
           @csrf
           <div class="card-body">
             <div class="form-group">
@@ -145,20 +147,20 @@
                     <div class="form-check">
                     <input class="form-check-input" type="checkbox"
                     @foreach ($grade->subjects as $subject)
-                    @if ($subject->subject_id == $subj->subject_id)
+                    @if ($subject->id == $subj->id)
                         checked
                     @endif
                         
                     @endforeach>
                   </div>
                 </td>
-                  <td>{{$subj->subject_id}}</td>
+                  <td>{{$subj->id}}</td>
                   <td>{{$subj->subject_title}}</td>
               <td>
-                <form method="post" action="{{route('grade.attach',$grade->grade_id)}}" enctype="multipart/form-data">
+                <form method="post" action="{{route('grade.attach',$grade->id)}}" enctype="multipart/form-data">
                   @csrf
                   @method('PUT')
-                      <input type="hidden" name="subject" value="{{$subj->subject_id}}">
+                      <input type="hidden" name="subject" value="{{$subj->id}}">
                       <button class="btn btn-info btn-sm mb-2" type="submit" 
                       @if ($grade->subjects->contains($subj))
                       disabled
@@ -166,10 +168,10 @@
                       ><i class="fas fa-user-edit"></i> Attach</button></td>
                 </form>
                 <td>
-                  <form method="post" action="{{route('grade.detach',$grade->grade_id)}}" enctype="multipart/form-data">
+                  <form method="post" action="{{route('grade.detach',$grade->id)}}" enctype="multipart/form-data">
                     @csrf
                     @method('PUT')
-                      <input type="hidden" name="subject" value="{{$subj->subject_id}}">
+                      <input type="hidden" name="subject" value="{{$subj->id}}">
                       <button class="btn btn-danger btn-sm" type="submit"
                       @if (!$grade->subjects->contains($subj))
                       disabled

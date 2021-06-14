@@ -31,9 +31,25 @@
             <div class="card card-primary card-outline">
               <div class="card-body box-profile">
                 <div class="text-center">
-                  <img class="profile-user-img img-fluid img-circle"
+                  {{-- <img class="profile-user-img img-fluid img-circle"
                        src="{{asset('../../dist/img/user4-128x128.jpg')}}"
-                       alt="User profile picture">
+                       alt="User profile picture"> --}}
+                       @if ($userProfile != null)
+
+                          @if ($userProfile->profile_image != null)
+                          {{-- {{dd($profile->profile_image)}} --}}
+                            <div><a href="{{$userProfile->profile_image}}" data-toggle="lightbox" data-title="{{$userProfile->full_name}}">
+                            <img class="profile-user-img img-fluid img-circle" src="{{$userProfile->profile_image}}" alt="{{$userProfile->full_name}}" style="height: 128px; width: 128px;" >
+                            </a> </div>
+                            @else
+                            <div><img class="profile-user-img img-fluid img-circle" src="http://placehold.it/128x128.jpg&text=No+Uploaded" alt="{{ucfirst($user->username)}}" ></div>
+                            @endif
+
+                        @else
+
+                        <div><img class="profile-user-img img-fluid img-circle" src="http://placehold.it/128x128.jpg&text=No+Uploaded" alt="{{ucfirst($user->username)}}" ></div>
+
+                        @endif
                 </div>
 
                 <h3 class="profile-username text-center"> {{ucfirst($user->username)}}</h3>
@@ -89,6 +105,63 @@
                           <p class=" col-form-label">{{$user->password}}</p>
                         </div>
                       </div>
+                      @if ($userProfile != null)
+                      <div class="form-group row">
+                        <label for="inputName" class="col-sm-2 col-form-label">Profile Image</label>
+                        
+                          @if ($userProfile->profile_image!=null)
+                          <div><a href="{{$userProfile->profile_image}}" data-toggle="lightbox" data-title="{{$userProfile->full_name}}">
+                            <img class="img-fluid mb-2" src="{{$userProfile->profile_image}}" alt="Image" style="height: 180px; width: auto;" >
+                          </a> </div>
+                          @else
+                          <div><img class="col-sm-10"  src="http://placehold.it/350x150.jpg&text=No+Image+Uploaded" alt="Image" style="height: 100px;width: auto;"></div>
+                              
+                          @endif
+                      </div>
+
+                      <div class="form-group row">
+                        <label for="full_name" class="col-sm-2 col-form-label">Full Name</label>
+                        <div class="col-sm-10">
+                          <p class=" col-form-label">{{$userProfile->full_name}}</p>
+                        </div>
+                      </div>
+                      <div class="form-group row">
+                        <label for="address" class="col-sm-2 col-form-label">Address</label>
+                        <div class="col-sm-10">
+                          <p class=" col-form-label">{{$userProfile->address}}</p>
+                        </div>
+                      </div>
+                      <div class="form-group row">
+                        <label for="phone_no" class="col-sm-2 col-form-label">Phone No</label>
+                        <div class="col-sm-10">
+                          <p class=" col-form-label">{{$userProfile->phone_no}}</p>
+                        </div>
+                      </div>
+                      <div class="form-group row">
+                        <label for="guardian_name1" class="col-sm-2 col-form-label">Guardian Name 1</label>
+                        <div class="col-sm-10">
+                          <p class=" col-form-label">{{$userProfile->guardian_name1}}</p>
+                        </div>
+                      </div>
+                      <div class="form-group row">
+                        <label for="gphone_no1" class="col-sm-2 col-form-label"> Phone No</label>
+                        <div class="col-sm-10">
+                          <p class=" col-form-label">{{$userProfile->gphone_no1}}</p>
+                        </div>
+                      </div>
+                      <div class="form-group row">
+                        <label for="guardian_name2" class="col-sm-2 col-form-label">Guardian Name 2</label>
+                        <div class="col-sm-10">
+                          <p class=" col-form-label">{{$userProfile->guardian_name2}}</p>
+                        </div>
+                      </div>
+                      <div class="form-group row">
+                        <label for="gphone_no2" class="col-sm-2 col-form-label"> Phone No</label>
+                        <div class="col-sm-10">
+                          <p class=" col-form-label">{{$userProfile->gphone_no2}}</p>
+                        </div>
+                      </div>                          
+                      @endif
                       
                     </div>
                   </div>
@@ -143,7 +216,7 @@
                   </div> --}}
                   <!-- /.tab-pane -->
                   <div class="tab-pane" id="account">
-                    <form class="form-horizontal" method="post" action="{{route('admin.user.update',$user->id)}}" enctype="multipart/form-data">
+                    <form class="form-horizontal" method="post" action="{{route('user.update',$user->id)}}" enctype="multipart/form-data">
                       @csrf
                       <div class="form-group row">
                         <label for="username" class="col-sm-2 col-form-label">Username</label>

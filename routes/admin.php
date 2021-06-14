@@ -6,9 +6,9 @@ Route::group(['middleware' => 'isAdmin'], function () {
     
     // Route::get('/home', 'AdminController@index')->name('admin.home');
 
-    //  ADMIN : USER PROFILE    
-    Route::get('/user/{user}/profile', 'UserController@show')->name('admin.user.index');
-    Route::post('/user/{user}/update', 'UserController@update')->name('admin.user.update');
+    // //  ADMIN : USER PROFILE    
+    // Route::get('/user/{user}/profile', 'UserController@show')->name('admin.user.index');
+    // Route::post('/user/{user}/update', 'UserController@update')->name('admin.user.update');
 
     // ADMIN : USER ACCESS CONTROL
     Route::get('/uac', 'UacController@uac')->name('admin.uac.index');
@@ -23,13 +23,18 @@ Route::group(['middleware' => 'isAdmin'], function () {
     // ADMIN : Teacher
     Route::get('/teacher', 'TeacherController@index')->name('teacher.index');
     Route::get('/teacher/{user}/edit', 'TeacherController@edit')->name('teacher.edit');
+    Route::post('/teacher/{user}/assign', 'TeacherController@assign')->name('teacher.assign');
+    Route::post('/teacher/{user}/dismiss', 'TeacherController@dismiss')->name('teacher.dismiss');
     
     // ADMIN : Student
     Route::get('/student', 'StudentController@index')->name('student.index');
     Route::get('/student/{user}/edit', 'StudentController@edit')->name('student.edit');
+    Route::post('/student/{user}/assign', 'StudentController@assign')->name('student.assign');
+    Route::post('/student/{user}/dismiss', 'StudentController@dismiss')->name('student.dismiss');
+
     
     // ADMIN : NOTICE BOARD
-    Route::get('/notice', 'NoticeController@index')->name('notice');
+    // Route::get('/notice', 'NoticeController@index')->name('notice');
     Route::get('/notice/all', 'NoticeController@show1')->name('notice.index');
     Route::post('/notice', 'NoticeController@store')->name('notice.store');
     Route::get('/notice/create', 'NoticeController@create')->name('notice.create');
@@ -55,4 +60,16 @@ Route::group(['middleware' => 'isAdmin'], function () {
     Route::get('/subject/{subject}/edit', 'SubjectController@edit')->name('subject.edit');
     Route::post('/subject/{subject}/update', 'SubjectController@update')->name('subject.update');
     Route::delete('/subject/{subject}/delete', 'SubjectController@destroy')->name('subject.destroy');
+
+    // ADMIN : Website
+    Route::get('/website_management', 'WebsiteController@index')->name('website.index');
+    Route::post('/website_management/add', 'WebsiteController@store')->name('website.store');
+    Route::post('/website_management/banner1/update', 'WebsiteController@updateBanner1')->name('website.banner1');
+    Route::post('/website_management/banner2/update', 'WebsiteController@updateBanner2')->name('website.banner2');
+    Route::post('/website_management/counter/update', 'WebsiteController@updateCounter')->name('website.counter');
+    Route::post('/website_management/about/update', 'WebsiteController@updateAbout')->name('website.about');
+    Route::post('/website_management/contact/update', 'WebsiteController@updateContact')->name('website.contact');
+
+
+
 });

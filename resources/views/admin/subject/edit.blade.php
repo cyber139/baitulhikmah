@@ -28,7 +28,7 @@
         </div>
         <!-- /.card-header -->
         <!-- form start -->
-        <form role="form" method="post" action="{{route('subject.update',$subject->subject_id)}}" enctype="multipart/form-data">
+        <form role="form" method="post" action="{{route('subject.update',$subject->id)}}" enctype="multipart/form-data">
           @csrf
           <div class="card-body">
             <div class="form-group">

@@ -42,6 +42,18 @@ class User extends Authenticatable
         return $this->hasMany(Notice::class);
     }
 
+    public function forums(){
+        return $this->hasMany(Forum::class);
+    }
+
+    public function teachers(){
+        return $this->hasMany(Teacher::class);
+    }
+
+    public function students(){
+        return $this->hasMany(Student::class);
+    }
+
     // Relationship with permission ; one user has many different permission
     public function permission(){
         return $this->belongsToMany(Permission::class);
@@ -49,7 +61,7 @@ class User extends Authenticatable
 
     // Relationship with roles ; one user has many different roles
     public function roles(){
-        return $this->belongsToMany(Role::class);
+        return $this->belongsToMany(Role::class)->withTimestamps();
     }
 
     // Limit users according to role
@@ -65,5 +77,9 @@ class User extends Authenticatable
     public function isAdmins()
         {
             return $this->admin ? true : false; // this looks for an admin column in your users table
+        }
+
+        public function profile(){
+            return $this->hasOne(Profile::class);
         }
 }

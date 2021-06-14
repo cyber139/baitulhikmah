@@ -3,6 +3,11 @@
 namespace App\Http\Controllers;
 
 use App\Role;
+use App\Profile;
+use App\User;
+use App\Student;
+use App\Grade;
+use App\Teacher;
 use Illuminate\Http\Request;
 
 class StudentController extends Controller
@@ -16,7 +21,9 @@ class StudentController extends Controller
     {
         //
         $users = Role::where('slug', 'student')->first()->users()->get();
-        return view('admin.student.index',['users'=>$users]);
+        $user_id = auth()->user()->id;
+        $profile = Profile::where('user_id', $user_id)->first();
+        return view('admin.student.index',['users'=>$users,'profile'=>$profile]);
     }
 
     /**
@@ -46,9 +53,54 @@ class StudentController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show()
     {
         //
+        // $gradeList =Grade::all();
+        // dd($grade);
+        $selectRoles = Role::all();
+        $user_id = auth()->user()->id;
+        $profile = Profile::where('user_id', $user_id)->first();
+        $userProfile = Profile::where('user_id', $user_id)->first();
+        $class = Student::where('user_id', $user_id)->first();
+        // dd($class);
+        if($class == null){
+            return view('student.subject.noSubject',[
+                'user_id'=>$user_id,
+                'selectRoles'=>$selectRoles,
+                'profile'=>$profile,
+
+                ]);
+        }
+        $gradeList = Grade::with('subjects')->where('id', $class->grade_id)->get();
+        
+        foreach($gradeList as $grades){
+            // $subjects[] ='';
+            // dd($grades);
+
+            foreach($grades->subjects as $subject){
+                // dd($grades->id,$subject);
+                $teacherList [] = Teacher::where([
+                ['grade_id','=',$grades->id],
+                ['subject_id','=',$subject->id]
+                ])->first();
+
+                // dd($teacherList);
+            }
+            // dd($subjects);
+        }
+        // dd($teacherList);
+
+        return view('student.subject.index',[
+            'user_id'=>$user_id,
+            'selectRoles'=>$selectRoles,
+            'profile'=>$profile,
+            'userProfile'=>$userProfile,
+            'gradeList'=>$gradeList,
+            'class'=>$class,
+            'teacherList'=>$teacherList,
+            ]);
+
     }
 
     /**
@@ -60,9 +112,135 @@ class StudentController extends Controller
     public function edit(User $user)
     {
         //
-        $users = User::with('roles')->get();
+        $gradeList =Grade::all();
+        // dd($grade);
         $selectRoles = Role::all();
-        return view('admin.student.edit',['user'=>$user,'selectRoles'=>$selectRoles]);
+        $user_id = auth()->user()->id;
+        $profile = Profile::where('user_id', $user_id)->first();
+        $userProfile = Profile::where('user_id', $user->id)->first();
+        $studentClass = Student::where('user_id', $user->id)->first();
+        $class = Grade::where('id', $studentClass->grade_id)->first();
+        // dd($class);
+
+        
+        return view('admin.student.edit',['user'=>$user,'selectRoles'=>$selectRoles,'profile'=>$profile,'userProfile'=>$userProfile,'gradeList'=>$gradeList,'studentClass'=>$studentClass,'class'=>$class]);
+    }
+
+    public function assign(Request $request)
+    {
+        //
+        // DB::enableQueryLog();
+        // $selectAssign = Teacher::all();
+        // dd($request);
+        
+        $inputs = request()->validate([
+            'user_id' => ['required', 'int' ],
+            'grade_id' => ['required', 'int'],
+            'isActive' => ['required' ],
+            'isDelete' => ['required' ]
+            ]);
+            
+        // dd($inputs);
+        $checkAssign = Student::where([
+            ['user_id','=',$inputs['user_id']],
+            // ['grade_id','=',$inputs['grade_id']],
+
+            ])->first();
+            // dd($checkAssign);
+
+
+        if(empty($checkAssign) ){
+            
+            $inputs = Student::create([
+                'user_id' => $inputs['user_id'],
+                'grade_id' => $inputs['grade_id'],
+                'isActive' => $inputs['isActive'],
+                'isDelete' => $inputs['isDelete'],
+                ]);
+                // dd($checkAssign);
+                // return "Record is not exist";
+        }
+        else{
+            
+            $checkAssign->user_id = $inputs['user_id'];
+            $checkAssign->grade_id = $inputs['grade_id'];
+            $checkAssign->isActive = $inputs['isActive'];
+            $checkAssign->isDelete = $inputs['isDelete'];
+            // dd($checkAssign);
+            $checkAssign->save();
+            // return back();
+            //  return 'Record Exist';
+            // dd($checkAssign);
+            //  abort(405 , 'Record Exist');
+            //  return redirect()->route('teacher.edit');
+        }
+
+        // $insertedId = $input->id;
+        // $inputs2 = User::with('roles')->get($inputs->id);
+
+        // dd($inputs2);
+        // session()->flash('user-created-message', 'User '.$inputs['username'].' was created');
+        // dd(DB::getQueryLog());
+
+        
+        return back();
+    }
+
+    public function dismiss(Request $request)
+    {
+        //
+        // DB::enableQueryLog();
+        // dd($request);
+        
+        $inputs = request()->validate([
+            'user_id' => ['required', 'int' ],
+            'grade_id' => ['required', 'int'],
+            'isActive' => ['required' ],
+            'isDelete' => ['required' ]
+            ]);
+            // dd($inputs);
+            
+            $student = Student::where('user_id', $inputs['user_id'])->first();
+            // dd($student);
+
+
+
+            // ['user_id',$request->user_id])->first();
+
+        // $teacher = Teacher::find($request->user)->first();
+        //    dd($student);
+        // dd($teacher->isNotEmpty());
+
+        if(!empty($student)){
+            // dd($teacher);
+            // $teacher()->update(['isActive' => $inputs['isActive']]); 
+            // $teacher()->update(['isDelete' => $inputs['isDelete']]); 
+            $student->isActive = "No";
+            $student->isDelete = "Yes";
+            // dd($teacher);
+            $student->save();
+            // $teacher->update($inputs);
+            // return back();
+            // return "Record is  exist";
+            // dd($student);
+
+        }
+        else{
+             return 'Record is not Exist';
+            // dd($checkAssign);
+             abort(404  , 'Record not Found');
+            //  return redirect()->route('teacher.edit');
+        }
+
+        // $insertedId = $input->id;
+        // $inputs2 = User::with('roles')->get($inputs->id);
+
+        // dd($inputs2);
+        // session()->flash('user-created-message', 'User '.$inputs['username'].' was created');
+        // dd(DB::getQueryLog());
+
+        
+        return back();
     }
 
     /**

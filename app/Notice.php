@@ -22,15 +22,19 @@ class Notice extends Model
     //     return asset('storage/'.$value);
     // }
 
-    public function getPostImageAttribute($value)
-{
-    if (strpos($value, 'https://') !== FALSE || strpos($value, 'http://') !== FALSE) {
-        return $value;
-    }
+    public function getPostImageAttribute($value){
+
+        if($value == null){
+            return $value;
+        }
+
+        if (strpos($value, 'https://') !== FALSE || strpos($value, 'http://') !== FALSE) {
+            return $value;
+        }
+        
     
- 
-    return asset('storage/' . $value);
-}
+        return asset('storage/' . $value);
+        }
 
     // public function getNoticeImageAttribute($value) {
      

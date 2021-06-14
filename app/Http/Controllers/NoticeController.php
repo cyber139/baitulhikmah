@@ -3,7 +3,10 @@
 namespace App\Http\Controllers;
 
 use App\Notice;
+use App\User;
+use App\Profile;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\File;
@@ -15,6 +18,12 @@ class NoticeController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+
     public function index()
     {
         //
@@ -24,8 +33,20 @@ class NoticeController extends Controller
     //     return view('admin.notice',['notices'=>$notice]);
 
     $notice = Notice::orderBy('id', 'DESC','Publish','Yes')->get();
+    $user_id = auth()->user()->id;
+    $user_roles = User::with('roles')->where('id', $user_id)->get();
+    $profile = Profile::where('user_id', $user_id)->first();
 
-    return view('notice',['notices'=>$notice]);
+    foreach($user_roles as $user){
+        foreach($user->roles as $role){
+            $role_id = $role->id;
+        }
+    }
+
+    // dd($role_id);
+    
+
+    return view('notice.index',['notices'=>$notice,'user'=>$user,'user_roles'=>$user_roles,'profile'=>$profile,'role_id'=>$role_id]);
     }
 
     /**
@@ -36,7 +57,9 @@ class NoticeController extends Controller
     public function create()
     {
         //
-        return view('admin.notice.create');
+        $user_id = auth()->user()->id;
+        $profile = Profile::where('user_id', $user_id)->first();
+        return view('admin.notice.create',['profile'=>$profile]);
     }
 
     /**
@@ -50,6 +73,7 @@ class NoticeController extends Controller
         //Check data request send
         // dd(request()->all());
         // auth()->user();
+        
 
         $inputs = request()->validate([
             // 'title'=>'required,min:8'
@@ -70,7 +94,7 @@ class NoticeController extends Controller
         // dd($request->post_image->originalName);
         // dd($request->input('post_image');
 
-        auth()->user()->notices()->create($inputs);
+       auth()->user()->notices()->create($inputs);
 
         session()->flash('notice-created-message', 'New post was created : '. $inputs['title']);
 
@@ -91,8 +115,24 @@ class NoticeController extends Controller
         //
         // Notice::findOrFail($id);
         // return view('admin.notice',['notice'=>$notice]);
+        
         // dd($notice);
-        return view('notice-detail', ['notice'=> $notice]);
+        
+        $user_id = auth()->user()->id;
+        $user_roles = User::with('roles')->where('id', $user_id)->get();
+        $profile = Profile::where('user_id', $user_id)->first();
+
+        foreach($user_roles as $user){
+            foreach($user->roles as $role){
+                $role_id = $role->id;
+            }
+        }
+
+        // dd($role_id);
+    
+
+    return view('notice.notice-detail',['notice'=> $notice,'user'=>$user,'user_roles'=>$user_roles,'profile'=>$profile,'role_id'=>$role_id]);
+
         
     }
 
@@ -103,10 +143,12 @@ class NoticeController extends Controller
         // return view('admin.notice',['notice'=>$notice]);
 
         $notice = Notice::orderBy('id', 'DESC')->get();
+        $user_id = auth()->user()->id;
+        $profile = Profile::where('user_id', $user_id)->first();
         // $notice = Notice::all();
         // $notice = Notice::paginate(2);
 
-        return view('admin.notice.index', ['notice'=> $notice]);
+        return view('admin.notice.index', ['notice'=> $notice,'profile'=>$profile]);
         
     }
 
@@ -125,8 +167,10 @@ class NoticeController extends Controller
 //
 //        }
         // $notice = Notice::all();
+        $user_id = auth()->user()->id;
+        $profile = Profile::where('user_id', $user_id)->first();
 
-        return view('admin.notice.edit', ['notice'=> $notice]);
+        return view('admin.notice.edit', ['notice'=> $notice,'profile'=>$profile]);
     }
 
 
@@ -150,7 +194,7 @@ class NoticeController extends Controller
 
 
         $dom = new \domdocument();
-        $dom->loadHtml($detail, LIBXML_HTML_NOIMPLIED | LIBXML_HTML_NODEFDTD);
+        $dom->loadHtml($inputs['body'], LIBXML_HTML_NOIMPLIED | LIBXML_HTML_NODEFDTD);
         $images = $dom->getelementsbytagname('img');
       
         //loop over img elements, decode their base64 src and save them to public folder,

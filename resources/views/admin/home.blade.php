@@ -26,7 +26,7 @@
       <div class="card card-primary card-outline">
         <div class="card-body row">
           <h2 class="card-titlex col-lg-6">Assalammualaikum, {{ ucfirst(Auth::user()->username) }}</h2>
-          <h2 class="card-titlex col-lg-6 text-right">Date : {{ date('Y-m-d') }}</h2>
+          <h2 class="card-titlex col-lg-6 text-right text-muted">{{ date('d/m/Y') }}</h2>
 
           {{-- <p class="card-text">
             Some quick example text to build on the card title and make up the bulk of the card's
@@ -121,14 +121,19 @@
             </div>
             <div class="card-body">
               <h3 class="card-title">{{$notice->title}}</h3>
-              <div class="card-text">
+              <div class="card-text text-center">
+                {!! $notice->body !!}<br>
                 @if (is_null($notice->post_image))
-                <img class="card-img-top" src="{{$notice->post_image}}" alt="Card image cap">
-                ADA PICTURE
+          
+                <img class="card-img-top" src="{{$notice->post_image}}" alt="Card image cap" style="display: none">
+                @else
+      
+                <img class="card-img-top" src="{{$notice->post_image}}" alt="Card image cap" style="width: 50%">
+      
                 @endif
-                {!! $notice->body !!}
-                <a href="{{route('notice-detail', $notice->id)}}" class="btn btn-primary float-right">Go to Post &rarr;</a>
+                
               </div>
+              <a href="{{route('notice-detail', $notice->id)}}" class="btn btn-primary float-right">Go to Post &rarr;</a>
             </div>
             <!-- /.card-body -->
             <div class="card-footer text-muted">
@@ -177,7 +182,7 @@
             <!-- /.card-body -->
           </div>
         </section>
-    </div>
+      </div>
     </section>
     <!-- /.content -->
   </div>

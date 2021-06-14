@@ -56,6 +56,7 @@
                     <tr>
                       <th>ID</th>
                       <th>Title</th>
+                      <th>IsActive</th>
                       <th>Edit</th>
                       <th>Delete</th>
                     </tr>
@@ -65,14 +66,15 @@
                     {{-- Auth::user()->username  --}}
                     @foreach ($grades as $grade)     
                     <tr>
-                      <td>{{$grade->grade_id}}</td>
+                      <td>{{$grade->id}}</td>
                       <td>{{$grade->grade_title}}</td>                      
+                      <td>{{$grade->isActive}}</td>                      
                       <td>
-                        <a class="btn btn-info btn-sm mb-2" href="{{route('grade.edit',$grade->grade_id)}}"><i class="fas fa-user-edit"></i> Edit</a>
+                        <a class="btn btn-info btn-sm mb-2" href="{{route('grade.edit',$grade->id)}}"><i class="fas fa-user-edit"></i> Edit</a>
                       </td>
                       <td>
                         {{-- <a class="btn btn-danger btn-sm" href="#"><i class="fas fa-trash-alt"></i> Delete</a> --}}
-                        <form method="post" action="{{route('grade.destroy', $grade->grade_id)}}" enctype="multipart/form-data">
+                        <form method="post" action="{{route('grade.destroy', $grade->id)}}" enctype="multipart/form-data">
                           @csrf
                           @method('DELETE')
                           {{-- <button type="submit" class="btn btn-danger">Delete</button> --}}
@@ -87,6 +89,7 @@
                     <tr>
                       <th>ID</th>
                       <th>Title</th>
+                      <th>IsActive</th>
                       <th>Edit</th>
                       <th>Delete</th>
                     </tr>

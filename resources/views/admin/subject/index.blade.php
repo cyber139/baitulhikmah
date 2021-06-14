@@ -56,6 +56,7 @@
                     <tr>
                       <th>ID</th>
                       <th>Title</th>
+                      <th>IsActive</th>
                       <th>Edit</th>
                       <th>Delete</th>
                     </tr>
@@ -65,14 +66,15 @@
                     {{-- Auth::user()->username  --}}
                     @foreach ($subjects as $subject)     
                     <tr>
-                      <td>{{$subject->subject_id}}</td>
+                      <td>{{$subject->id}}</td>
                       <td>{{$subject->subject_title}}</td>                      
+                      <td>{{$subject->isActive}}</td>                      
                       <td>
-                        <a class="btn btn-info btn-sm mb-2" href="{{route('subject.edit',$subject->subject_id)}}"><i class="fas fa-user-edit"></i> Edit</a>
+                        <a class="btn btn-info btn-sm mb-2" href="{{route('subject.edit',$subject->id)}}"><i class="fas fa-user-edit"></i> Edit</a>
                       </td>
                       <td>
                         {{-- <a class="btn btn-danger btn-sm" href="#"><i class="fas fa-trash-alt"></i> Delete</a> --}}
-                        <form method="post" action="{{route('subject.destroy', $subject->subject_id)}}" enctype="multipart/form-data">
+                        <form method="post" action="{{route('subject.destroy', $subject->id)}}" enctype="multipart/form-data">
                           @csrf
                           @method('DELETE')
                           {{-- <button type="submit" class="btn btn-danger">Delete</button> --}}
@@ -87,6 +89,7 @@
                     <tr>
                       <th>ID</th>
                       <th>Title</th>
+                      <th>isActive</th>
                       <th>Edit</th>
                       <th>Delete</th>
                     </tr>

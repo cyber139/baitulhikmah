@@ -4,10 +4,12 @@ namespace App\Http\Controllers;
 
 use App\Notice;
 use App\User;
+use App\Profile;
 use App\Role;
 use App\Grade;
 use App\Subject;
-use Auth;
+// use Auth;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
 
 
@@ -51,9 +53,9 @@ class HomeController extends Controller
         // dd($UserRoles);
 
         if($UserRoles->roles->isNotEmpty()){
-            foreach($UserRoles as $role){
-                    // dd($role);
-                    if($role == 'admin')
+            foreach($UserRoles->roles as $role){
+                    // dd($role->id);
+                    if($role->id == 1)
                     {
                         // dd($role);
                         $notice = Notice::orderBy('id', 'DESC','Publish','Yes')->first();
@@ -61,16 +63,42 @@ class HomeController extends Controller
                         $teacherlist = Role::where('slug', 'teacher')->first()->users()->get()->count();
                         $subjectlist = Subject::get()->count();
                         $classlist = Grade::get()->count();
+                        $user_id = auth()->user()->id;
+                        $profile = Profile::where('user_id', $user_id)->first();
                 
                         // return view('admin.notice',['notices'=>$notice]);
                         // return view('admin.home');
-                        return view('admin.home',['studentlist'=>$studentlist,'teacherlist'=>$teacherlist,'subjectlist'=>$subjectlist,'classlist'=>$classlist,'notice'=>$notice]);
+                        return view('admin.home',['studentlist'=>$studentlist,'teacherlist'=>$teacherlist,'subjectlist'=>$subjectlist,'classlist'=>$classlist,'notice'=>$notice,'profile'=>$profile]);
+                    }
+                    elseif($role->id == 2)
+                    {
+                        // dd($role);
+                        $notice = Notice::orderBy('id', 'DESC','Publish','Yes')->first();
+                        $user_id = auth()->user()->id;
+                        $profile = Profile::where('user_id', $user_id)->first();
+
+                        return view('teacher.home',['notice'=>$notice,'profile'=>$profile]);
+                    }
+                    elseif($role->id==3)
+                    {
+                        // $notice = Notice::all();
+                        $notice = Notice::orderBy('id', 'DESC','Publish','Yes')->first();
+                        $user_id = auth()->user()->id;
+                        $profile = Profile::where('user_id', $user_id)->first();
+
+                        $user = User::find($user_id);
+
+                        return view('student.home',['notice'=>$notice,'user'=>$user,'profile'=>$profile]);
                     }
                     else{
+                        $user_id = auth()->user()->id;
+                        $profile = Profile::where('user_id', $user_id)->first();
                         $notice = Notice::all();
-                        $user = User::all();
+                        $user = User::find($user_id);
 
-                        return view('home',['notices'=>$notice,'users'=>$user]);
+
+                        return view('home',['notices'=>$notice,'user'=>$user,'profile'=>$profile]);
+
                     }
                 }
         }else{
