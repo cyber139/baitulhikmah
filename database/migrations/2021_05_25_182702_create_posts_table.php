@@ -17,6 +17,7 @@ class CreatePostsTable extends Migration
             $table->id();
             $table->foreignId('teacher_id')->constrained()->onDelete('cascade');
             $table->string('title')->nullable();
+            $table->string('description')->nullable();
             $table->text('post_image')->nullable();
             $table->longText('body')->nullable();
             $table->enum('publish', ['Yes', 'No'])->default('Yes');

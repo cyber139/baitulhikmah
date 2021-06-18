@@ -57,9 +57,15 @@
         </div>
         <div class="col-md-12">
           <!-- The time line -->
+          
           <div class="timeline">
             <!-- timeline item -->
             @foreach ($posts as $post)
+            @if ($role_id == 3 && $post->publish != "Yes")
+              
+              @continue;
+            
+            @endif
             <!-- timeline time label -->
             <div class="time-label">
               <span class="bg-red">{{$post->created_at->format('l, d/m/Y')}}</span>
@@ -73,20 +79,49 @@
                 <h3 class="timeline-header">{{$post->title}}</h3>
 
                 <div class="timeline-body">
-                  {!!$post->body!!}
+                  {{$post->description}}
+                  {{-- {!!$post->body!!} --}}
                 </div>
                 <div class="timeline-body">
                   {{-- {{dd($post->post_image)}} --}}
-                  @if ($post->post_image == null)
+
+
+
+
+                  {{-- @if ($post->post_image == null)
                   <div><img class="card-img-top" height=100px; width=auto; src="http://placehold.it/350x150.jpg&text=No+Image+Uploaded" alt="Image" style="height: 100px;width: auto;"></div>
                   
                   @else
-                  <a href="{{$post->post_image}}" data-toggle="lightbox" data-title="{{$post->title}}">
-                    <img class="img-fluid mb-2" src="{{$post->post_image}}" alt="Image" style="height: 300px; width: auto;" >
-                  </a>    
-                  @endif
+
+                    @php
+                      $file_download = $post->getAttributes()['post_image'];
+                      $file_download = substr($file_download,11);
+                    @endphp
+                  
+                    @php
+                      $type = substr($post->post_image,-3);
+                      $file_download = $post->getAttributes()['post_image'];
+                      $file_download = substr($file_download,11);
+                    @endphp
+                      
+                    @if ($post->post_image != null)
+                    
+                      @if($type=="pdf") 
+                      <iframe src="{{$post->post_image}}" height="600px" width="200px" class="col-lg-12" style="width: 50%"></iframe>
+                      <br><br>
+                      <a class="btn btn-info " href="{{$post->post_image}}" target="_blank"><i class="fas fa-eye"></i>  View File</a>
+                      @else
+                      <a href="{{$post->post_image}}" data-toggle="lightbox" data-title="{{$post->title}}">
+                        <img class="img-fluid mb-2 " src="{{$post->post_image}}" alt="{{$post->title}}" style="height: 300px; width: auto;">
+                      </a>
+                      <br><br>
+                      @endif
+                    @endif
+
+                  @endif --}}
                 </div>
                 <hr>
+
                 <div class="timeline-footer">
                   
 
@@ -112,8 +147,14 @@
                   
                  
                   <div class="text-muted">
+                    @if ($post->publish == 'Yes')
+                        Published</p>
+                    @else
+                        Unpublished</p>
+                    @endif 
                     <p>Post by : {{$author->full_name}}<br>
                     Posted on {{$post->created_at->format('Y-m-d H:i:s')}}</p>
+
                   </div>
                 </div>
               </div>

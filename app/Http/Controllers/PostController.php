@@ -30,6 +30,8 @@ class PostController extends Controller
         $profile = Profile::where('user_id', $user_id)->first();
 
         $posts = Post::where('teacher_id',$id)->orderBy('id','DESC')->get();
+        // $posts = Post::where('publish','Yes')->get();
+        // dd($posts);
 
         foreach($posts as $post){
             $teacher = Teacher::where('id', $post->teacher_id)->first();
@@ -101,6 +103,7 @@ class PostController extends Controller
         // dd($teacher);
         $input = request()->validate([
             'title'=>'required|max:255',
+            'description'=>'required|max:255',
             'body'=>'required',
             'post_image'=>'file',
             'publish'=>'required',
@@ -112,11 +115,11 @@ class PostController extends Controller
         $dom->loadHtml($body, LIBXML_HTML_NOIMPLIED | LIBXML_HTML_NODEFDTD);
         $images = $dom->getelementsbytagname('img');
       
-        //loop over img elements, decode their base64 src and save them to public folder,
-        //and then replace base64 src with stored image URL.
+
         foreach($images as $k => $img){
             $data = $img->getattribute('src');
-      
+            // dd(strpos($data, 'data:image'));
+            if (strpos($data, 'data:image')!==false){
             list($type, $data) = explode(';', $data);
             list(, $data)      = explode(',', $data);
       
@@ -130,24 +133,33 @@ class PostController extends Controller
       
             $img->removeattribute('src');
             $img->setattribute('src',asset('storage/' . $image_name));
+
+            } 
         }
-        // dd($images);
         
         $body = $dom->savehtml();
 
 
         // If post image request exist
-        if(request('post_image')){
-            $inputs['post_image'] = request('post_image')->store('images');
-        }
+        // if(request('post_image')){
+        //     $inputs['post_image'] = request('post_image')->store('images');
+        // }
         // dd($teacher->id);
+
+        if($request->file('post_image')){
+            $file = $request->file('post_image');
+            $filename ='upload/'. time().'.'.$file->getClientOriginalExtension();
+            $file->move('storage/upload',$filename);
+            // $data->file = $filename;
+        }
 
         $input = Post::create([
             'teacher_id'=>$input['teacher_id'],
             'title' => $input['title'],
+            'description' => $input['description'],
             'body' => $body,
             // 'body' => $input['body'],
-            // 'post_image' => $input['post_image'],
+            'post_image' => $filename,
             'publish' => $input['publish'],
         ]);
 
@@ -266,6 +278,7 @@ class PostController extends Controller
         // dd(request());
         $inputs = request()->validate([
             'title'=>'required|max:255',
+            'description'=>'required|max:255',
             'body'=>'required',
             'post_image'=>'file',
             'publish'=>'required',
@@ -275,11 +288,11 @@ class PostController extends Controller
 
         $body = $inputs['body'];
         $dom = new \domdocument();
+        libxml_use_internal_errors(true);
         $dom->loadHtml($body, LIBXML_HTML_NOIMPLIED | LIBXML_HTML_NODEFDTD);
         $images = $dom->getelementsbytagname('img');
       
-        //loop over img elements, decode their base64 src and save them to public folder,
-        //and then replace base64 src with stored image URL.
+
         foreach($images as $k => $img){
             $data = $img->getattribute('src');
             // dd(strpos($data, 'data:image'));
@@ -298,21 +311,26 @@ class PostController extends Controller
             $img->removeattribute('src');
             $img->setattribute('src',asset('storage/' . $image_name));
 
-            } // <!--endif
+            } 
         }
-
-
-        // dd($images);
         
         $body = $dom->savehtml();
 
 
-        if(request('post_image')){
-            $inputs['post_image'] = request('post_image')->store('images');
-            $post->post_image = $inputs['post_image'];
+        // if(request('post_image')){
+        //     $inputs['post_image'] = request('post_image')->store('images');
+        //     $post->post_image = $inputs['post_image'];
+        // }
+
+        if(request()->file('post_image')){
+            $file = request()->file('post_image');
+            $filename ='upload/'. time().'.'.$file->getClientOriginalExtension();
+            $file->move('storage/notices',$filename);
+            $post->file = $filename;
         }
 
         $post->title = $inputs['title'];
+        $post->description = $inputs['description'];
         $post->body =$body;
         $post->publish = $inputs['publish'];
         

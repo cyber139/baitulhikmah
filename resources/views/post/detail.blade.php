@@ -13,7 +13,8 @@
           <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
               <li class="breadcrumb-item"><a href="{{route('home')}}">Home</a></li>
-              <li class="breadcrumb-item active">Dashboard</li>
+              <li class="breadcrumb-item"><a href="{{url()->previous()}}">Content List</a></li>
+              <li class="breadcrumb-item active">{{$post->title}}</li>
             </ol>
           </div>
         </div>
@@ -40,15 +41,53 @@
           <p class="card-text">{!!$post->body!!}</p>
             {{-- <img class="card-img-top" src="{{$post->post_image}}" alt="Card image cap"> --}}
                 {{-- <p class="card-text">{{($post->body)}}</p> --}}
-                @if ($post->post_image != null)
+                {{-- @if ($post->post_image != null)
                 <a href="{{$post->post_image}}" data-toggle="lightbox" data-title="{{$post->title}}">
                   <img class="img-fluid mb-2" src="{{$post->post_image}}" alt="Image" style="height: 500px; width: auto;" >
                 </a>
                 @else
                     
-                @endif
-                
-                
+                @endif --}}
+
+                @if ($post->post_image == null)
+                  <div><img class="card-img-top" height=100px; width=auto; src="http://placehold.it/350x150.jpg&text=No+Image+Uploaded" alt="Image" style="height: 100px;width: auto;"></div>
+                  
+                  @else
+
+                    @php
+                      $file_download = $post->getAttributes()['post_image'];
+                      $file_download = substr($file_download,11);
+                    @endphp
+                  
+                    @php
+                      $type = substr($post->post_image,-3);
+                      $file_download = $post->getAttributes()['post_image'];
+                      $file_download = substr($file_download,11);
+                    @endphp
+                      
+                    @if ($post->post_image != null)
+                    
+                      @if($type=="pdf") 
+                      <iframe src="{{$post->post_image}}" height="600px" width="200px" class="col-lg-12" style="width: 50%"></iframe>
+                      <br><br>
+                      <a class="btn btn-info btn-sm float-right mx-1" href="{{$post->post_image}}" target="_blank"><i class="fas fa-eye"></i>  View File</a>
+                      @else
+                      <a href="{{$post->post_image}}" data-toggle="lightbox" data-title="{{$post->title}}">
+                        <img class="img-fluid mb-2 " src="{{$post->post_image}}" alt="{{$post->title}}" style="height: 300px; width: auto;">
+                      </a>
+                      <br><br>
+                      @endif
+                    @endif
+
+                  @endif
+
+             
+           <br><br>
+           @if ($role_id == 1)
+           @elseif($role_id == 2)
+           <a class="btn btn-primary btn-sm float-right mx-1 " href="{{route('post.edit',$post->id)}}"> <i class="fas fa-pencil-alt"></i>  Edit  </a>
+           @else
+           @endif     
         </div>
         <!-- /.card-body -->
         <div class="card-footer text-muted">

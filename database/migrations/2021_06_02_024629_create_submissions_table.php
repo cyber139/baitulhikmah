@@ -19,6 +19,7 @@ class CreateSubmissionsTable extends Migration
             $table->integer('post_id')->unsigned()->index();
             $table->integer('teacher_id')->unsigned()->index();
             $table->string('title')->nullable();
+            $table->string('mark')->nullable();
             $table->text('file')->nullable();
             $table->longText('body')->nullable();
             $table->enum('isDelete', ['Yes', 'No'])->default('No');
