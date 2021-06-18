@@ -8,12 +8,13 @@
         <div class="container-fluid">
           <div class="row mb-2">
             <div class="col-sm-6">
-              <h1 class="m-0 text-dark">User Access Control</h1>
+              <h1 class="m-0 text-dark">Student Access Control</h1>
             </div><!-- /.col -->
             <div class="col-sm-6">
               <ol class="breadcrumb float-sm-right">
-                <li class="breadcrumb-item active">User Access Contol</li>
-                <li class="breadcrumb-item"><a href="{{url('/')}}">Home</a></li>
+                <li class="breadcrumb-item"><a href="{{route('home')}}">Home</a></li>
+                <li class="breadcrumb-item active">Student Access Contol</li>
+
               </ol>
             </div><!-- /.col -->
             {{-- <div class="col-sm-12">
@@ -96,6 +97,7 @@
                       <th>User</th>
                       <th>E-mail</th>
                       <th>Role</th>
+                      <th>Class</th>
                       <th>isActive</th>
                       <th>Edit</th>
                     </tr>
@@ -105,24 +107,45 @@
                     {{-- Auth::user()->username  --}}
                     @foreach ($users as $user)     
                     <tr>
-                      <td>{{$user->id}}</td>
+                      <td>{{$user_id = $user->id}}</td>
                       <td>{{$user->username}}</td>
                       <td>{{$user->email}}</td>
-                      <td><ul>
-                      @forelse ($user->roles as $role)
-                      <li>{{ $role->name }}</li>
-                      @empty
-                      <li>Not defined</li>
-                      @endforelse
-                      </ul>
-                    </td>
-                      <td>{{$user->isActive}}</td>
+                      <td>
+                        <ul>
+                          @forelse ($user->roles as $role)
+                          <li>{{ $role->name }}</li>
+                          @empty
+                          <li>Not defined</li>
+                          @endforelse
+                        </ul>
+                      </td>
+                      <td>
+                        <ul>
+                        @foreach ($studentList as $student)
+                        @foreach ($gradeList as $grade)
 
+                        @if ($student->user_id == $user_id)
+                          @if ($grade->id == $student->grade_id)
+                          <li>{{$grade->grade_title}}</li>
+                          @break
+                          {{-- <li>{{$student->user_id}}</li> --}}
+                          {{-- <li>{{$user_id}}</li> --}}
+                          @endif
+                        @endif
+
+                        @endforeach
+                        @endforeach
+                        </ul>
+
+                      </td>
+                      <td>{{$user->isActive}}</td>
                       <td>
                         <a class="btn btn-info btn-sm mb-2" href="{{route('student.edit',$user->id)}}"><i class="fas fa-user-edit"></i> Edit</a>
                       </td>
                     </tr>
+
                     @endforeach
+                    
                   </tbody>
                   <tfoot>
                     <tr>
@@ -130,6 +153,7 @@
                       <th>User</th>
                       <th>E-mail</th>
                       <th>Role</th>
+                      <th>Class</th>
                       <th>isActive</th>
                       <th>Edit</th>
                     </tr>

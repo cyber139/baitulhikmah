@@ -297,7 +297,7 @@ class NoticeController extends Controller
 
         $notice->delete();
 
-        $request->session()->flash('message', 'Post was deleted');
+        $request->session()->flash('message', 'Post '.$notice['title'].' was deleted');
 
         return back();
     }

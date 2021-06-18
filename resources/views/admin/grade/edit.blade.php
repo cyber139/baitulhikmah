@@ -13,6 +13,7 @@
           <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
               <li class="breadcrumb-item"><a href="{{route('home')}}">Home</a></li>
+              <li class="breadcrumb-item"><a href="{{route('grade.index')}}">Class</a></li>
               <li class="breadcrumb-item active">Edit Class</li>
             </ol>
           </div>
@@ -28,10 +29,7 @@
         </div>
         <!-- /.card-header -->
         <!-- form start -->
-        @foreach ($grades as $grade)
-            
-                
-           
+          
         
         <form role="form" method="post" action="{{route('grade.update',$grade->id)}}" enctype="multipart/form-data">
           @csrf
@@ -123,7 +121,6 @@
             <button type="submit" class="btn-lg btn-primary ">Submit</button>
           </div>
         </form>
-        @endforeach
       </div>
       <div class="card card-info">
         <div class="card-header">

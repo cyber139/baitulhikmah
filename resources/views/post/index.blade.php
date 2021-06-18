@@ -27,12 +27,13 @@
               }
           @endphp
 
-        <h2> {{$name}} Content </h2>
+        <h2> {{$name}} </h2>
         {{-- <h3> Post</h3> --}}
         </div>
         <div class="col-sm-6">
           <ol class="breadcrumb float-sm-right">
             <li class="breadcrumb-item"><a href="{{route('home')}}">Home</a></li>
+            <li class="breadcrumb-item"><a href="{{route('teacher.subject.index')}}">Assigned Subject</a></li>
             <li class="breadcrumb-item active">{{$name}}</li>
           </ol>
         </div>

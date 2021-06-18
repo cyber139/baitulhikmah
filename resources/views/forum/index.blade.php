@@ -11,6 +11,7 @@
         <div class="row mb-2">
           <div class="col-sm-6">
             <h1>All FORUM </h1>
+            <h6>You can start a forum or report any issues here so that admin can get back to you.  </h6>
           </div>
           <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
@@ -52,7 +53,9 @@
         </div>
         <div class="card-body ">            
              
-          <p class="card-text">{!!Str::limit($forum->body, '50', '.....')!!}</p>
+          {{-- <p class="card-text">{!!Str::limit($forum->body, '50', '.....')!!}</p> --}}
+          <p class="card-text">{!!$forum->body!!}</p>
+
           <a href="{{route('forum-detail', $forum->id)}}" class="btn btn-primary float-right">Read More &rarr;</a>
             
         </div>

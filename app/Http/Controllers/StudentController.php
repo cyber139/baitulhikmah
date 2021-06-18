@@ -23,7 +23,13 @@ class StudentController extends Controller
         $users = Role::where('slug', 'student')->first()->users()->get();
         $user_id = auth()->user()->id;
         $profile = Profile::where('user_id', $user_id)->first();
-        return view('admin.student.index',['users'=>$users,'profile'=>$profile]);
+        $studentList = Student::all();
+        $gradeList = Grade::all();
+        // $gradeList = Grade::with('subjects')->where('id', $class->grade_id)->get();
+        // dd($class);
+
+        
+        return view('admin.student.index',['users'=>$users,'profile'=>$profile,'studentList'=>$studentList,'gradeList'=>$gradeList]);
     }
 
     /**
@@ -119,9 +125,13 @@ class StudentController extends Controller
         $profile = Profile::where('user_id', $user_id)->first();
         $userProfile = Profile::where('user_id', $user->id)->first();
         $studentClass = Student::where('user_id', $user->id)->first();
+        // dd($studentClass);
+        if($studentClass != null){
         $class = Grade::where('id', $studentClass->grade_id)->first();
-        // dd($class);
-
+        }
+        else{
+            $class = null;
+        }
         
         return view('admin.student.edit',['user'=>$user,'selectRoles'=>$selectRoles,'profile'=>$profile,'userProfile'=>$userProfile,'gradeList'=>$gradeList,'studentClass'=>$studentClass,'class'=>$class]);
     }

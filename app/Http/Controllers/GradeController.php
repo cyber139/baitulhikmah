@@ -46,26 +46,24 @@ class GradeController extends Controller
      */
     public function store(Request $request)
     {
-        //Check data request send
-        // dd(request()->all());
-        // auth()->user();
 
         $inputs = request()->validate([
             'grade_title'=>'required|max:255',
-            'grade_slug'=>'required|max:255',
+            // 'grade_slug'=>'required|max:255',
             'publish'=>'required',
-            'isActive'=>'required',
-            'isDelete'=>'required'
+
         ]);
 
         $grade = Grade::create([
             'grade_title' => $inputs['grade_title'],
-            'grade_slug' => $inputs['grade_slug'],
+            'grade_slug' =>strtolower(preg_replace('/\s*/', '', $inputs['grade_title'])),
             'publish' => $inputs['publish'],
-            'isActive'=>$inputs['isActive'],
-            'isDelete'=>$inputs['isDelete']
+            'isActive'=>"Yes",
+            'isDelete'=>"No"
         ]);
         
+
+        session()->flash('grade-created-message', 'New class was created : '. $inputs['grade_title']);
 
         // return back();
         return redirect()->route('grade.index');
@@ -97,18 +95,8 @@ class GradeController extends Controller
         // $grades = Grade::with('subjects')->find($grade);
         $user_id = auth()->user()->id;
         $profile = Profile::where('user_id', $user_id)->first();
-        $grades = Grade::find($grade);
+        // $grades = Grade::find($grade);
 
-       
-
-        // $query = Grade::with('subjects')->where('id',$grade);
-        // dd($query->toSql());
-        // dd($query);
-        // dd($grades);
-        //  dd($grades->toJson());
-        
-        // $selectSubjects = Subject::all();
-        // $selectSubjects = Subject::where('isActive', 'Yes')->get();
         $selectSubjects = Subject::where([
             ['isActive','=', 'Yes'],
             ['publish','=','Yes'],
@@ -116,7 +104,8 @@ class GradeController extends Controller
             ])->get();
 
         // dd(DB::getQueryLog());
-        return view('admin.grade.edit', ['grades'=> $grades,'selectSubjects'=>$selectSubjects,'profile'=>$profile]);
+
+        return view('admin.grade.edit', ['grade'=> $grade,'selectSubjects'=>$selectSubjects,'profile'=>$profile]);
     }
 
     /**
@@ -131,7 +120,7 @@ class GradeController extends Controller
         //
         $inputs = request()->validate([
             'grade_title'=>'required|max:255',
-            'grade_slug'=>'required|max:255',
+            // 'grade_slug'=>'required|max:255',
             'publish'=>'required',
             'isActive'=>'required',
             'isDelete'=>'required'
@@ -139,13 +128,15 @@ class GradeController extends Controller
 
         $grade = Grade::find($id);
         $grade->grade_title = $inputs['grade_title'];
-        $grade->grade_slug = $inputs['grade_slug'];
+        $grade->grade_slug = strtolower(preg_replace('/\s*/', '', $inputs['grade_title']));
         $grade->publish = $inputs['publish'];
         $grade->isActive = $inputs['isActive'];
         $grade->isDelete = $inputs['isDelete'];
         $grade->save();
 
         // return back();
+        session()->flash('grade-updated-message', 'Class was updated : '. $inputs['grade_title']);
+
         return redirect()->route('grade.index');
     }
 
@@ -162,7 +153,8 @@ class GradeController extends Controller
 
         $grade->delete();
 
-        $request->session()->flash('message', 'Post was deleted');
+        $request->session()->flash('grade-deleted-message', 'Class '.$grade['grade_title'].' was deleted');
+
 
         return back();
     }

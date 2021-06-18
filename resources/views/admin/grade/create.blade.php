@@ -13,6 +13,7 @@
           <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
               <li class="breadcrumb-item"><a href="{{route('home')}}">Home</a></li>
+              <li class="breadcrumb-item"><a href="{{route('grade.index')}}">Class</a></li>
               <li class="breadcrumb-item active">Create Class</li>
             </ol>
           </div>
@@ -35,10 +36,10 @@
               <label for="grade_title">Class Title</label>
               <input type="text" class="form-control" placeholder="Enter ..." name="grade_title" id="grade_title" aria-describedby="">
             </div>
-            <div class="form-group">
+            {{-- <div class="form-group">
               <label for="grade_title">Class Slug</label>
               <input type="text" class="form-control" placeholder="Enter ..." name="grade_slug" id="grade_slug" aria-describedby="">
-            </div>
+            </div> --}}
             {{-- <div class="form-group">
               <label>Body</label>
               <textarea class="form-control" rows="3" placeholder="Enter ..."></textarea>
@@ -78,7 +79,7 @@
                 <option value="No">No</option>
               </select>
             </div>
-            <div class="form-group">
+            {{-- <div class="form-group">
               <label>IsActive</label>
               <select class="form-control" name="isActive" id="isActive">
                 <option value="Yes" selected='selected'>Yes</option>
@@ -91,7 +92,7 @@
                 <option value="No" selected='selected'>No</option>
                 <option value="Yes">Yes</option>
               </select>
-            </div>
+            </div> --}}
             {{-- <div class="form-check">
               <input type="checkbox" class="form-check-input" id="exampleCheck1">
               <label class="form-check-label" for="exampleCheck1">Check me out</label>

@@ -8,11 +8,11 @@
         <div class="container-fluid">
           <div class="row mb-2">
             <div class="col-sm-6">
-              <h1 class="m-0 text-dark">User Access Control</h1>
+              <h1 class="m-0 text-dark">Teacher Access Control</h1>
             </div><!-- /.col -->
             <div class="col-sm-6">
               <ol class="breadcrumb float-sm-right">
-                <li class="breadcrumb-item active">User Access Contol</li>
+                <li class="breadcrumb-item active">Teacher Access Contol</li>
                 <li class="breadcrumb-item"><a href="{{url('/')}}">Home</a></li>
               </ol>
             </div><!-- /.col -->
@@ -36,7 +36,7 @@
           <div class="col-12">
             <div class="card">
               <div class="card-header">
-                <h3 class="card-title">User Access Control Table</h3>
+                <h3 class="card-title">Teacher Access Control Table</h3>
                 <a href="{{url('/admin/uac/create')}}" class="nav-link btn btn-sm btn-primary float-right"> <i class="fas fa-plus-circle"></i> Add User</a>
                 {{-- <div class="card-tools">
                   <div class="input-group input-group-sm" style="width: 150px;">

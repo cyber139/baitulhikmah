@@ -48,6 +48,46 @@
                   </div>
                 </div> --}}
               </div>
+               {{-- MESSAGE UPDATED --}}
+            @if(session('grade-deleted-message'))
+            {{-- <div class="col-lg-10 m-auto alert alert-danger">{{session('message')}}</div> --}}
+
+            <div class="card alert alert-danger col-lg-10 mx-auto my-2">
+            <div class="card-header">
+              <h3 class="card-title ">{{session('grade-deleted-message')}}</h3>
+              <div class="card-tools">
+                  <button type="button" class="btn btn-tool" data-card-widget="remove" data-toggle="tooltip" title="Remove">
+                    <i class="fas fa-times"></i></button>
+                </div>
+            </div>
+          </div>
+            
+            @elseif(session('grade-created-message'))
+            {{-- <div class="col-lg-10 m-auto alert alert-success">{{session('notice-created-message')}}</div> --}}
+
+            <div class="card alert alert-success col-lg-10 mx-auto my-2">
+            <div class="card-header">
+              <h3 class="card-title ">{{session('grade-created-message')}}</h3>
+              <div class="card-tools">
+                  <button type="button" class="btn btn-tool" data-card-widget="remove" data-toggle="tooltip" title="Remove">
+                    <i class="fas fa-times"></i></button>
+                </div>
+            </div>
+          </div>
+
+            @elseif(session('grade-updated-message'))
+            {{-- <div class="col-lg-10 m-auto alert alert-success">{{session('notice-updated-message')}}</div> --}}
+
+            <div class="card alert alert-success col-lg-10 mx-auto my-2">
+            <div class="card-header">
+              <h3 class="card-title ">{{session('grade-updated-message')}}</h3>
+              <div class="card-tools">
+                  <button type="button" class="btn btn-tool" data-card-widget="remove" data-toggle="tooltip" title="Remove">
+                    <i class="fas fa-times"></i></button>
+                </div>
+            </div>
+          </div>
+        @endif
 
               <!-- /.card-header -->
               <div class="card-body">

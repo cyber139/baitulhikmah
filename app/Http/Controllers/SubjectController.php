@@ -150,7 +150,7 @@ class SubjectController extends Controller
 
         $subject->delete();
 
-        $request->session()->flash('subject-deleted-message', 'Subject was deleted');
+        $request->session()->flash('subject-deleted-message', 'Subject '.$subject['subject_title'].' was deleted');
 
         return back();
     }
