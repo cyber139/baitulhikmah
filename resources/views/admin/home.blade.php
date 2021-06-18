@@ -123,13 +123,28 @@
               <h3 class="card-title">{{$notice->title}}</h3>
               <div class="card-text text-center">
                 {!! $notice->body !!}<br>
-                @if (is_null($notice->post_image))
-          
-                <img class="card-img-top" src="{{$notice->post_image}}" alt="Card image cap" style="display: none">
+
+                @php
+                // dd(substr($notice->post_image,-3));
+                $type = substr($notice->post_image,-3);
+                //  $file_download = $submission->offsetUnset('file');;
+                $file_download = $notice->getAttributes()['post_image'];
+                $file_download = substr($file_download,11);
+                
+                
+                @endphp
+                    {{-- {{$file_download}} --}}
+                    
+                @if ($notice->post_image != null)
+                
+                  @if($type=="pdf") 
+                  <iframe src="{{$notice->post_image}}" height="400px" width="200px" class="col-lg-12" style="width: 50%"></iframe><br><br>
+                  @else
+                  <img class="card-img-top " src="{{$notice->post_image}}" alt="{{$notice->title}}" style="width: 50%"><br><br>
+                  @endif
+                <a class="btn btn-info " href="{{$notice->post_image}}" target="_blank"><i class="fas fa-eye"></i>  View File</a>
                 @else
-      
-                <img class="card-img-top" src="{{$notice->post_image}}" alt="Card image cap" style="width: 50%">
-      
+                    
                 @endif
                 
               </div>

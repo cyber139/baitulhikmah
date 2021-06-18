@@ -32,7 +32,7 @@ class NoticeController extends Controller
 
     //     return view('admin.notice',['notices'=>$notice]);
 
-    $notice = Notice::orderBy('id', 'DESC','Publish','Yes')->get();
+    $notice = Notice::orderBy('id', 'DESC')->where('Publish','Yes')->get();
     $user_id = auth()->user()->id;
     $user_roles = User::with('roles')->where('id', $user_id)->get();
     $profile = Profile::where('user_id', $user_id)->first();
@@ -70,10 +70,6 @@ class NoticeController extends Controller
      */
     public function store(Request $request)
     {
-        //Check data request send
-        // dd(request()->all());
-        // auth()->user();
-        
 
         $inputs = request()->validate([
             // 'title'=>'required,min:8'
@@ -84,20 +80,51 @@ class NoticeController extends Controller
             'publish'=>'required'
         ]);
         
-        // If post image request exist
-        if(request('post_image')){
-            $inputs['post_image'] = request('post_image')->store('images');
+        $body = $inputs['body'];
+        $dom = new \domdocument();
+        $dom->loadHtml($body, LIBXML_HTML_NOIMPLIED | LIBXML_HTML_NODEFDTD);
+        $images = $dom->getelementsbytagname('img');
+      
+        //loop over img elements, decode their base64 src and save them to public folder,
+        //and then replace base64 src with stored image URL.
+        foreach($images as $k => $img){
+            $data = $img->getattribute('src');
+            // dd(strpos($data, 'data:image'));
+            if (strpos($data, 'data:image')!==false){
+            list($type, $data) = explode(';', $data);
+            list(, $data)      = explode(',', $data);
+      
+            $data = base64_decode($data);
+            $image_name= 'notices/'.time().$k.'.png';
+            $path = public_path() .'/storage/'. $image_name;
+            // $path =asset('storage/' . $image_name) ;
+
+            // dd($path);
+            file_put_contents($path, $data);
+      
+            $img->removeattribute('src');
+            $img->setattribute('src',asset('storage/' . $image_name));
+
+            } // <!--endif
         }
 
-        
 
-        // dd($request->post_image->originalName);
-        // dd($request->input('post_image');
+        // dd($images);
+        
+        $body = $dom->savehtml();
+
+        if($request->file('post_image')){
+            $file = $request->file('post_image');
+            $filename ='notices/'. time().'.'.$file->getClientOriginalExtension();
+            $file->move('storage/notices',$filename);
+            // $data->file = $filename;
+        }
 
        $inputs = Notice::create([
         'title' => $inputs['title'],
-        'body' => $inputs['body'],
+        'body' => $body,
         'publish' => $inputs['publish'],
+        'post_image'=>$filename,
         'user_id'=>auth()->user()->id
     ]);
 
@@ -198,38 +225,50 @@ class NoticeController extends Controller
         ]);
 
 
+        $body = $inputs['body'];
         $dom = new \domdocument();
-        $dom->loadHtml($inputs['body'], LIBXML_HTML_NOIMPLIED | LIBXML_HTML_NODEFDTD);
+        $dom->loadHtml($body, LIBXML_HTML_NOIMPLIED | LIBXML_HTML_NODEFDTD);
         $images = $dom->getelementsbytagname('img');
       
-        //loop over img elements, decode their base64 src and save them to public folder,
-        //and then replace base64 src with stored image URL.
+
         foreach($images as $k => $img){
             $data = $img->getattribute('src');
-      
+            // dd(strpos($data, 'data:image'));
+            if (strpos($data, 'data:image')!==false){
             list($type, $data) = explode(';', $data);
             list(, $data)      = explode(',', $data);
       
             $data = base64_decode($data);
-            $image_name= time().$k.'.png';
-            $path = public_path() .'/'. $image_name;
-      
+            $image_name= 'submission/'.time().$k.'.png';
+            $path = public_path() .'/storage/'. $image_name;
+            // $path =asset('storage/' . $image_name) ;
+
+            // dd($path);
             file_put_contents($path, $data);
       
             $img->removeattribute('src');
-            $img->setattribute('src', $image_name);
+            $img->setattribute('src',asset('storage/' . $image_name));
+
+            } 
         }
-      
-        $detail = $dom->savehtml();
+        
+        $body = $dom->savehtml();
 
 
-        if(request('post_image')){
-            $inputs['post_image'] = request('post_image')->store('images');
-            $notice->post_image = $inputs['post_image'];
+        // if(request('post_image')){
+        //     $inputs['post_image'] = request('post_image')->store('images');
+        //     $notice->post_image = $inputs['post_image'];
+        // }
+
+        if(request()->file('post_image')){
+            $file = request()->file('post_image');
+            $filename ='notices/'. time().'.'.$file->getClientOriginalExtension();
+            $file->move('storage/notices',$filename);
+            $notice->file = $filename;
         }
 
         $notice->title = $inputs['title'];
-        $notice->body =$detail;
+        $notice->body =$body;
         $notice->publish = $inputs['publish'];
 
 
@@ -241,6 +280,7 @@ class NoticeController extends Controller
         session()->flash('notice-updated-message', 'Post was updated : '. $inputs['title']);
 
         return redirect()->route('notice.index');
+       
     }
 
     /**

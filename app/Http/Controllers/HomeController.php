@@ -58,7 +58,8 @@ class HomeController extends Controller
                     if($role->id == 1)
                     {
                         // dd($role);
-                        $notice = Notice::orderBy('id', 'DESC','Publish','Yes')->first();
+                        $notice = Notice::orderBy('id', 'DESC')->where('Publish','Yes')->first();
+                        // dd($notice);
                         $studentlist = Role::where('slug', 'student')->first()->users()->get()->count();
                         $teacherlist = Role::where('slug', 'teacher')->first()->users()->get()->count();
                         $subjectlist = Subject::get()->count();
@@ -73,7 +74,7 @@ class HomeController extends Controller
                     elseif($role->id == 2)
                     {
                         // dd($role);
-                        $notice = Notice::orderBy('id', 'DESC','Publish','Yes')->first();
+                        $notice = Notice::orderBy('id', 'DESC')->where('Publish','Yes')->first();
                         $user_id = auth()->user()->id;
                         $profile = Profile::where('user_id', $user_id)->first();
 
@@ -82,7 +83,7 @@ class HomeController extends Controller
                     elseif($role->id==3)
                     {
                         // $notice = Notice::all();
-                        $notice = Notice::orderBy('id', 'DESC','Publish','Yes')->first();
+                        $notice = Notice::orderBy('id', 'DESC')->where('Publish','Yes')->first();
                         $user_id = auth()->user()->id;
                         $profile = Profile::where('user_id', $user_id)->first();
 

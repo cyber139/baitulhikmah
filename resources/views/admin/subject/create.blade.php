@@ -13,7 +13,8 @@
           <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
               <li class="breadcrumb-item"><a href="{{route('home')}}">Home</a></li>
-              <li class="breadcrumb-item active">Create Notice</li>
+              <li class="breadcrumb-item"><a href="{{route('subject.index')}}">Subject</a></li>
+              <li class="breadcrumb-item active">Create New Subject</li>
             </ol>
           </div>
         </div>
@@ -24,7 +25,7 @@
     <section class="content col-lg-10 m-auto pb-1">
       <div class="card card-primary">
         <div class="card-header">
-          <h3 class="card-title">Create New Notice</h3>
+          <h3 class="card-title">Create New Subject</h3>
         </div>
         <!-- /.card-header -->
         <!-- form start -->
@@ -35,10 +36,10 @@
               <label for="subject_title">Subject Title</label>
               <input type="text" class="form-control" placeholder="Enter ..." name="subject_title" id="subject_title" aria-describedby="">
             </div>
-            <div class="form-group">
+            {{-- <div class="form-group">
               <label for="subject_title">Subject Slug</label>
               <input type="text" class="form-control" placeholder="Enter ..." name="subject_slug" id="subject_slug" aria-describedby="">
-            </div>
+            </div> --}}
             {{-- <div class="form-group">
               <label>Body</label>
               <textarea class="form-control" rows="3" placeholder="Enter ..."></textarea>
@@ -78,7 +79,7 @@
                 <option value="No">No</option>
               </select>
             </div>
-            <div class="form-group">
+            {{-- <div class="form-group">
               <label>IsActive</label>
               <select class="form-control" name="isActive" id="isActive">
                 <option value="Yes" selected='selected'>Yes</option>
@@ -91,7 +92,7 @@
                 <option value="No" selected='selected'>No</option>
                 <option value="Yes">Yes</option>
               </select>
-            </div>
+            </div> --}}
             {{-- <div class="form-check">
               <input type="checkbox" class="form-check-input" id="exampleCheck1">
               <label class="form-check-label" for="exampleCheck1">Check me out</label>

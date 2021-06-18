@@ -51,22 +51,22 @@ class SubjectController extends Controller
 
         $inputs = request()->validate([
             'subject_title'=>'required|max:255',
-            'subject_slug'=>'required|max:255',
+            // 'subject_slug'=>'required|max:255',
             'publish'=>'required',
-            'isActive'=>'required',
-            'isDelete'=>'required'
         ]);
 
-        $subject = Subject::create([
+        $inputs = Subject::create([
             'subject_title' => $inputs['subject_title'],
-            'subject_slug' => $inputs['subject_slug'],
+            'subject_slug' => strtolower(preg_replace('/\s*/', '', $inputs['subject_title'])),
             'publish' => $inputs['publish'],
-            'isActive'=>$inputs['isActive'],
-            'isDelete'=>$inputs['isDelete']
+            'isActive'=>"Yes",
+            'isDelete'=>"No"
         ]);
         
 
         // return back();
+        session()->flash('subject-created-message', 'New Subject was created : '. $inputs['subject_title']);
+
         return redirect()->route('subject.index');
 
 
@@ -109,7 +109,7 @@ class SubjectController extends Controller
         //
         $inputs = request()->validate([
             'subject_title'=>'required|max:255',
-            'subject_slug'=>'required|max:255',
+            // 'subject_slug'=>'required|max:255',
             'publish'=>'required',
             'isActive'=>'required',
             'isDelete'=>'required'
@@ -125,13 +125,15 @@ class SubjectController extends Controller
 
         $subject = Subject::find($id);
         $subject->subject_title = $inputs['subject_title'];
-        $subject->subject_slug = $inputs['subject_slug'];
+        $subject->subject_slug =  strtolower(preg_replace('/\s*/', '', $inputs['subject_title']));
         $subject->publish = $inputs['publish'];
         $subject->isActive = $inputs['isActive'];
         $subject->isDelete = $inputs['isDelete'];
         $subject->save();
 
         // return back();
+        session()->flash('subject-updated-message', 'Subject was updated : '. $inputs['subject_title']);
+
         return redirect()->route('subject.index');
     }
 
@@ -148,7 +150,7 @@ class SubjectController extends Controller
 
         $subject->delete();
 
-        $request->session()->flash('message', 'Post was deleted');
+        $request->session()->flash('subject-deleted-message', 'Subject was deleted');
 
         return back();
     }

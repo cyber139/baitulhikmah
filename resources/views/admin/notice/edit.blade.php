@@ -44,7 +44,7 @@
               <div class="pad">
                 <div class="mb-3">
                   <textarea class="textarea" placeholder="Place some text here" style="width: 100%; height: 500px; font-size: 14px; line-height: 18px; border: 1px solid #dddddd; padding: 10px;" name="body" id="body" >
-                    {{$notice->body}}
+                    {!!$notice->body!!}
                   </textarea>
                 </div>
                 <p class="text-sm mb-0">
@@ -56,7 +56,37 @@
             
             <div class="form-group">
               {{-- <div><img height="100px" src="{{$notice->post_image}}" alt=""></div> --}}
-              <div><img class="card-img-top" height=100px; width=auto; src="{{$notice->post_image}}" alt="Image" style="height: 100px;width: auto;"></div>
+              {{-- <div><img class="card-img-top" height=100px; width=auto; src="{{$notice->post_image}}" alt="Image" style="height: 100px;width: auto;"></div> --}}
+              @php
+              //  $file_download = $submission->offsetUnset('file');;
+              $file_download = $notice->getAttributes()['post_image'];
+              $file_download = substr($file_download,11);
+                  // dd($submission->getAttributes()['file']);
+                  @endphp
+                  {{-- {{$file_download}} --}}
+                  
+                  @php
+                  // dd(substr($notice->post_image,-3));
+                  $type = substr($notice->post_image,-3);
+                  //  $file_download = $submission->offsetUnset('file');;
+                  $file_download = $notice->getAttributes()['post_image'];
+                  $file_download = substr($file_download,11);
+                  
+                  
+                  @endphp
+                      {{-- {{$file_download}} --}}
+                      
+                  @if ($notice->post_image != null)
+                  
+                    @if($type=="pdf") 
+                    <iframe src="{{$notice->post_image}}" height="auto" width="auto" class="col-lg-12" style="width: 30%"></iframe><br><br>
+                    {{-- <a class="btn btn-info " href="{{$notice->post_image}}" target="_blank"><i class="fas fa-eye"></i>  View File</a> --}}
+                    @else
+                    <img class="card-img-top " src="{{$notice->post_image}}" alt="{{$notice->title}}" style="width: 50%"><br><br>
+                    @endif
+                  @else
+                      
+                  @endif
               <label for="File">File input</label>
               <div class="input-group">
                 <div class="custom-file">
@@ -73,9 +103,13 @@
             <div class="form-group">
               <label>Publish</label>
               <select class="form-control" name="publish" id="publish">
-                <option value="{{$notice->publish}}" selected='selected'>{{$notice->publish}}</option>
-                <option value="Yes">Yes</option>
-                <option value="No">No</option>
+                @if ($notice->publish =="Yes")
+                <option value={{$notice->publish}} selected>{{ $notice->publish }}</option>
+                <option value="No" @if (old('publish') == "No") {{ 'selected' }} @endif>No</option> 
+                @else
+                    <option value={{$notice->publish}} selected>{{ $notice->publish }}</option>
+                    <option value="Yes" @if (old('publish') == "Yes") {{ 'selected' }} @endif>Yes</option>
+                @endif
               </select>
             </div>
             {{-- <div class="form-check">

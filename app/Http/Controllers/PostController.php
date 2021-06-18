@@ -25,9 +25,7 @@ class PostController extends Controller
      */
     public function index($id)
     {
-        // dd($id);
-        //
-       
+
         $user_id = auth()->user()->id;
         $profile = Profile::where('user_id', $user_id)->first();
 

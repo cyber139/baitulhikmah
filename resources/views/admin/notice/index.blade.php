@@ -32,6 +32,7 @@
               <h3 class="card-title">Notice Post</h3>
               <a href="{{url('/admin/notice/create')}}" class="nav-link btn btn-sm btn-primary float-right"> <i class="fas fa-plus-circle"></i> Add Post</a>
             </div>
+            {{-- MESSAGE UPDATED --}}
             @if(session('message'))
             {{-- <div class="col-lg-10 m-auto alert alert-danger">{{session('message')}}</div> --}}
 

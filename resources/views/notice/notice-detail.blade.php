@@ -15,7 +15,7 @@
             <ol class="breadcrumb float-sm-right">
               <li class="breadcrumb-item"><a href="{{route('home')}}">Home</a></li>
               <li class="breadcrumb-item"><a href="{{route('notice')}}">Notice</a></li>
-              <li class="breadcrumb-item active">Notice Detail</li>
+              <li class="breadcrumb-item active">{{$notice->title}}</li>
             </ol>
           </div>
         </div>
@@ -40,9 +40,41 @@
         <div class="card-body text-center">
           
           <p class="card-text">{!! $notice->body !!}</p>
-          <a href="{{$notice->post_image}}" data-toggle="lightbox" data-title="{{$notice->title}}">
-            <img class="img-fluid mb-2" src="{{$notice->post_image}}" alt="Image" style="height: 500px; width: auto;" >
-          </a>
+          <br><br>
+          @php
+          //  $file_download = $submission->offsetUnset('file');;
+          $file_download = $notice->getAttributes()['post_image'];
+          $file_download = substr($file_download,11);
+              // dd($submission->getAttributes()['file']);
+              @endphp
+              {{-- {{$file_download}} --}}
+              
+              @php
+              // dd(substr($notice->post_image,-3));
+              $type = substr($notice->post_image,-3);
+              //  $file_download = $submission->offsetUnset('file');;
+              $file_download = $notice->getAttributes()['post_image'];
+              $file_download = substr($file_download,11);
+              
+              
+              @endphp
+                  {{-- {{$file_download}} --}}
+                  
+              @if ($notice->post_image != null)
+              
+                @if($type=="pdf") 
+                <iframe src="{{$notice->post_image}}" height="600px" width="200px" class="col-lg-12" style="width: 100%"></iframe><br><br>
+                @else
+                <img class="card-img-top " src="{{$notice->post_image}}" alt="{{$notice->title}}" style="width: 100%"><br><br>
+                @endif
+              <a class="btn btn-info " href="{{$notice->post_image}}" target="_blank"><i class="fas fa-eye"></i>  View File</a>
+              @else
+                  
+              @endif
+          {{-- <a href="{{$notice->post_image}}" data-toggle="lightbox" data-title="{{$notice->title}}">
+           
+          </a> --}}
+
                 {{-- <p class="card-text">{{($notice->body)}}</p> --}}
                 {{-- <p class="card-text">{{Str::limit($notice->body, '50', '.....')}}</p> --}}
                 {{-- <a href="{{route('home', $notice->id)}}" class="btn btn-primary">Read More &rarr;</a> --}}
