@@ -1320,6 +1320,22 @@ a img.aligncenter {
 /*------------------------------------------------------------------
     TESTIMONIALS
 -------------------------------------------------------------------*/
+@media only screen and (max-width: 300px){
+    .logos img {
+        margin: auto;
+        display: block;
+        text-align: center;
+        width: 100%;
+        opacity: 0.3;
+        max-height:56px;
+    }
+
+    .logo h1{
+        padding: 0 0 0 0;
+       margin: 0;
+    }
+}
+
 
 .logos img {
     margin: auto;
@@ -2398,7 +2414,6 @@ select.mobile-device {
 }
 
 
-/*# sourceMappingURL=bootstrap-select.css.map */
 
 .bootstrap-select > .btn {
     background: rgba(0, 0, 0, 0) none repeat scroll 0 0;
@@ -2488,13 +2503,12 @@ select.mobile-device {
     font-weight: 400;
     font-size: 20px;
     text-transform: capitalize;
-    line-height: !important;
 }
 
 .footer {
     padding: 90px 0 80px !important;
     color: #cccccc;
-	background:darkred url('images/world-map.png') no-repeat center; 
+	background:darkred; 
 }
 
 .footer .widget-title {
@@ -2777,7 +2791,7 @@ select.mobile-device {
     margin: 0;
     font-weight: 300;
     padding: 4px 0 0;
-    line-height: 1 !important:
+    line-height: 1 !important;
 }
 
 #preloader {
@@ -3692,7 +3706,6 @@ a.link-style3 {
 	border: none;
 	border-bottom: 1px solid #efefef;
 }
-.post-btn{}
 .post-btn button.hover-btn-new::before, .post-btn button.hover-btn-new::after {
     background: #eea412;
     content: '';
@@ -3840,7 +3853,6 @@ a.link-style3 {
 .course-item{
 	background: #ffffff;
 }
-.course-item{}
 .course-title > h2 {
     margin: 15px 0;
     padding: 0px;

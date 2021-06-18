@@ -15,30 +15,26 @@
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato:100,300,400,700">
 
     <!-- Styles -->
-    {{-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous"> --}}
-    {{-- <link href="{{ elixir('css/app.css') }}" rel="stylesheet"> --}}
-
-
 
     <!-- Site Icons -->
     <link rel="shortcut icon" href="{{asset('images/favicon.ico')}}" type="image/x-icon" />
     <link rel="apple-touch-icon" href="{{asset('images/apple-touch-icon.png')}}">
     
     <!-- Theme style -->
-    <link rel="stylesheet" href="{{asset('dist/css/adminlte.css')}}">
+    <link rel="stylesheet" href="{{asset('../../dist/css/adminlte.css')}}">
     <!-- Bootstrap CSS -->
-    <link rel="stylesheet" href="{{asset('css/bootstrap.min.css')}}">
+    <link rel="stylesheet" href="{{asset('../../css/bootstrap.min.css')}}">
     <!-- Site CSS -->
-    <link rel="stylesheet" href="{{asset('css/style.css')}}">
+    <link rel="stylesheet" href="{{asset('../../css/style.css')}}">
     <!-- ALL VERSION CSS -->
-    <link rel="stylesheet" href="{{asset('css/versions.css')}}">
+    <link rel="stylesheet" href="{{asset('../../css/versions.css')}}">
     <!-- Responsive CSS -->
-    <link rel="stylesheet" href="{{asset('css/responsive.css')}}">
+    <link rel="stylesheet" href="{{asset('../../css/responsive.css')}}">
     <!-- Custom CSS -->
-    <link rel="stylesheet" href="{{asset('css/custom.css')}}">
+    <link rel="stylesheet" href="{{asset('../../css/custom.css')}}">
 
     <!-- Modernizer for Portfolio -->
-    <script src="{{asset('js/modernizer.j')}}s"></script>
+    <script src="{{asset('../../js/modernizer.j')}}s"></script>
 </head>
 <body  class="host_version">
 
@@ -54,16 +50,17 @@
     
     <!-- Start header -->
 	<header class="top-navbar">
-		<nav class="navbar navbar-expand-lg navbar-light bg-light">
+		<nav class="navbar navbar-expand-lg navbar-light bg-light logo">
 			<div class="container-fluid">
 				{{-- <a class="navbar-brand" href="index.html">
 					<img src="{{url('smartedu/images/logo.png')}}" alt="" />
                 </a> --}}
                 <a href="{{url('/')}}" class="brand-link" style="color:white;">
-                    <img src="{{asset('images/logo.png')}}" alt="Baitul-Hikmah Logo" class="brand-image img-circle elevation-5" style="opacity: 1.8;max-height:56px;">
+                    <img src="{{asset('images/logo.png')}}" alt="Baitul-Hikmah Logo" class="brand-image img-circle elevation-5" style="opacity: 1.8;">
                     {{-- <span class="brand-text font-weight-light"><b>BAITUL</b> HIKMAH</span> --}}
-                    <h1 ><a class="text-light" href="{{url('/')}}"><b>BAITUL</b> HIKMAH</a></h1>
-                  </a>
+                    {{-- <h1><a class="text-light" href="{{url('/')}}"><b>BAITUL</b> HIKMAH</a></h1> --}}
+                </a>
+                <h1 class="py-3"><a class="text-light" href="{{url('/')}}" ><b>BAITUL</b> HIKMAH</a></h1>
 				<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbars-host" aria-controls="navbars-rs-food" aria-expanded="false" aria-label="Toggle navigation">
 					<span class="icon-bar"></span>
                     <span class="icon-bar"></span>
@@ -125,10 +122,10 @@
     <a href="#" id="scroll-to-top" class="dmtop global-radius"><i class="fa fa-angle-up"></i></a>
 
     <!-- ALL JS FILES -->
-    <script src="{{asset('js/all.js')}}"></script>
+    <script src="{{asset('../../js/all.js')}}"></script>
     <!-- ALL PLUGINS -->
-    <script src="{{asset('js/custom.js')}}"></script>
-	<script src="{{asset('js/timeline.min.js')}}"></script>
+    <script src="{{asset('../../js/custom.js')}}"></script>
+	<script src="{{asset('../../js/timeline.min.js')}}"></script>
 	<script>
 		timeline(document.querySelectorAll('.timeline'), {
 			forceVerticalMode: 700,

@@ -221,7 +221,7 @@
                           <h3>Our Location</h3>
                       </div>
                       {{-- <p> Integer rutrum ligula eu dignissim laoreet. Pellentesque venenatis nibh sed tellus faucibus bibendum. Sed fermentum est vitae rhoncus molestie. Cum sociis natoque penatibus et magnis dis montes.</p>    --}}
-                      <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3984.958939292839!2d101.72967061484223!3d2.828105697939936!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x31cdc711a29086e1%3A0xb56fd04f52e44532!2sKafai%20Baitulhikmah%20Taman%20Seroja!5e0!3m2!1sen!2smy!4v1610743519141!5m2!1sen!2smy" width="400" height="200" frameborder="0" style="border:0;" allowfullscreen="" aria-hidden="false" tabindex="0"></iframe>
+                      <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3984.958939292839!2d101.72967061484223!3d2.828105697939936!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x31cdc711a29086e1%3A0xb56fd04f52e44532!2sKafai%20Baitulhikmah%20Taman%20Seroja!5e0!3m2!1sen!2smy!4v1610743519141!5m2!1sen!2smy" width="330" height="200" frameborder="0" style="border:0;" allowfullscreen="" aria-hidden="false" tabindex="0"></iframe>
 
                       <div class="footer-right">
                         <ul class="footer-links-soi">
