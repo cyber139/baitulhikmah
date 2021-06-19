@@ -13,12 +13,28 @@
           <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
               <li class="breadcrumb-item"><a href="{{route('home')}}">Home</a></li>
-              <li class="breadcrumb-item active">Edit</li>
+              <li class="breadcrumb-item"><a href="{{ route('submission.index') }}">Submission List</a></li>
+              <li class="breadcrumb-item active">{{$submission->title}}</li>
             </ol>
           </div>
         </div>
       </div><!-- /.container-fluid -->
     </section>
+
+    @if(session('submission-updated-message'))
+      <div class="card alert alert-success col-lg-10 mx-auto my-4">
+        <div class="card-header">
+          <h3 class="card-title ">{{session('submission-updated-message')}}</h3>
+          <div class="card-tools">
+              <button type="button" class="btn btn-tool" data-card-widget="remove" data-toggle="tooltip" title="Remove">
+                <i class="fas fa-times"></i></button>
+            </div>
+        </div>
+      </div>
+
+    @endif
+
+    
 
     <!-- Main content -->
     <section class="content col-lg-10 m-auto">

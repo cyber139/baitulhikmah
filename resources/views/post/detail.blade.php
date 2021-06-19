@@ -67,7 +67,7 @@
                       
                     @if ($post->post_image != null)
                     
-                      @if($type=="pdf") 
+                      @if($type=="pdf" || $type=="mp4") 
                       <iframe src="{{$post->post_image}}" height="600px" width="200px" class="col-lg-12" style="width: 50%"></iframe>
                       <br><br>
                       <a class="btn btn-info btn-sm float-right mx-1" href="{{$post->post_image}}" target="_blank"><i class="fas fa-eye"></i>  View File</a>
@@ -80,6 +80,8 @@
                     @endif
 
                   @endif
+
+                  <iframe src="{{$post->post_image}}" height="600px" width="200px" class="col-lg-12" style="width: 50%"></iframe>
 
              
            <br><br>

@@ -59,6 +59,8 @@
                       <th>Title</th>
                       <th>Student</th>
                       <th>File Name</th>
+                      <th>Marks</th>
+                      <th>Edit Marks</th>
                       <th>Download</th>
                       <th>View</th>
                     </tr>
@@ -71,7 +73,7 @@
                         <a href="{{route('post.detail',$submission->posts->id)}}"> {{$submission->posts->title}}</a>     
                       </td>
                       <td>                        
-                        <a href="{{route('submission.detail',$submission->id)}}"> {{$submission->title}}</a>                      
+                        <a href="{{$submission->file}}" target="_blank">{{$submission->title}}</a>                      
                       </td> 
                       <td>
                         {{$student->username}}                   
@@ -90,10 +92,25 @@
                        {{$file_download}}
                       </td>
                       <td>
+                        <form role="form" method="post" action="{{route('submission.teacherMark',$submission->id)}}" enctype="multipart/form-data">
+                          @csrf
+                            <div class="form-group">
+                              <input type="text" class="form-control"  name="mark" id="mark" aria-describedby="" value="{{$submission->mark}}">
+                            </div>
+                            
+                      </td>
+                      <td>
+                        <div class="text-center">
+                          <button type="submit" class="btn btn-primary btn-sm mb-2 ">Submit</button>
+                        </div>
+                      </form>
+                        {{-- <a class="btn btn-success btn-sm mb-2" href="{{route('submission.download',$file_download)}}"><i class="fas fa-download"></i>  Download</a> --}}
+                      </td>
+                      <td>
                         <a class="btn btn-success btn-sm mb-2" href="{{route('submission.download',$file_download)}}"><i class="fas fa-download"></i>  Download</a>
                       </td>
                       <td>
-                        <a class="btn btn-info btn-sm mb-2" href="{{$submission->file}}" target="_blank"><i class="fas fa-eye"></i>  View</a>
+                        <a class="btn btn-info btn-sm mb-2" href="{{route('submission.detail',$submission->id)}}" target="_blank"><i class="fas fa-eye"></i>  View</a>
                       </td>                   
                     </tr>
                     @endforeach   
@@ -105,6 +122,8 @@
                       <th>Title</th>
                       <th>Student</th>
                       <th>File Name</th>
+                      <th>Marks</th>
+                      <th>Edit</th>
                       <th>Download</th>
                       <th>View</th>
                     </tr>

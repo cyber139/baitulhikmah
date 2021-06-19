@@ -58,6 +58,7 @@
                       <th>Title</th>
                       <th>Post</th>
                       <th>File Name</th>
+                      <th>Mark</th>
                       <th>Download</th>
                       <th>View</th>
                       <th>Edit</th>
@@ -82,16 +83,25 @@
                         $file_download = substr($file_download,11);
                             // dd($submission->getAttributes()['file']);
                         @endphp
-                       {{$file_download}}
+                       <a href="{{$submission->file}}" target="_blank">  {{$file_download}}</a>
+                      </td>
+                      <td>
+                         {{$submission->mark}}
                       </td>
                       <td>
                         <a class="btn btn-success btn-sm mb-2" href="{{route('submission.download',$file_download)}}"><i class="fas fa-download"></i>  Download</a>
                       </td>
                       <td>
-                        <a class="btn btn-info btn-sm mb-2" href="{{$submission->file}}" target="_blank"><i class="fas fa-eye"></i>  View</a>
+                        <a class="btn btn-info btn-sm mb-2" href="{{route('submission.detail',$submission->id)}}" target="_blank"><i class="fas fa-eye"></i>  View</a>
                       </td>
                       <td>
+                        @if ($submission->mark != null)
+                        <a class="btn btn-warning btn-sm mb-2 disabled" href="{{route('submission.edit',$submission->id)}}"><i class="fas fa-user-edit"></i> Edit</a>
+                            
+                        @else
                         <a class="btn btn-warning btn-sm mb-2" href="{{route('submission.edit',$submission->id)}}"><i class="fas fa-user-edit"></i> Edit</a>
+                            
+                        @endif
                       </td>                      
                     </tr>
                     @endforeach
@@ -102,6 +112,7 @@
                       <th>Title</th>
                       <th>Post</th>
                       <th>File Name</th>
+                      <th>Mark</th>
                       <th>Download</th>
                       <th>View</th>
                       <th>Edit</th>

@@ -103,6 +103,8 @@ Route::middleware('auth')->group(function(){
     Route::get('teacher/{post}/submission/all', 'SubmissionController@teacherIndex')->name('submission.teacherIndex');
     Route::get('teachers/{id}/submission/all', 'SubmissionController@IndexByPost')->name('submission.IndexByPost');
     Route::get('teacher/submission/all', 'SubmissionController@IndexAll')->name('submission.teacherAll');
+    Route::post('student/submission/{submission}/mark', 'SubmissionController@mark')->name('submission.teacherMark');
+
 
     
     // // STUDENT

@@ -257,6 +257,7 @@ class SubmissionController extends Controller
 
         $body = $input['body'];
         $dom = new \domdocument();
+        libxml_use_internal_errors(true);
         $dom->loadHtml($body, LIBXML_HTML_NOIMPLIED | LIBXML_HTML_NODEFDTD);
         $images = $dom->getelementsbytagname('img');
       
@@ -315,6 +316,23 @@ class SubmissionController extends Controller
         // $submission->teacher_id = $submission->teacher_id;
         // $submission->student_id = $submission->student_id;
         // $submission->post_id = $submission->post_id;
+        $submission->save();
+
+        session()->flash('submission-updated-message', 'Submission was updated : '. $input['title']);
+
+        return redirect()->back();
+        
+    }
+    public function mark(Submission $submission)
+    {
+        // dd($submission);
+        $input = request()->validate([
+            'mark'=>'required|max:255',
+
+        ]);
+        
+        $submission->mark = $input['mark'];
+        
         $submission->save();
         return redirect()->back();
         

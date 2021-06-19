@@ -58,6 +58,8 @@
                       <th>Title</th>
                       <th>Username</th>
                       <th>File Name</th>
+                      <th>Marks</th>
+                      <th>Edit</th>
                       <th>Download</th>
                       <th>View</th>
                     </tr>
@@ -105,6 +107,8 @@
                       <th>Title</th>
                       <th>Post</th>
                       <th>File Name</th>
+                      <th>Marks</th>
+                      <th>Edit</th>
                       <th>Download</th>
                       <th>View</th>
                     </tr>

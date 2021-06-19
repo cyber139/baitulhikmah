@@ -13,7 +13,8 @@
           <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
               <li class="breadcrumb-item"><a href="{{route('home')}}">Home</a></li>
-              <li class="breadcrumb-item active">Dashboard</li>
+              <li class="breadcrumb-item"><a href="{{ url()->previous() }}">Submission List</a></li>
+              <li class="breadcrumb-item active">{{$submission->title}}</li>
             </ol>
           </div>
         </div>
@@ -31,16 +32,75 @@
           <p class="card-text">{!!$submission->body!!}</p>
             {{-- <img class="card-img-top" src="{{$post->post_image}}" alt="Card image cap"> --}}
                 {{-- <p class="card-text">{{($post->body)}}</p> --}}
-                @if ($submission->file != null)
-                <iframe src="{{$submission->file}}" height="600px" width="900px" class="col-lg-12"></iframe>
-                @else
+                @if ($submission->file == null)
+                  <div><img class="card-img-top" height=100px; width=auto; src="http://placehold.it/350x150.jpg&text=No+Image+Uploaded" alt="Image" style="height: 100px;width: auto;"></div>
+                  
+                  @else
+
+                    @php
+                      $file_download = $submission->getAttributes()['file'];
+                      $file_download = substr($file_download,11);
+                    @endphp
+                  
+                    @php
+                      $type = substr($submission->file,-3);
+                      $file_download = $submission->getAttributes()['file'];
+                      $file_download = substr($file_download,11);
+                    @endphp
+                      
+                    @if ($submission->file != null)
                     
-                @endif
+                      @if($type=="pdf" || $type=="mp4") 
+                      <iframe src="{{$submission->file}}" height="600px" width="200px" class="col-lg-12" style="width: 100%%"></iframe>
+                      <br><br>
+                      <a class="btn btn-info btn-sm float-right mx-1" href="{{$submission->file}}" target="_blank"><i class="fas fa-eye"></i>  View File</a>
+                      @else
+                      <a href="{{$submission->file}}" data-toggle="lightbox" data-title="{{$submission->title}}">
+                        <img class="img-fluid mb-2 " src="{{$submission->file}}" alt="{{$submission->title}}" style="height: 300px; width: auto;">
+                      </a>
+                      <br><br>
+                      @endif
+                    @endif
+
+                  @endif
+
+
         </div>
         <div class="card-footer text-muted">
           
         </div>
       </div>
+      @if ($role_id == 1)
+      @elseif($role_id == 2)
+      <div class="card">
+        <div class="card-header">
+          <h3 class="card-title">Mark</h3>
+        </div>
+        <div class="card-body col-lg-8 m-auto">
+          <form role="form" method="post" action="{{route('submission.teacherMark',$submission->id)}}" enctype="multipart/form-data">
+            @csrf
+              <div class="form-group row">
+                <input type="text" class="form-control col-lg-8 mx-2"  name="mark" id="mark" aria-describedby="" value="{{$submission->mark}}">
+              
+                <button type="submit" class="col-lg-2 btn btn-primary btn-sm  float right ">Submit</button>
+              </div>
+            </form>
+        </div>
+        <div class="card-footer text-muted">
+          
+        </div>
+      </div>
+      @else
+      <div class="card">
+        <div class="card-header">
+          <h3 class="card-title">Mark : {{$submission->mark}}</h3>
+        </div>
+        <div class="card-footer text-muted">
+          
+        </div>
+      </div>
+      @endif  
+
 
       <div id="disqus_thread"></div>
       <script>
