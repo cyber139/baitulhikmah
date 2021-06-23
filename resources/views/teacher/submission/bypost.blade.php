@@ -95,7 +95,7 @@
                         <form role="form" method="post" action="{{route('submission.teacherMark',$submission->id)}}" enctype="multipart/form-data">
                           @csrf
                             <div class="form-group">
-                              <input type="text" class="form-control"  name="mark" id="mark" aria-describedby="" value="{{$submission->mark}}">
+                              <input type="text" class="form-control"  name="mark" id="mark" aria-describedby="" value="{{$submission->mark}}" required>
                             </div>
                             
                       </td>

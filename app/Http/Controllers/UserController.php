@@ -4,8 +4,14 @@ namespace App\Http\Controllers;
 
 use App\User;
 use App\Role;
+use App\Student;
+use App\Grade;
+use App\Teacher;
+use App\Profile;
+use App\Post;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 
 class UserController extends Controller
@@ -15,9 +21,110 @@ class UserController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+
+    public function teacherList()
     {
-        //
+        $users = Role::where('slug', 'teacher')->first()->users()->get();
+        $user_id = auth()->user()->id;
+        $profile = Profile::where('user_id', $user_id)->first();
+        $user_roles = User::with('roles')->where('id', $user_id)->get();
+    
+
+        foreach($user_roles as $user){
+            foreach($user->roles as $role){
+                $role_id = $role->id;
+            }
+        }
+        return view('user.teacher',['users'=>$users,'profile'=>$profile,'role_id'=>$role_id]);
+
+    }
+
+    public function teacherDetail(User $user)
+    {
+
+        $profile = Profile::where('user_id', $user->id)->first();
+        $selectClassSubjects = Grade::with('subjects')->get();
+        $selectAssign = Teacher::where('user_id',$user->id)->get();
+
+        // dd($selectAssign);
+
+
+       
+        
+        $user_id = auth()->user()->id;
+        $user_roles = User::with('roles')->where('id', $user_id)->get();
+
+
+        foreach($user_roles as $users){
+            foreach($users->roles as $role){
+                $role_id = $role->id;
+            }
+        }
+
+        
+        return view('user.teacherDetail',['user'=>$user,'profile'=>$profile,'role_id'=>$role_id,'selectClassSubjects'=>$selectClassSubjects,'selectAssign'=>$selectAssign]);
+
+
+    }
+
+    public function studentList()
+    {
+        $users = Role::where('slug', 'student')->first()->users()->get();
+        $user_id = auth()->user()->id;
+        $profile = Profile::where('user_id', $user_id)->first();
+        $user_roles = User::with('roles')->where('id', $user_id)->get();
+        $studentList = Student::all();
+        $gradeList = Grade::all();
+    
+
+        foreach($user_roles as $user){
+            foreach($user->roles as $role){
+                $role_id = $role->id;
+            }
+        }
+        return view('user.student',['users'=>$users,'profile'=>$profile,'role_id'=>$role_id,'studentList'=>$studentList,'gradeList'=>$gradeList]);
+
+    }
+
+    public function studentDetail(User $user)
+    {
+
+
+        $profile = Profile::where('user_id', $user->id)->first();
+
+
+
+
+        
+        // dd($user);
+        
+        // $gradeList =Grade::all();
+        // $selectRoles = Role::all();
+        // $userProfile = Profile::where('user_id', $user->id)->first();
+        $studentClass = Student::where('user_id', $user->id)->first();
+        // dd($studentClass);
+        
+        $user_id = auth()->user()->id;
+        $user_roles = User::with('roles')->where('id', $user_id)->get();
+
+
+        foreach($user_roles as $users){
+            foreach($users->roles as $role){
+                $role_id = $role->id;
+            }
+        }
+
+        if($studentClass != null){
+        $class = Grade::where('id', $studentClass->grade_id)->first();
+        }
+        else{
+            $class = null;
+        }
+        // dd($user);
+        
+        // return view('user.studentDetail',['user'=>$user,'selectRoles'=>$selectRoles,'profile'=>$profile,'userProfile'=>$userProfile,'gradeList'=>$gradeList,'studentClass'=>$studentClass,'class'=>$class,'role_id'=>$role_id]);
+        return view('user.studentDetail',['user'=>$user,'profile'=>$profile,'role_id'=>$role_id,'class'=>$class,'studentClass'=>$studentClass]);
+   
 
     }
 

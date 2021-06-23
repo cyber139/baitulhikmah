@@ -33,11 +33,11 @@
           <div class="card-body">
             <div class="form-group">
               <label for="title">Title</label>
-              <input type="text" class="form-control" placeholder="Enter ..." name="title" id="title" aria-describedby="">
+              <input type="text" class="form-control" placeholder="Enter ..." name="title" id="title" aria-describedby="" required>
             </div>
             <div class="form-group">
               <label for="description">Description</label>
-              <input type="text" class="form-control" placeholder="Enter ..." name="description" id="description" aria-describedby="">
+              <input type="text" class="form-control" placeholder="Enter ..." name="description" id="description" aria-describedby="" required>
             </div>
             {{-- <div class="form-group">
               <label>Body</label>
@@ -47,7 +47,7 @@
               <label>Body</label>
               <div class="pad">
                 <div class="mb-3">
-                  <textarea class="textarea" placeholder="Place some text here" style="width: 100%; height: 500px; font-size: 14px; line-height: 18px; border: 1px solid #dddddd; padding: 10px;" name="body" id="body">
+                  <textarea class="textarea" placeholder="Place some text here" style="width: 100%; height: 500px; font-size: 14px; line-height: 18px; border: 1px solid #dddddd; padding: 10px;" name="body" id="body" required>
                   </textarea>
                 </div>
                 <p class="text-sm mb-0">
@@ -73,7 +73,7 @@
             
             <div class="form-group">
               <label>Publish</label>
-              <select class="form-control" name="publish" id="publish">
+              <select class="form-control" name="publish" id="publish" required>
                 <option value="Yes" selected='selected'>Yes</option>
                 <option value="No">No</option>
               </select>

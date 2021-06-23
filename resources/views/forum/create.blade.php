@@ -1,4 +1,6 @@
-@extends('layouts.admin')
+
+  @extends('layouts.master')
+
 
 @section('content')
   <!-- Content Wrapper. Contains page content -->
@@ -8,12 +10,12 @@
       <div class="container-fluid">
         <div class="row mb-2">
           <div class="col-sm-6">
-            <h1>Create New Forum</h1>
+            <h1>Create New Forum/Report</h1>
           </div>
           <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
               <li class="breadcrumb-item"><a href="{{route('home')}}">Home</a></li>
-              <li class="breadcrumb-item active">Create Forum</li>
+              <li class="breadcrumb-item active">Create /Report</li>
             </ol>
           </div>
         </div>
@@ -24,7 +26,7 @@
     <section class="content col-lg-10 m-auto pb-1">
       <div class="card card-primary">
         <div class="card-header">
-          <h3 class="card-title">Create New Forum</h3>
+          <h3 class="card-title">Create New Forum/Report</h3>
         </div>
         <!-- /.card-header -->
         <!-- form start -->
@@ -33,7 +35,7 @@
           <div class="card-body">
             <div class="form-group">
               <label for="title">Title</label>
-              <input type="text" class="form-control" placeholder="Enter ..." name="title" id="title" aria-describedby="">
+              <input type="text" class="form-control" placeholder="Enter ..." name="title" id="title" aria-describedby="" required>
             </div>
             {{-- <div class="form-group">
               <label>Body</label>
@@ -43,7 +45,7 @@
               <label>Body</label>
               <div class="pad">
                 <div class="mb-3">
-                  <textarea class="textarea" placeholder="Place some text here" style="width: 100%; height: 500px; font-size: 14px; line-height: 18px; border: 1px solid #dddddd; padding: 10px;" name="body" id="body">
+                  <textarea class="textarea" placeholder="Place some text here" style="width: 100%; height: 500px; font-size: 14px; line-height: 18px; border: 1px solid #dddddd; padding: 10px;" name="body" id="body" required>
                   </textarea>
                 </div>
                 <p class="text-sm mb-0">
@@ -69,7 +71,7 @@
             
             <div class="form-group">
               <label>Publish</label>
-              <select class="form-control" name="publish" id="publish">
+              <select class="form-control" name="publish" id="publish" required>
                 <option value="Yes" selected='selected'>Yes</option>
                 <option value="No">No</option>
               </select>

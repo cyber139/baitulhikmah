@@ -80,7 +80,7 @@
           <form role="form" method="post" action="{{route('submission.teacherMark',$submission->id)}}" enctype="multipart/form-data">
             @csrf
               <div class="form-group row">
-                <input type="text" class="form-control col-lg-8 mx-2"  name="mark" id="mark" aria-describedby="" value="{{$submission->mark}}">
+                <input type="text" class="form-control col-lg-8 mx-2"  name="mark" id="mark" aria-describedby="" value="{{$submission->mark}}" required>
               
                 <button type="submit" class="col-lg-2 btn btn-primary btn-sm  float right ">Submit</button>
               </div>

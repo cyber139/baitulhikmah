@@ -84,7 +84,7 @@
 					<ul class="nav navbar-nav navbar-right">
                         @if (Auth::guest())
                         <li class="px-1"><a class="hover-btn-new log orange" href="{{url('/login')}}"><span>Login</span></a></li>
-                        <li><a class="hover-btn-new log orange" href="{{url('/register')}}"><span>Register</span></a></li>
+                        {{-- <li><a class="hover-btn-new log orange" href="{{url('/register')}}"><span>Register</span></a></li> --}}
                         {{-- <li><a href="{{ url('/login') }}"><i class="fas fa-sign-in-alt nav-icon"> Login</i></a></li> --}}
                         {{-- <li><a href="{{ url('/register') }}">Register</a></li> --}}
                         @else

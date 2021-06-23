@@ -92,21 +92,29 @@ class HomeController extends Controller
                         return view('student.home',['notice'=>$notice,'user'=>$user,'profile'=>$profile]);
                     }
                     else{
+                        $notice = Notice::orderBy('id', 'DESC')->where('Publish','Yes')->first();
                         $user_id = auth()->user()->id;
                         $profile = Profile::where('user_id', $user_id)->first();
-                        $notice = Notice::all();
+
+                        dd($profile);
+
                         $user = User::find($user_id);
 
-
-                        return view('home',['notices'=>$notice,'user'=>$user,'profile'=>$profile]);
+                        return view('home',['notice'=>$notice,'user'=>$user,'profile'=>$profile]);
 
                     }
                 }
         }else{
-            $notice = Notice::all();
-            $user = User::all();
+            $role_id = null;
+            $notice = Notice::orderBy('id', 'DESC')->where('Publish','Yes')->first();
+            $user_id = auth()->user()->id;
+            $profile = Profile::where('user_id', $user_id)->first();
 
-            return view('home',['notices'=>$notice,'users'=>$user]);
+            // dd($profile);
+
+            $user = User::find($user_id);
+
+            return view('home',['notice'=>$notice,'user'=>$user,'profile'=>$profile,'role_id'=>$role_id]);
         }
 
 

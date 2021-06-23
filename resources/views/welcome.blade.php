@@ -119,19 +119,30 @@
                                   <div class="pricing-table-features text-center">
                                     {{-- <p><i class="fa fa-link"></i></p>          --}}
                                     {!! $notice->body !!}<br>
-                                    @if (is_null($notice->post_image))
+
+                                    @php
+                                    // dd(substr($notice->post_image,-3));
+                                    $type = substr($notice->post_image,-3);
+                                    //  $file_download = $submission->offsetUnset('file');;
+                                    $file_download = $notice->getAttributes()['post_image'];
+                                    $file_download = substr($file_download,11);
                                     
-                                    <img class="card-img-top" src="{{$notice->post_image}}" alt="Card image cap" style="display: none">
+                                    @endphp
+                                        {{-- {{$file_download}} --}}
+                                        
+                                    @if ($notice->post_image != null)
+                                    
+                                      @if($type=="pdf") 
+                                      <iframe src="{{$notice->post_image}}" height="400px" width="200px" class="col-lg-12" style="width: 50%"></iframe><br><br>
+                                      @elseif($type=="mp4")
+                                      <iframe src="{{$notice->post_image}}" height="400px" width="auto" class="col-lg-12" ></iframe><br><br>
+                                      @else
+                                      <img class="card-img-top " src="{{$notice->post_image}}" alt="{{$notice->title}}" style="width: 50%"><br><br>
+                                      @endif
+                                    <a class="btn btn-info " href="{{$notice->post_image}}" target="_blank">View File</a>
                                     @else
-                          
-                                    <img class="card-img-top" src="{{$notice->post_image}}" alt="Card image cap" style="width: 50%">
-                          
+                                        
                                     @endif
-                                      {{-- <p><i class="fa fa-envelope-o"></i> <strong>250</strong> Email Addresses</p>
-                                      <p><i class="fa fa-rocket"></i> <strong>125GB</strong> of Storage</p>
-                                      <p><i class="fa fa-database"></i> <strong>140</strong> Databases</p>
-                                      <p><i class="fa fa-link"></i> <strong>60</strong> Domains</p>
-                                      <p><i class="fa fa-life-ring"></i> <strong>24/7 Unlimited</strong> Support</p> --}}
                                   </div>
                                   <div class="pricing-table-sign-up">
                                       {{-- <a href="#" class="hover-btn-new orange"><span>Order Now</span></a> --}}

@@ -105,6 +105,13 @@ Route::middleware('auth')->group(function(){
     Route::get('teacher/submission/all', 'SubmissionController@IndexAll')->name('submission.teacherAll');
     Route::post('student/submission/{submission}/mark', 'SubmissionController@mark')->name('submission.teacherMark');
 
+    // USER
+    Route::get('/teacher/all', 'UserController@teacherList')->name('teacherList');
+    Route::get('/student/all', 'UserController@studentList')->name('studentList');
+    Route::get('/teacher/{user}/profile', 'UserController@teacherDetail')->name('teacherDetail');
+    Route::get('/student/{user}/profile', 'UserController@studentDetail')->name('studentDetail');
+
+
 
     
     // // STUDENT

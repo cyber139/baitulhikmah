@@ -33,35 +33,12 @@
 <div class="wrapper">
 
   <!-- Navbar -->
-    @if ($role_id == 1)
-        @include('admin.partials._navbar')
-    @elseif($role_id == 2)
-    @include('teacher.partials._navbar')
-    @elseif($role_id == 3)
-        @include('student.partials._navbar')
-    @else
-        @include('partials._navbar')
-    @endif
 
-
-  {{-- @include('admin.partials._navbar') --}}
-
-
-
+    @include('partials_navbar')
   <!-- /.navbar -->
 
   <!-- Main Sidebar Container -->
-  {{-- @include('admin.partials._sidebar') --}}
-
-  @if ($role_id == 1)
-  @include('admin.partials._sidebar')
-  @elseif($role_id == 2)
-  @include('teacher.partials._sidebar')
-  @elseif($role_id == 3)
-  @include('student.partials._sidebar')
-  @else
-      @include('partials._sidebar')
-  @endif
+@include('partials._sidebar')
 
 
   {{-- @include('admin.partials._dashboard') --}}

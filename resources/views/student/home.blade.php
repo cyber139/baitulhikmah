@@ -66,6 +66,8 @@
                 
                   @if($type=="pdf") 
                   <iframe src="{{$notice->post_image}}" height="400px" width="200px" class="col-lg-12" style="width: 50%"></iframe><br><br>
+                  @elseif($type=="mp4")
+                  <iframe src="{{$notice->post_image}}" height="400px" width="200px" class="col-lg-12" style="width: 50%"></iframe><br><br>
                   @else
                   <img class="card-img-top " src="{{$notice->post_image}}" alt="{{$notice->title}}" style="width: 50%"><br><br>
                   @endif

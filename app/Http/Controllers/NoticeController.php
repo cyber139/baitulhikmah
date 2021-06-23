@@ -31,7 +31,7 @@ class NoticeController extends Controller
     //     $notice = Notice::all();
 
     //     return view('admin.notice',['notices'=>$notice]);
-
+        
     $notice = Notice::orderBy('id', 'DESC')->where('Publish','Yes')->get();
     $user_id = auth()->user()->id;
     $user_roles = User::with('roles')->where('id', $user_id)->get();
@@ -149,7 +149,7 @@ class NoticeController extends Controller
         // return view('admin.notice',['notice'=>$notice]);
         
         // dd($notice);
-        
+        $role_id = null;
         $user_id = auth()->user()->id;
         $user_roles = User::with('roles')->where('id', $user_id)->get();
         $profile = Profile::where('user_id', $user_id)->first();

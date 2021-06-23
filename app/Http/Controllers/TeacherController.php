@@ -280,17 +280,21 @@ class TeacherController extends Controller
         $user_id = auth()->user()->id;
         $profile = Profile::where('user_id', $user_id)->first();
 
-
+        
 
         foreach (Teacher::all() as $assigned) {
-           if($assigned->user_id != $user->id){
-                return view('teacher.subject.noSubject',['subjects'=>$subjects,'profile'=>$profile]);
-            }else{
-                $assigns = Teacher::where('user_id',$user->id)->get();
-                // dd($assigns);
-                return view('teacher.subject.index',['subjects'=>$subjects,'assigns'=>$assigns,'user'=>$user,'selectClassSubjects'=>$selectClassSubjects,'posts'=>$posts,'profile'=>$profile]);
-           }
+            if($assigned->user_id == $user->id){
+                break;
+            }
         }
+        // dd($assigned);
+        if($assigned->user_id != $user->id){
+            return view('teacher.subject.noSubject',['subjects'=>$subjects,'profile'=>$profile]);
+        }else{
+            $assigns = Teacher::where('user_id',$user->id)->get();
+            // dd($assigns);
+            return view('teacher.subject.index',['subjects'=>$subjects,'assigns'=>$assigns,'user'=>$user,'selectClassSubjects'=>$selectClassSubjects,'posts'=>$posts,'profile'=>$profile]);
+       }
         
         // return view('teacher.subject.index',['subjects'=>$subjects]);
     }

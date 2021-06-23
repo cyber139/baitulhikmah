@@ -249,43 +249,43 @@
                       <div class="form-group row">
                         <label for="full_name" class="col-sm-3 col-form-label">Full Name</label>
                         <div class="col-sm-9">
-                          <input type="text" class="form-control" name="full_name" id="full_name" placeholder="Name">
+                          <input type="text" class="form-control" name="full_name" id="full_name" placeholder="Name" required>
                         </div>
                       </div>
                       <div class="form-group row">
                         <label for="address" class="col-sm-3 col-form-label">Address</label>
                         <div class="col-sm-9">
-                          <textarea class="form-control" name="address" id="address" placeholder="Address"></textarea>
+                          <textarea class="form-control" name="address" id="address" placeholder="Address" required></textarea>
                         </div>
                       </div>
                       <div class="form-group row">
                         <label for="phone_no" class="col-sm-3 col-form-label">Phone No</label>
                         <div class="col-sm-9">
-                          <input type="text" class="form-control" name="phone_no" id="phone_no" placeholder="Phone No">
+                          <input type="text" class="form-control" name="phone_no" id="phone_no" placeholder="Phone No" required>
                         </div>
                       </div>
                       <div class="form-group row">
                         <label for="guardian_name1" class="col-sm-3 col-form-label">Guardian Name 1</label>
                         <div class="col-sm-9">
-                          <input type="text" class="form-control" name="guardian_name1" id="guardian_name1" placeholder="Guardian Name 1">
+                          <input type="text" class="form-control" name="guardian_name1" id="guardian_name1" placeholder="Guardian Name 1" required>
                         </div>
                       </div>
                       <div class="form-group row">
                         <label for="gphone_no1" class="col-sm-3 col-form-label">Guardian Phone No</label>
                         <div class="col-sm-9">
-                          <input type="text" class="form-control" name="gphone_no1" id="gphone_no1" placeholder="Phone No">
+                          <input type="text" class="form-control" name="gphone_no1" id="gphone_no1" placeholder="Phone No" required>
                         </div>
                       </div>
                       <div class="form-group row">
                         <label for="guardian_name2" class="col-sm-3 col-form-label">Guardian Name 2</label>
                         <div class="col-sm-9">
-                          <input type="text" class="form-control" name="guardian_name2" id="guardian_name2" placeholder="Guardian Name 2">
+                          <input type="text" class="form-control" name="guardian_name2" id="guardian_name2" placeholder="Guardian Name 2" required>
                         </div>
                       </div>
                       <div class="form-group row">
                         <label for="gphone_no2" class="col-sm-3 col-form-label">Guardian Phone No</label>
                         <div class="col-sm-9">
-                          <input type="text" class="form-control" name="gphone_no2" id="gphone_no2" placeholder="Phone No">
+                          <input type="text" class="form-control" name="gphone_no2" id="gphone_no2" placeholder="Phone No" required>
                         </div>
                       </div>
                       <div class="form-group ">
@@ -317,43 +317,43 @@
                       <div class="form-group row">
                         <label for="full_name" class="col-sm-3 col-form-label">Full Name</label>
                         <div class="col-sm-9">
-                          <input type="text" class="form-control" name="full_name" id="full_name" value="{{$profile->full_name}}">
+                          <input type="text" class="form-control" name="full_name" id="full_name" value="{{$profile->full_name}}" required>
                         </div>
                       </div>
                       <div class="form-group row">
                         <label for="address" class="col-sm-3 col-form-label">Address</label>
                         <div class="col-sm-9">
-                          <textarea class="form-control" name="address" id="address" placeholder="Address">{{$profile->address}}</textarea>
+                          <textarea class="form-control" name="address" id="address" placeholder="Address" required>{{$profile->address}}</textarea>
                         </div>
                       </div>
                       <div class="form-group row">
                         <label for="phone_no" class="col-sm-3 col-form-label">Phone No</label>
                         <div class="col-sm-9">
-                          <input type="text" class="form-control" name="phone_no" id="phone_no" value="{{$profile->phone_no}}">
+                          <input type="text" class="form-control" name="phone_no" id="phone_no" value="{{$profile->phone_no}}" required>
                         </div>
                       </div>
                       <div class="form-group row">
                         <label for="guardian_name1" class="col-sm-3 col-form-label">Guardian Name 1</label>
                         <div class="col-sm-9">
-                          <input type="text" class="form-control" name="guardian_name1" id="guardian_name1" value="{{$profile->guardian_name1}}">
+                          <input type="text" class="form-control" name="guardian_name1" id="guardian_name1" value="{{$profile->guardian_name1}}" required>
                         </div>
                       </div>
                       <div class="form-group row">
                         <label for="gphone_no1" class="col-sm-3 col-form-label">Guardian Phone No</label>
                         <div class="col-sm-9">
-                          <input type="text" class="form-control" name="gphone_no1" id="gphone_no1" value="{{$profile->gphone_no1}}">
+                          <input type="text" class="form-control" name="gphone_no1" id="gphone_no1" value="{{$profile->gphone_no1}}" required>
                         </div>
                       </div>
                       <div class="form-group row">
                         <label for="guardian_name2" class="col-sm-3 col-form-label">Guardian Name 2</label>
                         <div class="col-sm-9">
-                          <input type="text" class="form-control" name="guardian_name2" id="guardian_name2" value="{{$profile->guardian_name2}}">
+                          <input type="text" class="form-control" name="guardian_name2" id="guardian_name2" value="{{$profile->guardian_name2}}" required>
                         </div>
                       </div>
                       <div class="form-group row">
                         <label for="gphone_no2" class="col-sm-3 col-form-label">Guardian Phone No</label>
                         <div class="col-sm-9">
-                          <input type="text" class="form-control" name="gphone_no2" id="gphone_no2" value="{{$profile->gphone_no2}}">
+                          <input type="text" class="form-control" name="gphone_no2" id="gphone_no2" value="{{$profile->gphone_no2}}" required>
                         </div>
                       </div>
                       <div class="form-group row">
@@ -408,13 +408,13 @@
                       <div class="form-group row">
                         <label for="password" class="col-sm-2 col-form-label">Password</label>
                         <div class="col-sm-10">
-                          <input type="password" class="form-control" id="password" name="password">
+                          <input type="password" class="form-control" id="password" name="password" required>
                         </div>
                       </div>
                       <div class="form-group row">
                         <label for="password_confirmation" class="col-sm-2 col-form-label">Confirm Password</label>
                         <div class="col-sm-10">
-                          <input type="password" class="form-control" id="password_confirmation" name="password_confirmation">
+                          <input type="password" class="form-control" id="password_confirmation" name="password_confirmation" required>
                         </div>
                       </div>
                       <div class="form-group row">

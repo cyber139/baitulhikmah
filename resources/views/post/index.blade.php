@@ -82,7 +82,7 @@
                   {{$post->description}}
                   {{-- {!!$post->body!!} --}}
                 </div>
-                <div class="timeline-body">
+                {{-- <div class="timeline-body"> --}}
                   {{-- {{dd($post->post_image)}} --}}
 
 
@@ -119,7 +119,7 @@
                     @endif
 
                   @endif --}}
-                </div>
+                {{-- </div> --}}
                 <hr>
 
                 <div class="timeline-footer">

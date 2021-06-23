@@ -89,17 +89,19 @@
                 @endphp
                     {{-- {{$file_download}} --}}
                     
-                @if ($notice->post_image != null)
-                
-                  @if($type=="pdf") 
-                  <iframe src="{{$notice->post_image}}" height="400px" width="200px" class="col-lg-12" style="width: 50%"></iframe><br><br>
-                  @else
-                  <img class="card-img-top " src="{{$notice->post_image}}" alt="{{$notice->title}}" style="width: 50%"><br><br>
-                  @endif
-                <a class="btn btn-info " href="{{$notice->post_image}}" target="_blank"><i class="fas fa-eye"></i>  View File</a>
+              @if ($notice->post_image != null)
+              
+                @if($type=="pdf") 
+                <iframe src="{{$notice->post_image}}" height="600px" width="200px" class="col-lg-12" style="width: 100%"></iframe><br><br>
+                @elseif($type =="mp4")
+                        <iframe src="{{$notice->post_image}}" height="400px" width="200px" class="col-lg-12" style="width: 50%"></iframe><br><br>
                 @else
-                    
+                <img class="card-img-top " src="{{$notice->post_image}}" alt="{{$notice->title}}" style="width: 100%"><br><br>
                 @endif
+                <a class="btn btn-info " href="{{$notice->post_image}}" target="_blank"><i class="fas fa-eye"></i>  View File</a>
+              @else
+                  
+              @endif
                
                 <a href="{{route('notice-detail', $notice->id)}}" class="btn btn-primary">Read More &rarr;</a>
             

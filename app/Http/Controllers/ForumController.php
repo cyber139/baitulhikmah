@@ -47,6 +47,7 @@ class ForumController extends Controller
     public function create()
     {
         //
+        $role_id = null;
         $user_id = auth()->user()->id;
         $user_roles = User::with('roles')->where('id', $user_id)->get();
         $profile = Profile::where('user_id', $user_id)->first();

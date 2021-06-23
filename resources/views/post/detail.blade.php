@@ -144,13 +144,13 @@
             @csrf
               <div class="form-group">
                 <label for="title">Title</label>
-                <input type="text" class="form-control" placeholder="Enter ..." name="title" id="title" aria-describedby="">
+                <input type="text" class="form-control" placeholder="Enter ..." name="title" id="title" aria-describedby="" required>
               </div>
               <div class="form-group">
                 <label>Body</label>
                 <div class="pad">
                   <div class="mb-3">
-                    <textarea class="textarea" placeholder="Place some text here" style="width: 100%; height: 500px; font-size: 14px; line-height: 18px; border: 1px solid #dddddd; padding: 10px;" name="body" id="body">
+                    <textarea class="textarea" placeholder="Place some text here" style="width: 100%; height: 500px; font-size: 14px; line-height: 18px; border: 1px solid #dddddd; padding: 10px;" name="body" id="body" required>
                     </textarea>
                   </div>
                   <p class="text-sm mb-0">

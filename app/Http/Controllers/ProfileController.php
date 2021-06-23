@@ -74,11 +74,18 @@ class ProfileController extends Controller
         // dd($input);
 
         // dd($request);
-        // auth()->user()->profile()->create($input);
+        // auth()->user()->profiles()->create($input);
         if(request('profile_image')){
-            $inputs['profile_image'] = request('profile_image')->store('profiles');
-            $profile->profile_image = $inputs['profile_image'];
+            $input['profile_image'] = request('profile_image')->store('profiles');
+            // $profile->profile_image = $input['profile_image'];
         }
+
+        // if(request()->file('profile_image')){
+        //     $file = request()->file('profile_image');
+        //     $filename ='profiles/'. time().'.'.$file->getClientOriginalExtension();
+        //     $file->move('storage/profiles',$filename);
+        //     // $profile->file = $filename;
+        // }
 
         $input = Profile::create([
             'user_id'=>$user_id,
@@ -89,6 +96,7 @@ class ProfileController extends Controller
             'gphone_no1' => $input['gphone_no1'],
             'guardian_name2' => $input['guardian_name2'],
             'gphone_no2' => $input['gphone_no2'],
+            'profile_image' => $input['profile_image'],
         ]);
         // dd($input);
         
@@ -116,6 +124,7 @@ class ProfileController extends Controller
         // //
         // $users = User::all();
         // return view('admin.uac',['users'=>$users]);
+        $role_id = null;
         $user_id = auth()->user()->id;
         // dd($user_id);
 
@@ -181,11 +190,17 @@ class ProfileController extends Controller
             'gphone_no2' => ['string']
         ]);
 
-        if(request('profile_image')){
-            $inputs['profile_image'] = request('profile_image')->store('profiles');
-            $profile->profile_image = $inputs['profile_image'];
-        }
+        // if(request('profile_image')){
+        //     $inputs['profile_image'] = request('profile_image')->store('profiles');
+        //     $profile->profile_image = $inputs['profile_image'];
+        // }
 
+        if(request()->file('profile_image')){
+            $file = request()->file('profile_image');
+            $filename ='profiles/'. time().'.'.$file->getClientOriginalExtension();
+            $file->move('storage/profiles',$filename);
+            $profile->file = $filename;
+        }
         $profile->update([
             'full_name' => $input['full_name'],
             'address' => $input['address'],
@@ -220,7 +235,7 @@ class ProfileController extends Controller
         ]);
 
         $user->update([
-            'password' => Hash::make($user['password']),
+            'password' => Hash::make($inputs['password']),
         ]);
         // $user->update();
         // $this->authorize('update', $notice);

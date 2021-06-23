@@ -75,24 +75,17 @@
             <li class="nav-item">
                 <a href="#" class="nav-link">
                 <i class="nav-icon fas fa-users"></i>
-                <p>User Access Contol <i class="fas fa-angle-left right"></i></p>
-                
+                <p>User <i class="fas fa-angle-left right"></i></p>
                 </a>
                 <ul class="nav nav-treeview">
                 <li class="nav-item">
-                    <a href="#" class="nav-link">
-                    <i class="far fa-circle nav-icon"></i>
-                    <p>All User</p>
-                    </a>
-                </li>
-                <li class="nav-item">
-                    <a href="{{url('/admin/teacher')}}" class="nav-link">
+                    <a href="{{route('teacherList')}}" class="nav-link">
                     <i class="fas fa-user-tie nav-icon"></i>
                     <p>All Teacher</p>
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a href="{{url('/admin/student')}}" class="nav-link">
+                    <a href="{{route('studentList')}}" class="nav-link">
                     <i class="fas fa-user-graduate nav-icon"></i>
                     <p>All Student</p>
                     </a>
