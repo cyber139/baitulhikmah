@@ -92,6 +92,21 @@
                        {{$file_download}}
                       </td>
                       <td>
+                        <form role="form" method="post" action="{{route('submission.teacherMark',$submission->id)}}" enctype="multipart/form-data">
+                          @csrf
+                            <div class="form-group">
+                              <input type="text" class="form-control"  name="mark" id="mark" aria-describedby="" value="{{$submission->mark}}" required>
+                            </div>
+                            
+                      </td>
+                      <td>
+                        <div class="text-center">
+                          <button type="submit" class="btn btn-primary btn-sm mb-2 ">Submit</button>
+                        </div>
+                      </form>
+                        {{-- <a class="btn btn-success btn-sm mb-2" href="{{route('submission.download',$file_download)}}"><i class="fas fa-download"></i>  Download</a> --}}
+                      </td>
+                      <td>
                         <a class="btn btn-success btn-sm mb-2" href="{{route('submission.download',$file_download)}}"><i class="fas fa-download"></i>  Download</a>
                       </td>
                       <td>

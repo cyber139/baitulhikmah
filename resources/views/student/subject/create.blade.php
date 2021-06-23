@@ -33,7 +33,7 @@
           <div class="card-body">
             <div class="form-group">
               <label for="subject_title">Subject Title</label>
-              <input type="text" class="form-control" placeholder="Enter ..." name="subject_title" id="subject_title" aria-describedby="">
+              <input type="text" class="form-control" placeholder="Enter ..." name="subject_title" id="subject_title" aria-describedby="" required>
             </div>
             <div class="form-group">
               <label for="subject_title">Subject Slug</label>

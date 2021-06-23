@@ -49,7 +49,7 @@
           <div class="timeline text-center">
             <!-- timeline item -->
             <div>
-              <i class="fas fa-angle-right  bg-blue">                 </i>
+              <i class="fas fa-angle-right  bg-blue"> </i>
               <div class="timeline-item">
                 <span class="time"><i class="fas fa-clock"></i> </p>
                 </span>
