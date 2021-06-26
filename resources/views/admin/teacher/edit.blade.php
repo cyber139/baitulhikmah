@@ -66,7 +66,33 @@
                 @empty
                 <li class="text-muted">Not Defined</li>
                 @endforelse
-                </li>
+                </ul>
+                <h5> Subject Assigned </h5>
+                <ul>
+                  @if($selectAssign->count() == 0) 
+                    <li class="text-muted">Not Defined</li>
+                  @endif
+                  @foreach($selectClassSubjects as $grade_subject => $grade)
+                    @foreach ($grade->subjects as $subject)
+                    
+                      @foreach($selectAssign as $assigned)
+                        @if ($assigned->user_id == $user->id)
+                          @if ($assigned->subject_id == $subject->id)
+                            @if( $assigned->grade_id == $grade->id)
+                              @if( $assigned->isActive == 'Yes')
+                                @if( $assigned->isDelete == 'No')
+                                  <li>{{$grade->grade_title}} : {{$subject->subject_title}}</li>
+                                    
+                                @endif
+                              @endif
+                            @endif
+                          @endif
+                        @endif
+                      @endforeach
+                      
+                    @endforeach
+                  @endforeach
+                  </ul>
     
               </div>
               <!-- /.card-body -->

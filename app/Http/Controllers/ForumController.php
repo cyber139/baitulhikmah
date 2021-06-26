@@ -146,7 +146,7 @@ class ForumController extends Controller
         //
         // Notice::findOrFail($id);
         // return view('admin.notice',['notice'=>$notice]);
-
+        $role_id = null;
         $user_id = auth()->user()->id;
         $forums = Forum::where('user_id', $user_id)->orderBy('id', 'DESC')->get();
         $user_roles = User::with('roles')->where('id', $user_id)->get();
@@ -158,7 +158,12 @@ class ForumController extends Controller
             }
         }
 
+        if($role_id != null){
         return view('forum.forum', ['forums'=> $forums,'profile'=>$profile,'role_id'=>$role_id]);
+        }
+        else{
+            return redirect()->route('home');
+        }
         
     }
 
@@ -237,7 +242,7 @@ class ForumController extends Controller
         $forum->publish = $inputs['publish'];
         $forum->save();
 
-        return redirect()->route('forum-user');;
+        return redirect()->route('forum-user');
     }
 
     /**

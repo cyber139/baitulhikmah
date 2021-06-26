@@ -81,7 +81,7 @@
 
                   @endif
 
-                  <iframe src="{{$post->post_image}}" height="600px" width="200px" class="col-lg-12" style="width: 50%"></iframe>
+                  {{-- <iframe src="{{$post->post_image}}" height="600px" width="200px" class="col-lg-12" style="width: 50%"></iframe> --}}
 
              
            <br><br>
